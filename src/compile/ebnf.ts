@@ -55,19 +55,19 @@ export const builtIn = {
 		return !((!c) || c === ' ' || c === '\t' || c === '\v' || c === '\f' || c === '\n' || c === '\r');
 	},
 	spacetab: (c: string): boolean => {
-		return c === ' ' || c === '\t' || c === '\v' ||  c === '\f';
+		return c === ' ' || c === '\t' || c === '\v' || c === '\f';
 	},
 	breakline: (c: string): boolean => {
 		return c === '\n' || c === '\r';
 	},
 	notbreakline: (c: string): boolean => {
-		return !((!c) ||  c === '\n' || c === '\r');
+		return !((!c) || c === '\n' || c === '\r');
 	},
 	digit: (c: string): boolean => {
 		return (c >= '0' && c <= '9');
 	},
 	notdigit: (c: string): boolean => {
-		return !((!c) ||  c >= '0' && c <= '9');
+		return !((!c) || c >= '0' && c <= '9');
 	},
 	digit19: (c: string): boolean => {
 		return (c >= '1' && c <= '9');
@@ -111,11 +111,11 @@ export const createRuleReader = (s: string): RuleReader => {
 			parser.nextIgnoreWhitespace();
 		}
 		if (parser.cur !== '=') {
-			throw new Error(`${parser.name}, parse rule error, need = !`);			
+			throw new Error(`${parser.name}, parse rule error, need = !`);
 		}
 		const e = parseSeries(parser.next());
 		if (<string>parser.cur !== ';') {
-			throw new Error(`${parser.name}, parse rule error, need ; !`);			
+			throw new Error(`${parser.name}, parse rule error, need ; !`);
 		}
 		parser.next();
 		if (builtIn.whitespace(parser.cur)) {
@@ -170,12 +170,12 @@ const parseResult = (parser: Parser): string => {
 	let s = '';
 	while (parser.cur !== ';') {
 		if (!parser.cur) {
-			throw new Error(`${parser.name}, parse result incomplate!`);			
+			throw new Error(`${parser.name}, parse result incomplate!`);
 		}
 		s += parser.cur;
 		parser.next();
 	}
-	
+
 	return s.trim();
 };
 
@@ -210,7 +210,7 @@ const parse = (parser: Parser): Entry => {
 	}
 };
 // 解析规则项的可选项，#字符开始，?为忽略，?1为忽略并切换到状态1，back2为状态退后2次
-const parseOption = (parser: Parser) : any => {
+const parseOption = (parser: Parser): any => {
 	if (builtIn.whitespace(parser.cur)) {
 		parser.nextIgnoreWhitespace();
 	}
@@ -218,8 +218,8 @@ const parseOption = (parser: Parser) : any => {
 		return;
 	}
 	parser.next();
-	const s = {ignore: true, state: '', back: 0};
-	if ((parser.cur) as any !== '?') {
+	const s = { ignore: true, state: '', back: 0 };
+	if (<any>parser.cur !== '?') {
 		s.ignore = false;
 	} else {
 		parser.next();
@@ -240,7 +240,7 @@ const parseTerminal = (parser: Parser, char: string): Entry => {
 	let s = '';
 	while (parser.cur !== char) {
 		if (!parser.cur) {
-			throw new Error(`${parser.name}, parse terminal incomplate!`);			
+			throw new Error(`${parser.name}, parse terminal incomplate!`);
 		}
 		s += parser.cur;
 		parser.next();
@@ -281,7 +281,7 @@ const parseName = (parser: Parser): Entry => {
 };
 
 // 解析连续操作
-const parseSeries = (parser: Parser, end?:boolean): Entry => {
+const parseSeries = (parser: Parser, end?: boolean): Entry => {
 	const arr = [];
 	while (parser.cur) {
 		arr.push(parse(parser));
@@ -325,7 +325,7 @@ const parseAndOr = (parser: Parser, type: 'and' | 'or'): Entry => {
 			if (arr.length === 1) {
 				return arr[0];
 			}
-			
+
 			return {
 				type: type,
 				str: c + ' ' + getArrStr(arr) + ' ' + c,

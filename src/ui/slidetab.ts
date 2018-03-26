@@ -30,9 +30,9 @@ export const Speed = 100;
 export class SlideTab extends Widget {
 	public transform: string = ''; // transform的兼容键
 	public end: number = 0; // 结束位置，为(卡片数量-1)*-100
-	public container: HTMLElement = undefined; // 卡片的容器
+	public container: HTMLElement; // 卡片的容器
 	public containerWidth: number = 0;
-	public timerRef: TimerRef = undefined;
+	public timerRef: TimerRef;
 	public startTime: number = 0; // 定时运动的起始时间
 	public startOffset: number = 0; // 定时运动的起始位置
 	public swipe: number = 0; // 挥动的方向，0为无挥动，-1左，1右
@@ -56,7 +56,7 @@ export class SlideTab extends Widget {
 	public poiseStart(e: any) {
 		this.moving = 0;
 		if (!this.container) {
-			this.container = getRealNode(findNodeByAttr(this.tree as VirtualNode, 'container'));
+			this.container = getRealNode(findNodeByAttr(<VirtualNode>this.tree, 'container'));
 			this.containerWidth = this.container.getBoundingClientRect().width;
 		}
 		if (this.timerRef) {

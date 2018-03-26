@@ -38,14 +38,13 @@ export let tplFunc;
 // 将语法树转换成ts代码
 export const gen = (syntax: Syntax, path: string, cfg: Json) => {
 	const arr = preorder(syntax).childs;
-	const ret = tplFunc(null, arr, path, cfg);
 
-	return ret;
+	return tplFunc(null, arr, path, cfg);
 };
 
 // ====================================== 本地
 // 先序遍历
-const preorder = (syntax: Syntax) => {
+const preorder = (syntax: Syntax): ParserNode => {
 	const funcs = seekFunc(syntax);
 	const childs: Syntax[] = funcs.child();
 	const childNodes: ParserNode[] = [];
@@ -53,9 +52,8 @@ const preorder = (syntax: Syntax) => {
 		const childNode = preorder(childs[i]);
 		if (childNode) childNodes.push(childNode);// 存在空文本节点的情况		
 	}
-	const node: ParserNode = funcs.node(childNodes);
 
-	return node;
+	return funcs.node(childNodes);
 };
 
 interface InterParser {
@@ -82,7 +80,7 @@ const tupleBodyFunc = (syntax: Syntax) => {
 			node.type = 'Tuple';
 			node.genType = [];
 			for (let i = 0; i < childs.length; i++) {
-				node.genType.push(childs[i] as Type);
+				node.genType.push(<Type>childs[i]);
 			}
 
 			return node;
@@ -209,9 +207,9 @@ const defFunc = (syntax: Syntax) => {
 			node.type = syntax.type;
 			if (right[1] && right[1].type === 'genType') {
 				node.genType = (<GenType>childs[0]).genType;
-				node.members = childs.splice(1, childs.length) as Member[];
+				node.members = <Member[]>childs.splice(1, childs.length);
 			} else {
-				node.members = childs as Member[];
+				node.members = <Member[]>childs;
 			}
 			parseNote(syntax, node);// 解析注释和注解
 
@@ -269,7 +267,7 @@ const structKeyTypeFunc = (syntax: Syntax) => {
 			const node = new Member();
 			parseNote(syntax, node);// 解析注释和注解
 			node.name = right[0].value;// key
-			node.type = childs[0] as Type;
+			node.type = <Type>childs[0];
 
 			return node;
 		}
@@ -294,7 +292,7 @@ const genTypeFunc = (syntax: Syntax) => {
 			const node = new GenType();
 			node.genType = [];
 			for (let i = 0; i < childs.length; i++) {
-				node.genType.push(childs[i] as Type);
+				node.genType.push(<Type>childs[i]);
 			}
 
 			return node;
@@ -431,9 +429,8 @@ const parserFunc: any = {
 const defaultParse = {
 	child: (): Syntax[] => [],
 	node: (childs: ParserNode[]) => {
-		const node = new ParserNode();
 
-		return node;
+		return new ParserNode();
 	}
 };
 

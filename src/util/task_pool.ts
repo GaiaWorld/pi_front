@@ -3,7 +3,7 @@
  */
 
 // ============================== 导入
-import {randomInt} from './math';
+import { randomInt } from './math';
 
 // ============================== 导出
 /**
@@ -29,7 +29,7 @@ export interface TaskInfo {
  * @description 用于临时获取pop值
  * @example
  */
-export let temp:TaskInfo = {func: undefined, args: undefined, priority: 0, type: 0};
+export let temp: TaskInfo = { func: undefined, args: undefined, priority: 0, type: 0 };
 
 /**
  * @description 任务池
@@ -37,13 +37,13 @@ export let temp:TaskInfo = {func: undefined, args: undefined, priority: 0, type:
  */
 
 export class TaskPool {
-	public sync : Map<number, Queue>;// 同步表，键为优先级
-	public syncSize : number;
-	public syncWeight : number;
-	public syncZero : Queue;
-	public async : Queue;
-	public asyncWeight : number;
-	public asyncZero : Queue;
+	public sync: Map<number, Queue>;// 同步表，键为优先级
+	public syncSize: number;
+	public syncWeight: number;
+	public syncZero: Queue;
+	public async: Queue;
+	public asyncWeight: number;
+	public asyncZero: Queue;
 
 	constructor() {
 		this.sync = new Map();
@@ -58,14 +58,14 @@ export class TaskPool {
 	 * @description 获取任务池的任务数量
 	 * @example
 	 */
-	public size ():number {
+	public size(): number {
 		return this.syncSize + this.syncZero.size + this.async.size + this.asyncZero.size;
 	}
 	/**
 	 * @description 设置任务，任务的调用函数和参数（参数必须为数组或undefined），任务的优先级和类型（异步0，同步顺序1，同步立即2，立即模式是将任务加到队列头部，如果加2个立即任务，则后加入的会先执行）
 	 * @example
 	 */
-	public push (func:any, args:any[], priority?:number, type?:TaskType):void {
+	public push(func: any, args: any[], priority?: number, type?: TaskType): void {
 		let t = taskCache.pop();
 		if (t) {
 			t.func = func;
@@ -73,7 +73,7 @@ export class TaskPool {
 			t.priority = priority || 0;
 			t.type = type || TaskType.ASYNC;
 		} else {
-			t = {func: func, args: args, priority: priority, type: type, next: undefined};
+			t = { func: func, args: args, priority: priority, type: type, next: undefined };
 		}
 		if (priority > 0) {
 			if (type === 0) {
@@ -106,7 +106,7 @@ export class TaskPool {
 	 * @description 取出当前最合适的任务，复制到参数r上
 	 * @example
 	 */
-	public pop (r:TaskInfo):boolean {
+	public pop(r: TaskInfo): boolean {
 		let i;
 		let w = this.syncWeight;
 		if (w + this.asyncWeight > 0) {
@@ -133,7 +133,7 @@ export class TaskPool {
 	 * @description 获取指定的优先级和类型的任务数量
 	 * @example
 	 */
-	public getPrioritySize (priority:number, type?:TaskType):number {
+	public getPrioritySize(priority: number, type?: TaskType): number {
 		const queue = this.sync.get(priority);
 
 		return queue ? queue.size : 0;
@@ -142,7 +142,7 @@ export class TaskPool {
 	 * @description 清除指定的优先级和类型的任务列表， 返回清除的数量
 	 * @example
 	 */
-	public clear (priority:number, type?:TaskType) : number {
+	public clear(priority: number, type?: TaskType): number {
 		const queue = this.sync.get(priority);
 		if (!queue) {
 			return 0;
@@ -168,12 +168,10 @@ interface TaskInfoEntry extends TaskInfo {
 
 // 队列
 class Queue {
-	public head : TaskInfoEntry;
-	public tail : TaskInfoEntry;
-	public size : number;
+	public head: TaskInfoEntry;
+	public tail: TaskInfoEntry;
+	public size: number;
 	constructor() {
-		this.head = undefined;
-		this.tail = undefined;
 		this.size = 0;
 	}
 }
@@ -184,7 +182,7 @@ const taskCache = [];
 const queueCache = [];
 
 // 队列放入尾部
-const qtail = (queue:Queue, t:TaskInfoEntry):void => {
+const qtail = (queue: Queue, t: TaskInfoEntry): void => {
 	if (queue.size) {
 		queue.tail.next = t;
 		queue.tail = t;
@@ -196,7 +194,7 @@ const qtail = (queue:Queue, t:TaskInfoEntry):void => {
 	}
 };
 // 队列放入头部
-const qhead = (queue:Queue, t:TaskInfoEntry):void => {
+const qhead = (queue: Queue, t: TaskInfoEntry): void => {
 	if (queue.size) {
 		t.next = queue.head;
 		queue.head = t;
@@ -208,7 +206,7 @@ const qhead = (queue:Queue, t:TaskInfoEntry):void => {
 	}
 };
 // 队列释放该节点
-const qfree = (queue:Queue, node:TaskInfoEntry, r:TaskInfo):boolean => {
+const qfree = (queue: Queue, node: TaskInfoEntry, r: TaskInfo): boolean => {
 	r.func = node.func;
 	r.args = node.args;
 	r.priority = node.priority;
@@ -225,7 +223,7 @@ const qfree = (queue:Queue, node:TaskInfoEntry, r:TaskInfo):boolean => {
 	return true;
 };
 // 队列弹出
-const qpop = (queue:Queue, r:TaskInfo):boolean => {
+const qpop = (queue: Queue, r: TaskInfo): boolean => {
 	const head = queue.head;
 	queue.head = head.next;
 
@@ -233,7 +231,7 @@ const qpop = (queue:Queue, r:TaskInfo):boolean => {
 };
 
 // 计算队列中的每个异步任务权重
-const weightQueue = (pool, queue:Queue, w:number, r:TaskInfo):boolean => {
+const weightQueue = (pool, queue: Queue, w: number, r: TaskInfo): boolean => {
 	let head = queue.head;
 	if (w < head.priority) {
 		queue.head = head.next;
@@ -246,7 +244,7 @@ const weightQueue = (pool, queue:Queue, w:number, r:TaskInfo):boolean => {
 		w -= head.priority;
 		parent = head;
 		head = head.next;
-	}while (w >= head.priority);
+	} while (w >= head.priority);
 	parent.next = head.next;
 	if (head === queue.tail) {
 		queue.tail = parent;
@@ -257,8 +255,8 @@ const weightQueue = (pool, queue:Queue, w:number, r:TaskInfo):boolean => {
 };
 
 // 计算Map中的每个同步队列的权重
-const weightMap = (pool:TaskPool, map:Map<number,Queue>, w:number, r:TaskInfo):boolean => {
-	let queue:Queue;
+const weightMap = (pool: TaskPool, map: Map<number, Queue>, w: number, r: TaskInfo): boolean => {
+	let queue: Queue;
 	for (const priority of map.keys()) {
 		queue = map.get(priority);
 		w -= priority * queue.size;

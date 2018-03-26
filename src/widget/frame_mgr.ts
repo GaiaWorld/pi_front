@@ -50,6 +50,7 @@ export const clearInterval = (ref: number) => {
  * @description 创建帧管理器
  * @example
  */
+// tslint:disable-next-line:max-func-body-length
 export const create = () => {
 
 	// 上次花费时间，本次帧时间，帧次数
@@ -358,13 +359,18 @@ export const clearGlobal = () => {
 	}
 };
 
+const normalrRequestFrameImpl = (callback) => {
+
+	return setTimeout(callback, ((1000 / 60) + 0.5) << 0);
+};
+
 // 获取raf函数，处理兼容性
-const requestFrameImpl = (window as any).requestAnimationFrame || (window as any).mozRequestAnimationFrame || (window as any).webkitRequestAnimationFrame || (window as any).msRequestAnimationFrame || function (callback) { return setTimeout(callback, (0.5 + (1000 / 60)) << 0); };
+const requestFrameImpl = window.requestAnimationFrame || (<any>window).mozRequestAnimationFrame || window.webkitRequestAnimationFrame || (<any>window).msRequestAnimationFrame || normalrRequestFrameImpl;
 // tslint:disable:no-unnecessary-callback-wrapper
 export const requestFrame = callBack => requestFrameImpl(callBack);
 
 // 获取raf取消函数，处理兼容性
-const cancelFrameImpl = (window as any).cancelAnimationFrame || (window as any).mozCancelAnimationFrame || (window as any).webkitCancelAnimationFrame || (window as any).msCancelAnimationFrame || clearTimeout;
+const cancelFrameImpl = window.cancelAnimationFrame || (<any>window).mozCancelAnimationFrame || window.webkitCancelAnimationFrame || (<any>window).msCancelAnimationFrame || clearTimeout;
 export const cancelFrame = callBack => cancelFrameImpl(callBack);
 
 // ============================== 本地

@@ -197,14 +197,14 @@ const guideFind = (): boolean => {
 			return true;
 		}
 	}
-	
+
 	return false;
 };
 /**
  * @description 刷新强制引导组件
  */
 const guideForce = (w: Widget, show: any): void => {
-	const el = w.tree.link as HTMLElement;
+	const el = <HTMLElement>w.tree.link;
 	const pos = { x: 0, y: 0, w: el.offsetWidth, h: el.offsetHeight, show: show };
 	const p = offsetPos(el, getRoot(), pos);
 	if (!p) {

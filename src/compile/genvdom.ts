@@ -1254,7 +1254,7 @@ const attrFunc = (syntax: Syntax, parent: Syntax) => {
 		child: (): Syntax[] => {
 			if (syntax.right[0].value === 'w-sid') {
 				(<any>syntax.parent.parent).sid = parseInt(syntax.right[1].right[0].value, 10);
-				
+
 				return [];
 			}
 			let child = [];
@@ -1912,9 +1912,8 @@ const isAttrStr = (syntax: Syntax): boolean => syntax.type === 'attrStr';
 const defaultParse = {
 	child: (): Syntax[] => [],
 	node: (childs: ParserNode[]) => {
-		const node = new ParserNode();
 
-		return node;
+		return new ParserNode();
 	},
 	pre: (node: ParserNode): String => ``,
 	suf: (node: ParserNode): String => ``

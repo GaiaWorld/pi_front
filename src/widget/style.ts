@@ -98,7 +98,7 @@ export const parseEffect = (str: string, path: string): URLEffect => {
  */
 export const calc = (widget: Widget, clazz: string[], clazzStr: string, result: URLEffect) => {
 	// 先从本地缓存中寻找
-	let effect = (widget as any).styleCache.get(clazzStr);
+	let effect = (<any>widget).styleCache.get(clazzStr);
 	if (effect) {
 		mapCopy(effect.map, result.map);
 		if (effect.url) {
@@ -129,7 +129,7 @@ export const calc = (widget: Widget, clazz: string[], clazzStr: string, result: 
 	} else if (widget.parentNode) {
 		calc(widget.parentNode.widget, clazz, clazzStr, effect);
 	}
-	(widget as any).styleCache.set(clazzStr, effect);
+	(<any>widget).styleCache.set(clazzStr, effect);
 	mapCopy(effect.map, result.map);
 	result.url = effect.url;
 

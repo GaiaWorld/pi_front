@@ -167,13 +167,13 @@ export class BinBuffer {
 	public tail;
 
 	constructor(data?: Uint8Array | number, head?: number, tail?: number) {
-		if (!data || Number.isInteger(data as number)) {
-			this.u8 = new Uint8Array(new ArrayBuffer((data as number) || 32));
+		if (!data || Number.isInteger(<number>data)) {
+			this.u8 = new Uint8Array(new ArrayBuffer((<number>data) || 32));
 			this.view = new DataView(this.u8.buffer);
 			this.head = 0;
 			this.tail = 0;
 		} else {
-			this.u8 = (data as Uint8Array);
+			this.u8 = (<Uint8Array>data);
 			this.view = new DataView(this.u8.buffer, this.u8.byteOffset, this.u8.byteLength);
 			this.head = head || 0;
 			this.tail = tail || this.u8.length;
@@ -710,172 +710,22 @@ export class BinBuffer {
 	 * @description 读入一个类型的值
 	 * @example
 	 */
-	// tslint:disable-next-line:cyclomatic-complexity
 	public read(readNext?: ReadNext) {
 		if (this.head >= this.tail) {
 			throw new Error('read overflow: ' + this.head);
 		}
 		const t = this.view.getUint8(this.head++);
-		let len;
-		switch (t) {
-			case 0:
-				return null;
-			case 1:
-				return true;
-			case 2:
-				return false;
-			case 3:
-				return 0.0;
-			case 4:
-				return 1.0;
-			case 5:
-				throw new Error('unused type :' + t);
-			case 6:
-				this.head += 4;
+		// 由于文件不能太长以及一个switch不能有过多的值，故这里分段处理
+		let r = this.read1(t);
+		if (r !== undefined) return r;
+		r = this.read2(t, readNext);
+		if (r !== undefined) return r;
+		r = this.read3(t, readNext);
 
-				return this.view.getFloat32(this.head - 4, true);
-			case 7:
-				this.head += 8;
+		return r;
 
-				return this.view.getFloat64(this.head - 8, true);
-			case 9:
-				throw new Error('unused type :' + t);
-			case 30:
-				return this.view.getUint8(this.head++);
-			case 31:
-				this.head += 2;
-
-				return this.view.getUint16(this.head - 2, true);
-			case 32:
-				this.head += 4;
-
-				return this.view.getUint32(this.head - 4, true);
-			case 33:
-				this.head += 6;
-
-				return this.view.getUint16(this.head - 6, true) + (this.view.getUint32(this.head - 4, true) * 0x10000);
-			case 34:
-				this.head += 8;
-
-				return this.view.getUint32(this.head - 8, true) + (this.view.getUint32(this.head - 4, true) * 0x100000000);
-			case 35:
-				return -this.view.getUint8(this.head++);
-			case 36:
-				this.head += 2;
-
-				return -this.view.getUint16(this.head - 2, true);
-			case 37:
-				this.head += 4;
-
-				return -this.view.getUint32(this.head - 4, true);
-			case 38:
-				this.head += 6;
-
-				return -this.view.getUint16(this.head - 6, true) - (this.view.getUint32(this.head - 4, true) * 0x10000);
-			case 39:
-				this.head += 8;
-
-				return -this.view.getUint32(this.head - 8, true) - (this.view.getUint32(this.head - 4, true) * 0x100000000);
-			case 105:
-				len = this.view.getUint8(this.head);
-				this.head += len + 1;
-
-				return this.u8.slice(this.head - len, this.head);
-			case 106:
-				len = this.view.getUint16(this.head, true);
-				this.head += len + 2;
-
-				return this.u8.slice(this.head - len, this.head);
-			case 107:
-				len = this.view.getUint32(this.head, true);
-				this.head += len + 4;
-
-				return this.u8.slice(this.head - len, this.head);
-			case 108:
-				len = this.view.getUint16(this.head, true) + (this.view.getUint32(this.head + 2, true) * 0x10000);
-				this.head += len + 6;
-
-				return this.u8.slice(this.head - len, this.head);
-			case 109:
-				len = this.view.getUint32(this.head, true) + (this.view.getUint32(this.head + 4, true) * 0x100000000);
-				this.head += len + 8;
-
-				return this.u8.slice(this.head - len, this.head);
-			case 175:
-				len = this.view.getUint8(this.head);
-				this.head += len + 1;
-
-				return utf8Decode(new Uint8Array(this.view.buffer, this.view.byteOffset + this.head - len, len));
-			case 176:
-				len = this.view.getUint16(this.head, true);
-				this.head += len + 2;
-
-				return utf8Decode(new Uint8Array(this.view.buffer, this.view.byteOffset + this.head - len, len));
-			case 177:
-				len = this.view.getUint32(this.head, true);
-				this.head += len + 4;
-
-				return utf8Decode(new Uint8Array(this.view.buffer, this.view.byteOffset + this.head - len, len));
-			case 178:
-				len = this.view.getUint16(this.head, true) + (this.view.getUint32(this.head + 2, true) * 0x10000);
-				this.head += len + 6;
-
-				return utf8Decode(new Uint8Array(this.view.buffer, this.view.byteOffset + this.head - len, len));
-			case 179:
-				len = this.view.getUint32(this.head, true) + (this.view.getUint32(this.head + 4, true) * 0x100000000);
-				this.head += len + 8;
-
-				return utf8Decode(new Uint8Array(this.view.buffer, this.view.byteOffset + this.head - len, len));
-			case 245:
-				len = this.view.getUint8(this.head);
-				this.head += 6;
-
-				return readContainer(this, len, this.view.getUint32(this.head - 4, true), readNext);
-			case 246:
-				len = this.view.getUint16(this.head, true);
-				this.head += 7;
-
-				return readContainer(this, len, this.view.getUint32(this.head - 4, true), readNext);
-			case 247:
-				len = this.view.getUint32(this.head, true);
-				this.head += 9;
-
-				return readContainer(this, len, this.view.getUint32(this.head - 4, true), readNext);
-			case 248:
-				len = this.view.getUint16(this.head, true) + (this.view.getUint32(this.head + 2, true) * 0x10000);
-				this.head += 11;
-
-				return readContainer(this, len, this.view.getUint32(this.head - 4, true), readNext);
-			case 249:
-				len = this.view.getUint32(this.head, true) + (this.view.getUint32(this.head + 4, true) * 0x100000000);
-				this.head += 13;
-
-				return readContainer(this, len, this.view.getUint32(this.head - 4, true), readNext);
-			default:
-				if (t < 30) {
-					return t - 10;
-				}
-				if (t < 105) {
-					// 读取二进制数据
-					len = t - 40;
-					this.head += len;
-
-					return this.u8.slice(this.head - len, this.head);
-				}
-				if (t < 175) {
-					// 读取utf8编码的字符串
-					len = t - 110;
-					this.head += len;
-
-					return utf8Decode(new Uint8Array(this.view.buffer, this.view.byteOffset + this.head - len, len));
-				}
-				if (t < 245) {
-					// 读取容器类型
-					return readNext(this, t - 180);
-				}
-				throw new Error('invalid type :' + t);
-		}
 	}
+
 	/**
 	 * @description 读出一个正整数，不允许大于0x20000000，使用动态长度
 	 * @example
@@ -898,6 +748,201 @@ export class BinBuffer {
 			return this.view.getUint32(this.head - 4) - 0xC0000000;
 		}
 		throw new Error('invalid pint:' + v);
+	}
+
+	/**
+	 * 读入一个类型的值（第一段）
+	 * @param t 类型
+	 */
+	private read1(t) {
+		let r;
+		switch (t) {
+			case 0:
+				r = null; break;
+			case 1:
+				r = true; break;
+			case 2:
+				r = false; break;
+			case 3:
+				r = 0.0; break;
+			case 4:
+				r = 1.0; break;
+			case 5:
+				r = new Error('unused type :' + t); break;
+			case 6:
+				this.head += 4;
+
+				r = this.view.getFloat32(this.head - 4, true); break;
+			case 7:
+				this.head += 8;
+
+				r = this.view.getFloat64(this.head - 8, true); break;
+			case 9:
+				throw new Error('unused type :' + t);
+			case 30:
+				r = this.view.getUint8(this.head++); break;
+			case 31:
+				this.head += 2;
+
+				r = this.view.getUint16(this.head - 2, true); break;
+			case 32:
+				this.head += 4;
+
+				r = this.view.getUint32(this.head - 4, true); break;
+			case 33:
+				this.head += 6;
+
+				r = this.view.getUint16(this.head - 6, true) + (this.view.getUint32(this.head - 4, true) * 0x10000); break;
+			case 34:
+				this.head += 8;
+
+				r = this.view.getUint32(this.head - 8, true) + (this.view.getUint32(this.head - 4, true) * 0x100000000); break;
+			case 35:
+				r = -this.view.getUint8(this.head++); break;
+			case 36:
+				this.head += 2;
+
+				r = -this.view.getUint16(this.head - 2, true); break;
+			case 37:
+				this.head += 4;
+
+				r = -this.view.getUint32(this.head - 4, true); break;
+			case 38:
+				this.head += 6;
+
+				r = -this.view.getUint16(this.head - 6, true) - (this.view.getUint32(this.head - 4, true) * 0x10000); break;
+			default:
+		}
+
+		return r;
+	}
+
+	/**
+	 * 读入一个类型的值（第二段）
+	 * @param t 类型
+	 * @param len 长度
+	 * @param readNext 读取下一条数据
+	 */
+
+	private read2(t, readNext) {
+		let r;
+		let len;
+		switch (t) {
+			case 39:
+				this.head += 8;
+
+				r = -this.view.getUint32(this.head - 8, true) - (this.view.getUint32(this.head - 4, true) * 0x100000000); break;
+			case 105:
+				len = this.view.getUint8(this.head);
+				this.head += len + 1;
+
+				r = this.u8.slice(this.head - len, this.head); break;
+			case 106:
+				len = this.view.getUint16(this.head, true);
+				this.head += len + 2;
+
+				r = this.u8.slice(this.head - len, this.head); break;
+			case 107:
+				len = this.view.getUint32(this.head, true);
+				this.head += len + 4;
+
+				r = this.u8.slice(this.head - len, this.head); break;
+			case 108:
+				len = this.view.getUint16(this.head, true) + (this.view.getUint32(this.head + 2, true) * 0x10000);
+				this.head += len + 6;
+
+				r = this.u8.slice(this.head - len, this.head); break;
+			case 109:
+				len = this.view.getUint32(this.head, true) + (this.view.getUint32(this.head + 4, true) * 0x100000000);
+				this.head += len + 8;
+
+				r = this.u8.slice(this.head - len, this.head); break;
+			case 175:
+				len = this.view.getUint8(this.head);
+				this.head += len + 1;
+
+				r = utf8Decode(new Uint8Array(this.view.buffer, this.view.byteOffset + this.head - len, len)); break;
+			case 176:
+				len = this.view.getUint16(this.head, true);
+				this.head += len + 2;
+
+				r = utf8Decode(new Uint8Array(this.view.buffer, this.view.byteOffset + this.head - len, len)); break;
+			case 177:
+				len = this.view.getUint32(this.head, true);
+				this.head += len + 4;
+
+				r = utf8Decode(new Uint8Array(this.view.buffer, this.view.byteOffset + this.head - len, len)); break;
+			case 178:
+				len = this.view.getUint16(this.head, true) + (this.view.getUint32(this.head + 2, true) * 0x10000);
+				this.head += len + 6;
+
+				r = utf8Decode(new Uint8Array(this.view.buffer, this.view.byteOffset + this.head - len, len)); break;
+			case 179:
+				len = this.view.getUint32(this.head, true) + (this.view.getUint32(this.head + 4, true) * 0x100000000);
+				this.head += len + 8;
+
+				r = utf8Decode(new Uint8Array(this.view.buffer, this.view.byteOffset + this.head - len, len)); break;
+			case 245:
+				len = this.view.getUint8(this.head);
+				this.head += 6;
+
+				r = readContainer(this, len, this.view.getUint32(this.head - 4, true), readNext); break;
+			case 246:
+				len = this.view.getUint16(this.head, true);
+				this.head += 7;
+
+				r = readContainer(this, len, this.view.getUint32(this.head - 4, true), readNext); break;
+			case 247:
+				len = this.view.getUint32(this.head, true);
+				this.head += 9;
+
+				r = readContainer(this, len, this.view.getUint32(this.head - 4, true), readNext); break;
+			case 248:
+				len = this.view.getUint16(this.head, true) + (this.view.getUint32(this.head + 2, true) * 0x10000);
+				this.head += 11;
+
+				r = readContainer(this, len, this.view.getUint32(this.head - 4, true), readNext); break;
+			case 249:
+				len = this.view.getUint32(this.head, true) + (this.view.getUint32(this.head + 4, true) * 0x100000000);
+				this.head += 13;
+
+				r = readContainer(this, len, this.view.getUint32(this.head - 4, true), readNext); break;
+			default:
+		}
+
+		return r;
+	}
+
+	/**
+	 * 读入一个类型的值（第三段）
+	 * @param t 类型
+	 * @param len 长度
+	 * @param readNext 读取下一条数据
+	 */
+	private read3(t, readNext) {
+		let len;
+		if (t < 30) {
+			return t - 10;
+		}
+		if (t < 105) {
+			// 读取二进制数据
+			len = t - 40;
+			this.head += len;
+
+			return this.u8.slice(this.head - len, this.head);
+		}
+		if (t < 175) {
+			// 读取utf8编码的字符串
+			len = t - 110;
+			this.head += len;
+
+			return utf8Decode(new Uint8Array(this.view.buffer, this.view.byteOffset + this.head - len, len));
+		}
+		if (t < 245) {
+			// 读取容器类型
+			return readNext(this, t - 180);
+		}
+		throw new Error('invalid type :' + t);
 	}
 }
 

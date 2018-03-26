@@ -1,8 +1,8 @@
 /**
  * 
  */
-import {baseType} from '../lang/type';
-import {Struct} from '../struct/struct_mgr';
+import { baseType } from '../lang/type';
+import { Struct } from '../struct/struct_mgr';
 export class Cfg {
 	public map: Map<string, Map<baseType, Struct>> = new Map<string, Map<baseType, Struct>>();
 	// tslint:disable:no-reserved-keywords

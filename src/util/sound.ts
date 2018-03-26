@@ -298,7 +298,7 @@ const decode = (ab: ArrayBuffer, name: string, type: string, file: string, const
 	}, (e) => {
 		loadError(name, {
 			error: 'SOUND_DECODE_ERROR',
-			reason: `decode fail: ${e}`			
+			reason: `decode fail: ${e}`
 		});
 	});
 };
@@ -310,7 +310,7 @@ const createSoundRes = (name: string, type: string, file: string, fileMap: Map<s
 	if (!context) {
 		return loadError(name, {
 			error: 'not support web audio api',
-			reason: `createSoundRes fail: ${file}`			
+			reason: `createSoundRes fail: ${file}`
 		});
 	}
 	if (fileMap) {
@@ -323,7 +323,7 @@ const createSoundRes = (name: string, type: string, file: string, fileMap: Map<s
 	if (!info) {
 		return loadError(name, {
 			error: 'FILE_NOT_FOUND',
-			reason: `createSoundRes fail: ${file}`			
+			reason: `createSoundRes fail: ${file}`
 		});
 	}
 	const down = load.create([info], (r) => {
@@ -337,7 +337,7 @@ const createSoundRes = (name: string, type: string, file: string, fileMap: Map<s
 // ============================== 立即执行
 // 创建音频环境
 const context = (() => {
-	const c = ((window as any).AudioContext || (window as any).webkitAudioContext);
+	const c = ((<any>window).AudioContext || (<any>window).webkitAudioContext);
 	if (c) {
 		return new c();
 	}

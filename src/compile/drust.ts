@@ -30,9 +30,8 @@ export const translate = (s: string, filename: string, cfg): Syntax => {
 	parser.setRule(syntax, cfgs);
 	parser.initScanner(scanner);
 	const r = parser.parseRule('file');
-	const x = gen(r, filename, cfg);
 
-	return x;
+	return gen(r, filename, cfg);
 };
 
 // ============================== 本地
@@ -226,15 +225,15 @@ const cfgs = [
 	// { type: "enum", nud: "enum" },
 
 	// 忽略空白
-	{type: 'whitespace', ignore : true},
+	{ type: 'whitespace', ignore : true },
 	// 注释
-	{type: 'commentBlockPre', note : -1},
-	{type: 'commentBlockSuf', note : 1},
-	{type: 'commentLinePre', note : -1},
-	{type: 'commentLineSuf', note : 1},
+	{ type: 'commentBlockPre', note : -1 },
+	{ type: 'commentBlockSuf', note : 1 },
+	{ type: 'commentLinePre', note : -1 },
+	{ type: 'commentLineSuf', note : 1 },
 	// 注解
-	{type: 'annotatePre', note : -1},
-	{type: 'annotateSuf', note : 1}
+	{ type: 'annotatePre', note : -1 },
+	{ type: 'annotateSuf', note : 1 }
 ];
 
 // ============================== 立即执行的代码

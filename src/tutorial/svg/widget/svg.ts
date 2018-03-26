@@ -114,7 +114,7 @@ export class SvgGraph extends Widget {
 		let result = '';
 		for (let i = 0; i < data.length; i++) {
 			const obj = this.valueToPoint(data[i].value, i, data.length);
-			result += `${obj.x},${obj.y} `;			
+			result += `${obj.x},${obj.y} `;
 		}
 		this.props.points = result;
 	}
@@ -138,11 +138,12 @@ export class SvgGraph extends Widget {
 	// 重绘图形
 	public refresh() {
 
-		// tslint:disable:max-line-length prefer-template
-		this.props.innerHTML = '<svg width="400px" height="400px"><polygon points="' + this.props.points + '" fill="#42b983"></polygon><circle cx="100" cy="100" r="80" stroke="#999" fill="transparent"></circle>';
+		// tslint:disable-next-line:no-inner-html
+		this.props.innerHTML = `<svg width="400px" height="400px"><polygon points="${this.props.points}" 
+		fill="#42b983"></polygon><circle cx="100" cy="100" r="80" stroke="#999" fill="transparent"></circle>`;
 		const labels = this.props.labels;
 		for (let i = 0; i < labels.length; i++) {
-			this.props.innerHTML += '<text x=\'' + labels[i].x + '\' y=\'' + labels[i].y + '\'>' + labels[i].content + '</text>';
+			this.props.innerHTML += `<text x=\'${labels[i].x}\' y=\'${labels[i].y}\'>${labels[i].content}</text>`;
 		}
 		this.props.innerHTML += '</svg>';
 	}

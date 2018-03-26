@@ -5,7 +5,7 @@
 
 // ============================== 导入
 import { Json } from '../lang/type';
-import {set as task} from '../util/task_mgr';
+import { set as task } from '../util/task_mgr';
 import { notify } from '../widget/event';
 import { Widget } from '../widget/widget';
 
@@ -36,8 +36,8 @@ export class Progressive extends Widget {
 	 * @description 滚动监听
 	 * @example
 	 */
-	public scroll(e:any) {
-		const el = this.tree.link as Element;
+	public scroll(e: any) {
+		const el = <Element>this.tree.link;
 		const p = this.props;
 		let start;
 		let clientSize;
@@ -56,14 +56,14 @@ export class Progressive extends Widget {
 			this.state = 0;
 		} else if (start + clientSize >= scrollSize) {
 			this.state = 2;
-							} else {
+		} else {
 			this.state = 1;
-							}
+		}
 		check = Number.isInteger(p.checkPixel) ? p.checkPixel : ((p.checkPixel * clientSize) | 0);
 		if (start + clientSize + check >= scrollSize && p.showEnd < p.arr.length) {
 			// 向尾部添加数据
 			p.showEnd = Math.min(p.showEnd + p.addCount, p.arr.length);
-			
+
 			return this.paint();
 		}
 	}

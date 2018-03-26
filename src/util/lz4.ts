@@ -46,7 +46,7 @@ export const compress = (src: Uint8Array) => {
  * @return Uint8Array，压缩后的数据，用完后需要调用free释放内存
  */
 export const decompress = (src: Uint8Array, decompressSize: number) => {
-	
+
 	const decompressHeap = newU8Heap(decompressSize);
 
 	const realSize = LZ4_decompress_safe(src, decompressHeap.byteOffset, src.length, decompressSize);
@@ -116,8 +116,5 @@ const LZ4_compressBound = LZ4ASM.cwrap('LZ4_compressBound', 'number', ['number']
  * @param size 分配大小
  */
 const newU8Heap = (size: number) => {
-	const ptr = LZ4ASM._malloc(size);
-	const r = new Uint8Array(LZ4ASM.HEAPU8.buffer, ptr, size);
-	
-	return r;
+	return new Uint8Array(LZ4ASM.HEAPU8.buffer, LZ4ASM._malloc(size), size);
 };

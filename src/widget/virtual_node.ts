@@ -86,7 +86,7 @@ export type VNode = VWNode | VirtualTextNode;
  */
 export const isVirtualNode = (node: VNode): VirtualNode => {
 	if ((<any>node).children) {
-		return node as VirtualNode;
+		return <VirtualNode>node;
 	}
 };
 /**
@@ -95,7 +95,7 @@ export const isVirtualNode = (node: VNode): VirtualNode => {
  */
 export const isVirtualWidgetNode = (node: VNode): VirtualWidgetNode => {
 	if ((<any>node).hasChild !== undefined || (<any>node).child !== undefined) {
-		return node as VirtualWidgetNode;
+		return <VirtualWidgetNode>node;
 	}
 };
 /**
@@ -104,7 +104,7 @@ export const isVirtualWidgetNode = (node: VNode): VirtualWidgetNode => {
  */
 export const isVirtualTextNode = (node: VNode): VirtualTextNode => {
 	if ((<any>node).text !== undefined) {
-		return node as VirtualTextNode;
+		return <VirtualTextNode>node;
 	}
 };
 /**
@@ -122,27 +122,27 @@ export const findNodeByAttr = (node: VirtualNode, key: string, value?: string): 
 	const arr = node.children;
 	for (let n of arr) {
 		if ((<any>n).children) {
-			const r = getAttribute((n as VirtualNode).attrs, key);
+			const r = getAttribute((<VirtualNode>n).attrs, key);
 			if (value !== undefined) {
 				if (value === r) {
-					return n as VirtualNode;
+					return <VirtualNode>n;
 				}
 			} else if (r !== undefined) {
-				return n as VirtualNode;
-										}
-			n = findNodeByAttr(n as VirtualNode, key, value);
+				return <VirtualNode>n;
+			}
+			n = findNodeByAttr(<VirtualNode>n, key, value);
 			if (n) {
-				return n as VirtualNode;
+				return <VirtualNode>n;
 			}
 		} else if (isVirtualWidgetNode(n)) {
-			const r = getAttribute((n as VirtualWidgetNode).attrs, key);
+			const r = getAttribute((<VirtualWidgetNode>n).attrs, key);
 			if (value !== undefined) {
 				if (value === r) {
-					return n as VirtualWidgetNode;
+					return <VirtualWidgetNode>n;
 				}
 			} else if (r !== undefined) {
-				return n as VirtualWidgetNode;
-										}
+				return <VirtualWidgetNode>n;
+			}
 		}
 	}
 };
@@ -154,16 +154,16 @@ export const findNodeByTag = (node: VirtualNode, tag: string): VWNode => {
 	const arr = node.children;
 	for (let n of arr) {
 		if ((<any>node).children) {
-			if ((n as VirtualNode).tagName === tag) {
-				return n as VirtualNode;
+			if ((<VirtualNode>n).tagName === tag) {
+				return <VirtualNode>n;
 			}
-			n = findNodeByTag(n as VirtualNode, tag);
+			n = findNodeByTag(<VirtualNode>n, tag);
 			if (n) {
-				return n as VirtualNode;
+				return <VirtualNode>n;
 			}
 		} else if (isVirtualWidgetNode(n)) {
-			if ((n as VirtualWidgetNode).tagName === tag) {
-				return n as VirtualWidgetNode;
+			if ((<VirtualWidgetNode>n).tagName === tag) {
+				return <VirtualWidgetNode>n;
 			}
 		}
 	}
@@ -175,11 +175,11 @@ export const findNodeByTag = (node: VirtualNode, tag: string): VWNode => {
  */
 export const create = (n: VNode): void => {
 	if (isVirtualWidgetNode(n)) {
-		painter.createWidget((n as VirtualWidgetNode));
+		painter.createWidget((<VirtualWidgetNode>n));
 	} else if ((<any>n).children) {
-		createNode((n as VirtualNode));
+		createNode((<VirtualNode>n));
 	} else if ((<any>n).text) {
-		painter.createTextNode((n as VirtualTextNode));
+		painter.createTextNode((<VirtualTextNode>n));
 	}
 };
 
@@ -312,9 +312,9 @@ const findSameVirtualNode = (oldParent: VirtualNode, newParent: VirtualNode, chi
 
 		n = oldParent.didMap.get(child.did);
 
-		if (n && n.offset >= 0 && (n as any).tagName === child.tagName && (n as any).sid === child.sid) {
+		if (n && n.offset >= 0 && (<any>n).tagName === child.tagName && (<any>n).sid === child.sid) {
 
-			return n as any;
+			return <any>n;
 
 		}
 
@@ -539,113 +539,63 @@ const replaceChilds = (oldNode: VirtualNode, newNode: VirtualNode): void => {
 	let move = 0;
 
 	for (let i = 0, offset = 0; i < len; i++) {
-
 		n = arr[i];
-
 		if (n.tagName !== undefined) {
-
 			initAndMakeIndex(n, i, newNode);
-
 			// 在旧节点寻找相同节点
-
 			same = findSameVirtualNode(oldNode, newNode, n);
-
 		} else {
-
 			makeTextIndex(n, i, newNode);
-
 			// 在旧节点寻找相同节点
-
 			same = findSameVirtualTextNode(oldNode, newNode, n);
-
 		}
 
 		if (!same) {
-
 			offset++;
-
 			// 猜测用最新的位置差能够找到变动的节点
-
 			n.oldOffset = -offset;
-
 			next = true;
-
 			continue;
-
 		}
 
 		// 记录最新相同节点的位置差
-
 		offset = same.offset + 1;
-
 		replace(same, n);
-
 		// 计算有无次序变动
-
 		if (move >= 0) {
-
 			move = (move <= offset) ? offset : -1;
-
 		}
-
 	}
 
 	if (next) {
-
 		move = 0;
-
 		// 寻找相似节点
-
 		for (let i = 0; i < len; i++) {
-
 			n = arr[i];
-
 			if (n.oldOffset >= 0) {
-
 				// 计算有无次序变动
-
 				if (move >= 0) {
-
 					move = (move <= n.oldOffset) ? n.oldOffset : -1;
-
 				}
-
 				continue;
-
 			}
-
 			if (n.tagName !== undefined) {
-
 				same = findLikeVirtualNode(oldNode, newNode, n, -n.oldOffset - 1);
-
 			} else {
-
 				same = findLikeVirtualTextNode(oldNode, newNode, n, -n.oldOffset - 1);
-
 			}
-
 			if (!same) {
-
 				create(n);
-
 				insert = true;
-
 				continue;
-
 			}
 
 			replace(same, n);
-
 			// 计算有无次序变动
-
 			if (move >= 0) {
-
 				move = (move <= n.oldOffset) ? n.oldOffset : -1;
-
 			}
-
 		}
-
 	}
 
 	// 删除没有使用的元素
@@ -653,49 +603,30 @@ const replaceChilds = (oldNode: VirtualNode, newNode: VirtualNode): void => {
 	arr = oldNode.children;
 
 	for (let i = arr.length - 1; i >= 0; i--) {
-
 		if (arr[i].offset >= 0) {
-
 			painter.delNode(arr[i]);
-
 		}
-
 	}
 
 	arr = newNode.children;
 
 	const parent = newNode.link;
-
 	// 如果有节点次序变动，则直接在新节点上加入新子节点数组，代码更简单，性能更好
-
 	if (move < 0) {
-
 		// painter.paintCmd3(parent, "innerHTML", ""); //不需要清空，重新加一次，一样保证次序
-
 		for (let i = 0; i < len; i++) {
-
 			painter.addNode(parent, arr[i]);
-
 		}
-
 	} else if (insert) {
 
 		// 如果没有节点次序变动，则插入节点
-
 		for (let i = 0; i < len; i++) {
-
 			n = arr[i];
-
 			if (n.oldOffset < 0) {
-
 				painter.insertNode(parent, n, n.offset);
-
 			}
-
 		}
-
 	}
-
 };
 
 // ============================== 立即执行

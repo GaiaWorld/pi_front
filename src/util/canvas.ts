@@ -153,7 +153,7 @@ export const parseFont = (str: string): FontCfg => {
 	}
 	cfg.font = cfg.style + ' ' + cfg.weight + ' ' + cfg.size + 'px ' + cfg.face;
 
-	return cfg as FontCfg;
+	return <FontCfg>cfg;
 };
 
 /**
@@ -317,7 +317,7 @@ export const initTextCfg = (cfg: ImgTextCfg): ImgTextCfg => {
 
 	imgLimitWidth = zoomfactor * 512;
 
-	return textcfg as ImgTextCfg;
+	return <ImgTextCfg>textcfg;
 };
 
 /**
@@ -481,9 +481,9 @@ const colorString = (color: string | GradientCfg): string => {
 		return '';
 	}
 	if (isString(color)) {
-		return color as string;
+		return <string>color;
 	}
-	const cfg = color as GradientCfg;
+	const cfg = <GradientCfg>color;
 
 	return cfg.x1 + 'x' + cfg.y1 + 'x' + (cfg.r1 ? cfg.r1 : '') + ' ' + cfg.x2 + 'x' + cfg.y2 + 'x' + (cfg.r2 ? cfg.r1 : '') + ' [' + cfg.steps.join() + ']';
 };
@@ -530,9 +530,9 @@ const getStyle = (ctx: CanvasRenderingContext2D, cfg: any, x: number, y: number,
 	}
 	const g = cfg.r1 ? ctx.createRadialGradient(x + x1, y + y1, cfg.r1, x + x2, y + y2, x + cfg.r2) : ctx.createLinearGradient(x + x1, y + y1, x + x2, y + y2);
 	for (let i = 0, arr = cfg.steps, n = arr.length; i < n; i += 2) {
-		g.addColorStop(arr[i] as number, arr[i + 1] as string);
+		g.addColorStop(<number>arr[i], <string>arr[i + 1]);
 	}
-	
+
 	return g;
 };
 // 设置阴影

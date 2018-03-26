@@ -689,6 +689,7 @@ const parseNot = (pattern: any, flags: Json): boolean => {
  */
 const parseOr = (pattern: any, flags: Json): boolean => {
 	let rr = false;
+	// tslint:disable-next-line:no-constant-condition
 	while (true) {
 		const r = parseMatch(pattern, flags);
 		const s = pattern.str;
@@ -710,6 +711,7 @@ const parseOr = (pattern: any, flags: Json): boolean => {
  */
 const parseAnd = (pattern: any, flags: Json): boolean => {
 	let rr = true;
+	// tslint:disable-next-line:no-constant-condition
 	while (true) {
 		const r = parseMatch(pattern, flags);
 		const s = pattern.str;

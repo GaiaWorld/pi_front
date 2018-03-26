@@ -191,7 +191,7 @@ const table2rs = (sheet: Sheet, table: Table, sheetName: string, imports: string
 	if (!start) {
 		return ['', ''];
 	}
-	const startCell = sheet.data.get(`${start.col}-${start.row}`) as CellV;// 表开始第一个单元格的值
+	const startCell = <CellV>sheet.data.get(`${start.col}-${start.row}`);// 表开始第一个单元格的值
 	let type;
 	let structName;
 	let fields;
@@ -253,7 +253,7 @@ const getType = (type: string, index: number, contents: CellV[][], imports: stri
 		if (type.indexOf('[') === 0) {// 元组类型
 			t = new TupleType();
 			t.elems = [];
-			t.elems.push(getType(type.slice(1, type.length), index, contents, imports, QuoteStructs, fieldName) as (BaseType | QuoteStructType));
+			t.elems.push(<BaseType | QuoteStructType>getType(type.slice(1, type.length), index, contents, imports, QuoteStructs, fieldName));
 		} else if (type.indexOf('{') === 0) {// 匿名结构体
 			t = new StructType();
 			t.name = `${structHead}${structId++}`;
@@ -330,7 +330,7 @@ const getTableStart = (t: Table, sheet: Sheet): Cell => {
 };
 
 // tslint:disable-next-line:cyclomatic-complexity
-const initStruct = (fields: CellV[], colTypes: CellV[], contents: CellV[][], 
+const initStruct = (fields: CellV[], colTypes: CellV[], contents: CellV[][],
 	name: string, stype: string, c: any[], imports: string[]): Struct => {
 	const struct = new Struct();
 	const note = parseNote(c);// 结构体注释和注解
@@ -362,7 +362,7 @@ const initStruct = (fields: CellV[], colTypes: CellV[], contents: CellV[][],
 					const f = getField(type, i, contents, imports, QuoteStructs);
 					fieldType.fields.set(f.name, f);
 				} else if (fieldType instanceof TupleType) {
-					fieldType.elems.push(getType(type, i, contents, imports, QuoteStructs, preField.name) as (BaseType | QuoteStructType));
+					fieldType.elems.push(<BaseType | QuoteStructType>getType(type, i, contents, imports, QuoteStructs, preField.name));
 				} else if (fieldType instanceof QuoteStructType) {
 					throw new Error(`表${name}中， 引用结构体类型字段不应该有多列！字段名：${preField.name}！`);
 				} else if (fieldType instanceof BaseType) {
@@ -726,7 +726,7 @@ ${tol}enum ${struct.name}{`;
 		str += v.name;
 		if (struct.objects && struct.objects[0] && struct.objects[0][i]) {
 			str += `=`;
-			if (isString((v.type as BaseType).type)) {
+			if (isString((<BaseType>v.type).type)) {
 				str += `"${struct.objects[0][i].v}",`;
 			} else {
 				str += `${struct.objects[0][i].v},`;
@@ -909,7 +909,7 @@ const getField = (str: string, index: number, contents: CellV[][], imports: stri
 	}
 	f.name = trim(arr[0]);
 	f.type = getType(trim(arr[1]), index, contents, imports, QuoteStruct, f.name);
-	
+
 	return f;
 };
 
@@ -966,6 +966,6 @@ const relativePath = (filePath: string, dir: string): string => {
 	if (j < dir.length - 1) {
 		dir = dir.slice(0, j + 1);
 	}
-	
+
 	return dir + filePath;
 };

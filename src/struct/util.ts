@@ -12,9 +12,9 @@ import { addToMeta, MStruct, MStructMeta, removeFromMeta, Struct, StructMgr } fr
 export const getPartReadNext = (mgr: StructMgr): ReadNext => {
 	// tslint:disable:no-reserved-keywords
 	return (bb: BinBuffer, type: number): Struct => {
-		const meta = mgr.lookup(type) as MStructMeta;
+		const meta = <MStructMeta>mgr.lookup(type);
 
-		return meta.map.get(bb.read() as number);
+		return meta.map.get(<number>bb.read());
 	};
 };
 
@@ -115,8 +115,8 @@ export const createAOrder = (bb: BinBuffer, struct: Struct) => {
  */
 export const analysisMOrder = (mgr: StructMgr, bb: BinBuffer) => {
 	const hash = bb.read();// 读hash
-	const index: number = bb.read() as number;	// 读索引
-	const field: string = bb.read() as string; // 读字段名
+	const index: number = <number>bb.read();	// 读索引
+	const field: string = <string>bb.read(); // 读字段名
 
 	const struct = (<MStructMeta>mgr.lookup(hash)).map.get(index);
 	const setFun = `set${upperFirst(field)}`;
@@ -140,7 +140,7 @@ export const analysisAOrder = (mgr: StructMgr, bb: BinBuffer): Struct => {
 	const struct = new construct();
 	struct.binDecode(bb, getPartReadNext(mgr));
 	addToMeta(mgr, struct);// 添加到元信息
-	
+
 	return struct;
 };
 

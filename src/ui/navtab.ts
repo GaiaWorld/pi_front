@@ -6,7 +6,7 @@
 
 // ============================== 导入
 import { Json } from '../lang/type';
-import {set as task} from '../util/task_mgr';
+import { set as task } from '../util/task_mgr';
 import { notify } from '../widget/event';
 import { Widget } from '../widget/widget';
 
@@ -34,7 +34,7 @@ export class NavTab extends Widget {
 	 * @description 选择按钮切换
 	 * @example
 	 */
-	public change(e:any) {
+	public change(e: any) {
 		if (e.cmd === this.props.cur) {
 			return;
 		}

@@ -49,7 +49,7 @@ export const offsetPos = (el: HTMLElement, root: HTMLElement, pos: Pos): Pos => 
 	while (el) {
 		pos.x += el.offsetLeft;
 		pos.y += el.offsetTop;
-		el = el.offsetParent as HTMLElement;
+		el = <HTMLElement>el.offsetParent;
 		if (el === root) {
 			return pos;
 		}
@@ -282,7 +282,7 @@ export const addCssNode = (str: string): HTMLStyleElement => {
 		node.appendChild(document.createTextNode(str));
 	} catch (ex) {
 		// ie
-		(node as any).styleSheet.cssText = str;
+		(<any>node).styleSheet.cssText = str;
 	}
 	document.head.appendChild(node);
 
@@ -435,9 +435,9 @@ const classRxp = /\.([_a-zA-Z0-9\-]+)/g;
 const parseDuration = (s): number => {
 	const len = s.length - 1;
 	if (s.charCodeAt(len) === 109 || s.charCodeAt(len) === 77) {
-		return parseInt(s,10) * 1000;
+		return parseInt(s, 10) * 1000;
 	}
-	
+
 	return (parseFloat(s) * 1000) | 0;
 };
 

@@ -84,7 +84,7 @@ export const WXPay = () => {
  */
 export const shareToFriend = (info: ShareData) => {
 	const data = {};
-	initShareData(info, data as ShareData, () => {
+	initShareData(info, <ShareData>data, () => {
 		(<any>self).YNWeiXin.shareToFriend(JSON.stringify(data));
 	});
 };
@@ -94,7 +94,7 @@ export const shareToFriend = (info: ShareData) => {
  */
 export const shareToLine = (info: ShareData) => {
 	const data = {};
-	initShareData(info, data as ShareData, () => {
+	initShareData(info, <ShareData>data, () => {
 		(<any>self).YNWeiXin.shareToLine(JSON.stringify(data));
 	});
 };
@@ -111,7 +111,7 @@ export const loginQQ = () => {
  */
 export const shareToQQ = (info: ShareData) => {
 	const data = {};
-	initShareData(info, data as ShareData, () => {
+	initShareData(info, <ShareData>data, () => {
 		(<any>self).YNTencent.share(JSON.stringify(data));
 	});
 };
@@ -128,7 +128,7 @@ export const loginWB = () => {
  */
 export const shareToWB = (info: ShareData) => {
 	const data = {};
-	initShareData(info, data as ShareData, () => {
+	initShareData(info, <ShareData>data, () => {
 		(<any>self).YNWeiBo.share(JSON.stringify(data));
 	});
 };
@@ -160,7 +160,7 @@ const initShareData = (info: ShareData, result: ShareData, callBack: Function): 
 		callBack();
 	}
 
-	return result as ShareData;
+	return result;
 };
 
 const generateImg = (imageUrl: string, callBack: Function) => {

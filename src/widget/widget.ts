@@ -191,7 +191,7 @@ export const register = (name: string, widget: Function, tpl: Tpl, sheet?: {valu
 		warn(level, 'widget already register, name:', name);
 	}
 	widget = widget || getWidget;
-	widgetMap.set(name, {name, widget, tpl, sheet, config, forelet });
+	widgetMap.set(name, { name, widget, tpl, sheet, config, forelet });
 
 	return old;
 };

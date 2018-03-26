@@ -9,7 +9,7 @@
 
 import { Json } from '../lang/type';
 import { ResTab } from '../util/res_mgr';
-import {set as task} from '../util/task_mgr';
+import { set as task } from '../util/task_mgr';
 import { notify } from '../widget/event';
 import { Widget } from '../widget/widget';
 
@@ -62,7 +62,7 @@ export class CountDown extends Widget {
 }
 
 // 倒计时对象
-interface CdInfo {	
+interface CdInfo {
 	year: number;
 	month: number;
 	date: number;
@@ -121,28 +121,27 @@ const initCd_time = (props: Json) => {
 	}
 
 	const now = (new Date()).getTime();
-	props.cd_time +=  now - props.now_time || now;
+	props.cd_time += now - props.now_time || now;
 };
 
 // 计算倒计时
-const calcCd  = (e, now) => {
+const calcCd = (e, now) => {
 	now = e.cd_time - now;
-	
-	// tslint:disable-next-line:no-object-literal-type-assertion
-	const cdInfo = {} as CdInfo;
-	
-	now = show(e, now, 24 * 60 * 60 * 1000, 0, (time) => {cdInfo.date = time;});
-	now = show(e, now, 60 * 60 * 1000, 2, (time) => {cdInfo.hour = time;});
-	now = show(e, now, 60 * 1000, 2, (time) => {cdInfo.minute = time;});
-	now = show(e, now, 1000, 2, (time) => {cdInfo.second = time;});
-	now = show(e, now, 1, 3, (time) => {cdInfo.ms = time;});
+
+	const cdInfo: any = {};
+
+	now = show(e, now, 24 * 60 * 60 * 1000, 0, (time) => { cdInfo.date = time; });
+	now = show(e, now, 60 * 60 * 1000, 2, (time) => { cdInfo.hour = time; });
+	now = show(e, now, 60 * 1000, 2, (time) => { cdInfo.minute = time; });
+	now = show(e, now, 1000, 2, (time) => { cdInfo.second = time; });
+	now = show(e, now, 1, 3, (time) => { cdInfo.ms = time; });
 	cdInfo.tms = e.cd_time - now;
-	
-	return cdInfo as CdInfo;
+
+	return <CdInfo>cdInfo;
 };
 
 // 将字符串时间转化成时间点的毫秒数
-const strToMs  = (timeStr: string) => {
+const strToMs = (timeStr: string) => {
 	try {
 		const arr = timeStr.split(' ');
 		const date = new Date();
@@ -150,9 +149,9 @@ const strToMs  = (timeStr: string) => {
 		if (arr[0]) {
 			temp = arr[0].split('-');
 			// tslint:disable:radix
-			date.setFullYear(parseInt(temp[0].replace(/\b(0+)/gi,'')));
-			date.setMonth(parseInt(temp[1].replace(/\b(0+)/gi,'')) - 1);
-			date.setDate(parseInt(temp[2].replace(/\b(0+)/gi,'')));
+			date.setFullYear(parseInt(temp[0].replace(/\b(0+)/gi, '')));
+			date.setMonth(parseInt(temp[1].replace(/\b(0+)/gi, '')) - 1);
+			date.setDate(parseInt(temp[2].replace(/\b(0+)/gi, '')));
 		}
 
 		if (!arr[1]) {
@@ -160,15 +159,15 @@ const strToMs  = (timeStr: string) => {
 		} else {
 			temp = arr[1].split('-');
 		}
-			
-		date.setHours(parseInt((temp[0] || '0').replace(/\b(0+)/gi,'')) || 0);
-		date.setMinutes(parseInt((temp[1] || '0').replace(/\b(0+)/gi,'')) || 0);
-		date.setSeconds(parseInt((temp[2] || '0').replace(/\b(0+)/gi,'')) || 0);
+
+		date.setHours(parseInt((temp[0] || '0').replace(/\b(0+)/gi, '')) || 0);
+		date.setMinutes(parseInt((temp[1] || '0').replace(/\b(0+)/gi, '')) || 0);
+		date.setSeconds(parseInt((temp[2] || '0').replace(/\b(0+)/gi, '')) || 0);
 
 		return date.getTime();
 
 	} catch (error) {
-		throw new Error(`invalid time str: ${timeStr}`);		
+		throw new Error(`invalid time str: ${timeStr}`);
 	}
-	
+
 };

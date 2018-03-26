@@ -44,9 +44,9 @@ export const createHandlerList = (): Handler => {
 		let handler: Handler;
 		let r;
 		let delIndex = -1;
-		const arr = (list as any).array;
+		const arr = (<any>list).array;
 		const n = arr.length;
-		(list as any).handling++;
+		(<any>list).handling++;
 		for (i = n - 1; i >= 0; i--) {
 			handler = arr[i];
 			if (handler) {
@@ -67,8 +67,8 @@ export const createHandlerList = (): Handler => {
 				delIndex = i;
 			}
 		}
-		(list as any).handling--;
-		if (delIndex >= 0 && !(list as any).handling) {
+		(<any>list).handling--;
+		if (delIndex >= 0 && !(<any>list).handling) {
 			for (i = delIndex + 1; i < n; ++i) {
 				handler = arr[i];
 				if (handler) {
@@ -76,7 +76,7 @@ export const createHandlerList = (): Handler => {
 					++delIndex;
 				}
 			}
-			(list as any).count = delIndex;
+			(<any>list).count = delIndex;
 			arr.length = delIndex;
 		}
 
@@ -354,7 +354,7 @@ class HandlerArray {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 	/**

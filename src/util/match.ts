@@ -275,12 +275,6 @@ const bisectSplit = (arr1: any[], start1: number, end1: number, arr2: any[],
 // tslint:disable:cyclomatic-complexity
 const matchBisect = (arr1: any[], start1: number, end1: number, arr2: any[],
 	start2: number, end2: number, equal: Equal<any>, hash: GetHash, result: any) => {
-	let x1;
-	let y1;
-	let x2;
-	let y2;
-	let k1_offset;
-	let k2_offset;
 	// 缓冲长度以备多次调用
 	const len1 = end1 - start1;
 	const len2 = end2 - start2;
@@ -308,81 +302,117 @@ const matchBisect = (arr1: any[], start1: number, end1: number, arr2: any[],
 	v1[v_offset + 1] = 0;
 	v2[v_offset + 1] = 0;
 	for (let d = 0; d < max_d; d++) {
-		// 在前面的路径中走一步
-		for (let k1 = -d + k1start; k1 <= d - k1end; k1 += 2) {
-			k1_offset = v_offset + k1;
-			if (k1 === -d || (k1 !== d && v1[k1_offset - 1] < v1[k1_offset + 1])) {
-				x1 = v1[k1_offset + 1];
-			} else {
-				x1 = v1[k1_offset - 1] + 1;
-			}
-			y1 = x1 - k1;
-			while (x1 < len1 && y1 < len2 && equal(arr1[start1 + x1], arr2[start2 + y1])) {
-				x1++;
-				y1++;
-			}
-			v1[k1_offset] = x1;
-			if (x1 > len1) {
-				// 到达图形的右侧
-				k1end += 2;
-			} else if (y1 > len2) {
-				// 到达图形的底部
-				k1start += 2;
-			} else if (front) {
-				k2_offset = v_offset + delta - k1;
-				if (k2_offset >= 0 && k2_offset < v_length && v2[k2_offset] !== -1) {
-					// 镜像x2到左上坐标系
-					x2 = len1 - v2[k2_offset];
-					if (x1 >= x2) {
-						// 重叠检测
-						return bisectSplit(arr1, start1, end1, arr2, start2, end2, equal, hash, result, x1, y1);
-					}
-				}
-			}
-		}
+		const r1 = matchBisect1(d, k1start, k1end, v_offset, v1, v2, len1, len2, equal, arr1, start1,
+			arr2, start2, front, delta, v_length, end1, end2, hash, result);
+		k1start = r1.k1start;
+		k1end = r1.k1end;
+		if (r1.r !== undefined) return r1.r;
+		const r2 = matchBisect2(d, k1start, k1end, v_offset, v1, v2, len1, len2, equal, arr1, start1,
+			arr2, start2, front, delta, v_length, end1, end2, hash, result);
+		k2start = r2.k2start;
+		k2end = r2.k2end;
+		if (r2.r !== undefined) return r2.r;
+	}
+};
 
-		// 反向路径走一步
-		for (let k2 = -d + k2start; k2 <= d - k2end; k2 += 2) {
-			k2_offset = v_offset + k2;
-			if (k2 === -d || (k2 !== d && v2[k2_offset - 1] < v2[k2_offset + 1])) {
-				x2 = v2[k2_offset + 1];
-			} else {
-				x2 = v2[k2_offset - 1] + 1;
-			}
-			y2 = x2 - k2;
-			while (x2 < len1 && y2 < len2 && equal(arr1[end1 - x2 - 1], arr2[end2 - y2 - 1])) {
-				x2++;
-				y2++;
-			}
-			v2[k2_offset] = x2;
-			if (x2 > len1) {
-				// 到达图形的左侧
-				k2end += 2;
-			} else if (y2 > len2) {
-				// 到达图形的上部
-				k2start += 2;
-			} else if (!front) {
-				k1_offset = v_offset + delta - k2;
-				if (k1_offset >= 0 && k1_offset < v_length && v1[k1_offset] !== -1) {
-					x1 = v1[k1_offset];
-					y1 = v_offset + x1 - k1_offset;
-					// 镜像x2到左上坐标系
-					x2 = len1 - x2;
-					if (x1 >= x2) {
-						// 重叠检测
-						return bisectSplit(arr1, start1, end1, arr2, start2, end2, equal, hash, result, x1, y1);
-					}
+// 在前面的路径中走一步
+const matchBisect1 = (d, k1start, k1end, v_offset, v1, v2, len1, len2, equal, arr1, start1,
+	arr2, start2, front, delta, v_length, end1, end2, hash, result) => {
+	let k1_offset;
+	let k2_offset;
+	let x1;
+	let x2;
+	let y1;
+	let r;
+	for (let k1 = -d + k1start; k1 <= d - k1end; k1 += 2) {
+		k1_offset = v_offset + k1;
+		if (k1 === -d || (k1 !== d && v1[k1_offset - 1] < v1[k1_offset + 1])) {
+			x1 = v1[k1_offset + 1];
+		} else {
+			x1 = v1[k1_offset - 1] + 1;
+		}
+		y1 = x1 - k1;
+		while (x1 < len1 && y1 < len2 && equal(arr1[start1 + x1], arr2[start2 + y1])) {
+			x1++;
+			y1++;
+		}
+		v1[k1_offset] = x1;
+		if (x1 > len1) {
+			// 到达图形的右侧
+			k1end += 2;
+		} else if (y1 > len2) {
+			// 到达图形的底部
+			k1start += 2;
+		} else if (front) {
+			k2_offset = v_offset + delta - k1;
+			if (k2_offset >= 0 && k2_offset < v_length && v2[k2_offset] !== -1) {
+				// 镜像x2到左上坐标系
+				x2 = len1 - v2[k2_offset];
+				if (x1 >= x2) {
+					// 重叠检测
+					r = bisectSplit(arr1, start1, end1, arr2, start2, end2, equal, hash, result, x1, y1);
+					break;
 				}
 			}
 		}
 	}
+
+	return { k1start, k1end, r };
+};
+
+// 反向路径走一步
+const matchBisect2 = (d, k2start, k2end, v_offset, v1, v2, len1, len2, equal, arr1, start1,
+	arr2, start2, front, delta, v_length, end1, end2, hash, result) => {
+	let k1_offset;
+	let k2_offset;
+	let x1;
+	let x2;
+	let y1;
+	let y2;
+	let r;
+	for (let k2 = -d + k2start; k2 <= d - k2end; k2 += 2) {
+		k2_offset = v_offset + k2;
+		if (k2 === -d || (k2 !== d && v2[k2_offset - 1] < v2[k2_offset + 1])) {
+			x2 = v2[k2_offset + 1];
+		} else {
+			x2 = v2[k2_offset - 1] + 1;
+		}
+		y2 = x2 - k2;
+		while (x2 < len1 && y2 < len2 && equal(arr1[end1 - x2 - 1], arr2[end2 - y2 - 1])) {
+			x2++;
+			y2++;
+		}
+		v2[k2_offset] = x2;
+		if (x2 > len1) {
+			// 到达图形的左侧
+			k2end += 2;
+		} else if (y2 > len2) {
+			// 到达图形的上部
+			k2start += 2;
+		} else if (!front) {
+			k1_offset = v_offset + delta - k2;
+			if (k1_offset >= 0 && k1_offset < v_length && v1[k1_offset] !== -1) {
+				x1 = v1[k1_offset];
+				y1 = v_offset + x1 - k1_offset;
+				// 镜像x2到左上坐标系
+				x2 = len1 - x2;
+				if (x1 >= x2) {
+					// 重叠检测
+					r = bisectSplit(arr1, start1, end1, arr2, start2, end2, equal, hash, result, x1, y1);
+					break;
+				}
+			}
+		}
+	}
+
+	return { k2start, k2end, r };
 };
 
 /**
  * @description 寻找2个数组中相同的子串. 必须确保2个数组没有相同的前缀和后缀
  * @example
  */
-const matchCompute = (arr1: any[], start1: number, end1: number, arr2: any[], 
+const matchCompute = (arr1: any[], start1: number, end1: number, arr2: any[],
 	start2: number, end2: number, equal: Equal<any>, hash: GetHash, result: number[]) => {
 	let s1;
 	let e1;
@@ -405,7 +435,7 @@ const matchCompute = (arr1: any[], start1: number, end1: number, arr2: any[],
  * @description 匹配主算法
  * @example
  */
-export const matchMain = (arr1: any[], start1: number, end1: number, arr2: any[], 
+export const matchMain = (arr1: any[], start1: number, end1: number, arr2: any[],
 	start2: number, end2: number, equal: Equal<any>, hash: GetHash, result: number[]) => {
 	if (start1 >= end1 || start2 >= end2) return;
 	let len = matchPrefix(arr1, start1, end1, arr2, start2, end2, equal);

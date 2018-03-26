@@ -27,16 +27,16 @@ export class Submit extends Input {
 	 * @example
 	 */
 	public submit() {
-		const i = this.getInput() as HTMLInputElement;
+		const i = <HTMLInputElement>this.getInput();
 		paintCmd3(i, 'value', this.lastText || '');
-		notify(this.parentNode, 'ev-input-submit', {id: this.props.id, text: i.value, input: i });
+		notify(this.parentNode, 'ev-input-submit', { id: this.props.id, text: i.value, input: i });
 	}
 
 }
 
 // ============================== 本地
 // 递归查找input
-const findInput = (node: VirtualNode) : HTMLElement => {
+const findInput = (node: VirtualNode): HTMLElement => {
 	for (const i of node.children) {
 		if (!(<VirtualNode>i).children) {
 			continue;

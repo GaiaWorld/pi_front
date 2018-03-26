@@ -77,6 +77,7 @@ export class Tree<K, V> {
 	 */
 	public largest() {
 		let node = this.root;
+		// tslint:disable-next-line:no-constant-condition
 		while (true) {
 			if (!node.right) {
 				return { key: node.key, value: node.value };
@@ -141,7 +142,7 @@ export class Tree<K, V> {
 				arr.push(new Item(node, null));
 				node = node.left;
 			} else {
-				throw new Error(`key_exists:${key}`);				
+				throw new Error(`key_exists:${key}`);
 			}
 		}
 		const tree = new Tree<K, V>(this.cmp);
@@ -177,7 +178,7 @@ export class Tree<K, V> {
 				return tree;
 			}
 		}
-		throw new Error(`key_not_found:${key}`);		
+		throw new Error(`key_not_found:${key}`);
 	}
 	/**
 	 *  放入指定的键值对
@@ -208,7 +209,7 @@ export class Tree<K, V> {
 		}
 		const tree = new Tree<K, V>(this.cmp);
 		tree.root = nodeInsert(arr, new Node(key, value, 1, null, null));
-		
+
 		arr.length = 0;
 
 		return tree;

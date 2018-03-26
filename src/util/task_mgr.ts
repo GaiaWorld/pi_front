@@ -45,7 +45,7 @@ export const setTimer = (callback: Function, args: any[], ms: number, count?: nu
 		a = [args, r];
 	} else {
 		a = [r];
-								}
+	}
 	const fun = () => {
 		r.count--;
 		callTime(callback, a, 'timer');
@@ -113,7 +113,7 @@ export const callTime = (func: Function, args: any[], name: string, start?: numb
 	if (end - start > logTimeout) {
 		level <= LogLevel.debug && debug(level, name, ' slow, cost: ', (end - start), func, args);
 	}
-	
+
 	return end;
 };
 // ============================== 本地
@@ -159,6 +159,6 @@ const frameExec = () => {
 // ============================== 立即执行
 // requestIdleCallback 是新API（Chrome 47 已支持），当浏览器空闲的时候，用来执行不太重要的后台计划任务。但是，如果css动画很繁重，会造成一直没有空闲，所以不能使用该方法！
 // tslint:disable-next-line:only-arrow-functions no-function-expression typedef
-const requestIdle = (self as any).requestIdleCallback1 || function (callback) { setTimeout(callback, 1); };
+const requestIdle = (<any>self).requestIdleCallback1 || function (callback) { setTimeout(callback, 1); };
 
-const cancelIdle = (self as any).cancelIdleCallback1 || clearTimeout;
+const cancelIdle = (<any>self).cancelIdleCallback1 || clearTimeout;

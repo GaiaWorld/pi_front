@@ -211,7 +211,7 @@ export const orderLimit = (set: RowSet, fields: string[], desc?: boolean, limit?
  * @example
  */
 export const groupBy = (set: RowSet, field: string): RowSet[] => {
-	const result:RowSet[] = [];
+	const result: RowSet[] = [];
 	const arr = set.arr;
 	for (let i = 0, len = arr.length; i < len; i++) {
 		let ss = result[arr[i][field]];
@@ -296,9 +296,7 @@ export const fieldsSeq = (set: RowSet, fields: string[], seqField: string, count
  * @example
  */
 export const decompose = (set: RowSet): RowSet[] => {
-	const arr = [];
-
-	return arr;
+	return [];
 };
 
 /**
@@ -309,6 +307,7 @@ export const make = <T>(construct: new () => T, fieldsEnum: [string, any[]][], r
 	const len = fieldsEnum.length;
 	const arr = Array(len).fill(0);
 	result = result || [];
+	// tslint:disable-next-line:no-constant-condition
 	while (true) {
 		const obj = new construct();
 		result.push(obj);
@@ -444,7 +443,7 @@ const createMatch = (match: any[]) => {
 			return matchMap.keyfun(key, oper, match[2]);
 		} else {
 			return matchMap[oper](key, match[2]);
-									}
+		}
 	}
 	if (match.length === 4) {
 		return matchMap[oper](key, match[2], match[3]);
@@ -499,6 +498,6 @@ const slice = (set: RowSet, start: number, end?: number): RowSet => {
 	ss.sortFields = set.sortFields;
 	ss.sortDesc = set.sortDesc;
 	ss.arr = set.arr.slice(start, end);
-	
+
 	return ss;
 };

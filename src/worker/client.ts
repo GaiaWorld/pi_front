@@ -109,7 +109,7 @@ const initWorker = (group: Group, cfg: any) => {
 	const worker = new Worker(cfg.url);
 	// tslint:disable:prefer-template
 	const name = group.name + ':' + group.count++;
-	(worker as any).name = name;
+	(<any>worker).name = name;
 	worker.postMessage({ name: name, mods: cfg.mods });
 	worker.onerror = (e: any) => {
 		warn(level, name + ' exec fail, msg:', e.message, 'lineno:', e.lineno);

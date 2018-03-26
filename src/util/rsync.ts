@@ -100,7 +100,7 @@ export class RSync {
 
 	// 同步数据
 	public sync(oldData: Uint8Array, diffs: Diff[]) {
-		if (typeof oldData === 'undefined') {
+		if (oldData === undefined) {
 			throw new Error('\'must do checksum() first\'');
 		}
 
@@ -109,12 +109,12 @@ export class RSync {
 		for (let i = 0; i < len; i++) {
 			const chunk = diffs[i];
 
-			if (typeof chunk.data === 'undefined') { // use slice of original file
+			if (chunk.data === undefined) { // use slice of original file
 				synced = concatU8(synced, rawslice(oldData, chunk.index, this.size));
 			} else {
 				synced = concatU8(synced, chunk.data);
 
-				if (typeof chunk.index !== 'undefined') {
+				if (chunk.index !== undefined) {
 					synced = concatU8(synced, rawslice(oldData, chunk.index, this.size));
 				}
 			}
@@ -146,7 +146,7 @@ export const decodeDiffs = (bb: BinBuffer): Diff[] => {
 		if (typeof r === 'number') {
 			arr.push({ index: r });
 		} else if (ArrayBuffer.isView(r)) {
-			arr.push({ data: r });
+			arr.push({ data: <Uint8Array>r });
 		}
 	}
 

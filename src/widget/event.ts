@@ -318,7 +318,7 @@ const parseArgs = (arg: string): Args => {
 	try {
 		const r = JSON.parse('[' + arg + ']');// 匹配字符串中的",e",将其替换成",'$_'"
 
-		return { arr: (r as any[]), index: r.indexOf('$_'), fields: attr };
+		return { arr: (<any[]>r), index: r.indexOf('$_'), fields: attr };
 	} catch (error) {
 		throw new Error('parseArgs fail, args: ' + arg);
 	}
@@ -346,6 +346,7 @@ const getFunction = (str: string): Function => {
  * @example
  */
 const getNativeFunction = (h: Function): Handler => {
+	// tslint:disable-next-line:no-unnecessary-local-variable
 	const func = (e: any): HandlerResult => {
 		const node = (<any>func).vnode;
 		if (!node) {
@@ -635,6 +636,7 @@ const touchLongtap = (el: HTMLElement, h: Function): EventBind => {
 	};
 };
 // 旋转 缩放
+// tslint:disable-next-line:max-func-body-length
 const touchRotsal = (el: HTMLElement, h: Function): EventBind => {
 	let time = 0;
 	let x = 0;
@@ -858,7 +860,7 @@ const mouseDown = (el: HTMLElement, h: Function): EventBind => {
 	const down = (e) => {
 		h({ type: 'down', native: e, x: e.pageX, y: e.pageY, timeStamp: e.timeStamp });
 	};
-	
+
 	return { type: 'mousedown', listener: down, listeners: null, handler: h };
 };
 

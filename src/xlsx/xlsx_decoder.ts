@@ -7,13 +7,13 @@ import { encode } from '../net/websocket/protocol_block';
 import { arrDelete } from '../util/util';
 import { parse } from '../widget/style';
 
-const tableInterval =  2;
+const tableInterval = 2;
 
 export interface Table {
-	start:Cell;
+	start: Cell;
 	end: Cell;
 	rowHand?: number;
-	colHand?:number;
+	colHand?: number;
 }
 
 export interface Cell {
@@ -52,7 +52,7 @@ export const readTable = (sheet: Sheet, table: Table): Json[] => {
 	if (row > table.end.row) {
 		return null;
 	}
-	
+
 	const arr = [];
 	let i = 0;
 	while (col) {
@@ -76,7 +76,7 @@ export const nextCell = (curRow: number, curCol: number, endRow: number, endCol:
 		curCol = 1;
 	}
 
-	return {row: curRow, col: curCol};
+	return { row: curRow, col: curCol };
 };
 
 // 下一列或下一行
@@ -94,13 +94,13 @@ export const next = (cur: number, end: number): number => {
  * 默认空两行和两列为表的边界
  */
 const initSheet = (data: Json): Sheet => {
-	const sheet: Sheet = {ref: null, merge: null, data: null};
+	const sheet: Sheet = { ref: null, merge: null, data: null };
 	initSheetRef(data['!ref'], sheet);
 	// sheet.data = data;
 	// initSheetMerge(data["!merges"], sheet);
 	initSheetData(data, sheet);
 
-	return sheet as Sheet;
+	return <Sheet>sheet;
 };
 
 const initSheetData = (data: Json, sheet: Sheet) => {
@@ -120,7 +120,7 @@ const initSheetMerge = (m: Json[], sheet: Sheet) => {
 		for (let i = 0; i < m.length; i++) {
 			const col = m[i].s.col + 1;
 			const row = m[i].s.row + 1;
-			sheet.merge.set(`${col}-${row}`, {start:{row: row, col: col}, end:{row: m[i].e.row + 1, col: m[i].e.col + 1}});
+			sheet.merge.set(`${col}-${row}`, { start: { row: row, col: col }, end: { row: m[i].e.row + 1, col: m[i].e.col + 1 } });
 		}
 	}
 };
@@ -129,7 +129,7 @@ const initSheetMerge = (m: Json[], sheet: Sheet) => {
 * @param "A1:CF200"
 */
 const initSheetRef = (r: string, sheet: Sheet) => {
-	const ref: Table = {start: null, end: null};
+	const ref: Table = { start: null, end: null };
 	if (r) {
 		const arr = r.split(':');
 		ref.start = getCell(arr[0]);
@@ -138,11 +138,11 @@ const initSheetRef = (r: string, sheet: Sheet) => {
 	}
 };
 
-const getCell = (name:string): Cell => {
+const getCell = (name: string): Cell => {
 	let i = 0;
 	while (i < name.length) {
 		if (name.charCodeAt(i) < 65) {
-			return {col:colParseInt(name.slice(0, i)), row: +name.slice(i, name.length)};
+			return { col: colParseInt(name.slice(0, i)), row: +name.slice(i, name.length) };
 		}
 		i++;
 	}
@@ -157,7 +157,7 @@ const getTables = (sheet: Sheet, space: number): Table[] => {
 		return null;
 	}
 	const tables: Table[] = [];
-	let cell = {row: 1, col: 1};
+	let cell = { row: 1, col: 1 };
 	while (cell) {
 		const table = findTable(sheet, cell.col, cell.row, tables);
 		if (table) {
@@ -182,7 +182,7 @@ const mergeTables = (tables: Table[], maxCol: number, space: number): Table[] =>
 	const preScan = (curIndex: number, tables: Table[]) => {
 		for (let i = curIndex - 1; i >= 0; i--) {
 			if (tables[i] && isSameTable(tables[curIndex], tables[i], maxCol, space)) {
-				mergeTable(tables[i],tables[curIndex]);
+				mergeTable(tables[i], tables[curIndex]);
 				delete tables[i];
 				preScan(curIndex, tables);
 			}
@@ -194,7 +194,7 @@ const mergeTables = (tables: Table[], maxCol: number, space: number): Table[] =>
 		}
 		for (let j = i + 1; j < tables.length; j++) {
 			if (tables[j] && isSameTable(tables[i], tables[j], maxCol, space)) {
-				mergeTable(tables[i],tables[j]);
+				mergeTable(tables[i], tables[j]);
 				delete tables[i];
 				preScan(j, tables);
 				break;
@@ -253,7 +253,7 @@ const findTable = (sheet: Sheet, startCol: number, startRow: number, tables: Tab
 		}
 		const end = findTableEnd(sheet, start.row, start.col);
 
-		return {start: start, end: end, rowHand: 0, colHand: 0};
+		return { start: start, end: end, rowHand: 0, colHand: 0 };
 	} else {
 		return null;
 	}
@@ -266,7 +266,7 @@ const findTableStart = (sheet: Sheet, startCol: number, startRow: number): Cell 
 	while (startRow) {
 		startCol = rowStart(sheet, startRow, startCol, sheet.ref.end.col);
 		if (startCol) {
-			return {row: startRow, col: startCol};
+			return { row: startRow, col: startCol };
 		}
 		startRow = next(startRow, sheet.ref.end.row);
 		startCol = 1;
@@ -278,14 +278,15 @@ const findTableStart = (sheet: Sheet, startCol: number, startRow: number): Cell 
 // 找table
 const findTableEnd = (sheet: Sheet, startRow: number, startCol: number): Cell => {
 	const endCol = rowEnd(sheet, startRow, startCol, sheet.ref.end.col);
-	const endRow = colEnd(sheet, startCol, startRow, sheet.ref.end.row); 
+	const endRow = colEnd(sheet, startCol, startRow, sheet.ref.end.row);
 
-	return {row: endRow, col: endCol};	
+	return { row: endRow, col: endCol };
 };
 
 // 找某一行的结束 默认空两行为结束
 const rowEnd = (sheet: Sheet, row: number, startCol: number, endCol: number): number => {
 	let col = startCol;
+	// tslint:disable-next-line:no-constant-condition
 	while (true) {
 		const next1 = next(col, endCol);
 		if (!next1) {
@@ -306,6 +307,7 @@ const rowEnd = (sheet: Sheet, row: number, startCol: number, endCol: number): nu
 // 找某一行的结束 默认空两列为结束
 const colEnd = (sheet: Sheet, col: number, startRow: number, endRow: number): number => {
 	let row = startRow;
+	// tslint:disable-next-line:no-constant-condition
 	while (true) {
 		const next1 = next(row, endRow);
 		if (!next1) {
@@ -419,6 +421,6 @@ const colParseStr = (n: number): string => {
 		}
 		i++;
 	}
-	
+
 	return str;
 };

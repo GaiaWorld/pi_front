@@ -44,10 +44,10 @@ const scrollerInstanceMap = new Map();
 export const pluginBind = (w: Widget, vNode, args: any, oldArgs: any) => {
 	const scrollerInstance = scrollerInstanceMap.get(args.options.id);
 	if (!scrollerInstance) {
-		const bScroller = new BScroll(w, vNode, args.options as Options);
+		const bScroller = new BScroll(w, vNode, <Options>args.options);
 		scrollerInstanceMap.set(args.options.id, bScroller);
 	} else {
-		scrollerInstance.update(args.options as Options, vNode);
+		scrollerInstance.update(<Options>args.options, vNode);
 		console.log(`id : ${args.options.id}已经存在, 直接可用`);
 	}
 };
@@ -111,7 +111,7 @@ export class BScroll {
 	public update(options, vNode) {
 		this.wrapper = <HTMLElement>getRealNode(vNode);
 		this.scroller = <HTMLElement>getRealNode(vNode).children[0];
-		this.options = {
+		this.options = <Options>{
 			startX: 0,
 			startY: 0,
 			scrollX: false,
@@ -135,7 +135,7 @@ export class BScroll {
 			useTransition: true,
 			useTransform: true,
 			probeType: 3
-		} as Options;
+		};
 
 		extend(this.options, options);
 
@@ -338,7 +338,10 @@ export class BScroll {
 
 		// this.directionX = deltaX > 0 ? -1 : deltaX < 0 ? 1 : 0;
 		// this.directionY = deltaY > 0 ? -1 : deltaY < 0 ? 1 : 0;
+		this._move1(e, newX, newY, timestamp);
+	}
 
+	public _move1(e, newX, newY, timestamp) {
 		if (!this.moved) {
 			this.moved = true;
 			if (this.parentWidget.tree) {

@@ -118,9 +118,9 @@ enum DataState {
  * @example
  */
 const paint1 = (f: Forelet): void => {
-	const data = (f as any)._data;
-	const r = (f as any)._dataState === DataState.reset_true;
-	(f as any)._dataState = DataState.init;
+	const data = (<any>f)._data;
+	const r = (<any>f)._dataState === DataState.reset_true;
+	(<any>f)._dataState = DataState.init;
 	for (const w of f.widgets) {
 		w.setState(data);
 		w.paint(r);

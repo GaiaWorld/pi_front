@@ -318,7 +318,7 @@ export const getValue = (obj: any, path: (string | number)[] | string, split?: s
 			path = path.slice(j);
 		}
 
-		return obj[path as string];
+		return obj[<string>path];
 	}
 	for (const k of path) {
 		const v = obj[k];
@@ -359,8 +359,8 @@ export const setValue = (obj: any, path: (string | number)[] | string, value: an
 		if (j > 0) {
 			path = path.slice(j);
 		}
-		old = obj[path as string];
-		obj[path as string] = value;
+		old = obj[<string>path];
+		obj[<string>path] = value;
 
 		return old;
 	}
@@ -370,7 +370,7 @@ export const setValue = (obj: any, path: (string | number)[] | string, value: an
 		old = obj[k];
 		if (!old) {
 			// 如果键是数字
-			obj[k] = old = Number.isInteger(k as number) ? [] : {};
+			obj[k] = old = Number.isInteger(<number>k) ? [] : {};
 		}
 		obj = old;
 	}
@@ -385,7 +385,7 @@ export const setValue = (obj: any, path: (string | number)[] | string, value: an
  * @description utf8的Uint8Array解码成字符串
  * @example
  */
-export const utf8Decode = ((typeof self !== 'undefined') && (<any>self).TextDecoder) ? (() => {
+export const utf8Decode = ((self !== undefined) && (<any>self).TextDecoder) ? (() => {
 	const decoder = new TextDecoder('utf-8');
 
 	return (arr: ArrayBuffer | Uint8Array): string => {
@@ -435,9 +435,9 @@ export const utf8Decode = ((typeof self !== 'undefined') && (<any>self).TextDeco
  * @description 字符串编码成utf8的Uint8Array
  * @example
  */
-export const utf8Encode = ((typeof self !== 'undefined') && (<any>self).TextDecoder) ? (() => {
+export const utf8Encode = ((self !== undefined) && (<any>self).TextDecoder) ? (() => {
 	const encoder = new TextEncoder('utf-8');
-	
+
 	return (s: string): Uint8Array => {
 		return (s && s.length > 0) ? encoder.encode(s) : null;
 	};
@@ -627,7 +627,7 @@ export const arrRemove = <T>(arr: T[], el: T): T[] => {
 
 		return a;
 	}
-	
+
 	return arr.slice(0, arr.length - 1);
 };
 

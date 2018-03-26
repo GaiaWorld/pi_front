@@ -15,7 +15,7 @@
 /* tslint:disable:no-reserved-keywords */
 declare var module: any;
 // ============================== 导入
-import { addToMeta, MStruct, MStructMeta, removeFromMeta, StructMgr} from '../struct/struct_mgr';
+import { addToMeta, MStruct, MStructMeta, removeFromMeta, StructMgr } from '../struct/struct_mgr';
 import { BinBuffer } from '../util/bin';
 import { strHashCode } from '../util/hash';
 import { arrDelete, arrInsert } from '../util/util';
@@ -30,7 +30,7 @@ export class Component extends MStruct {
 	public removeMeta() {
 		super.removeMeta();
 		parent = null;
-	}	
+	}
 }
 
 /**
@@ -53,10 +53,10 @@ export class Entity extends MStruct {
 		}
 		if (e.parent) {
 			throw new Error('entity has already parent');
-		}		
+		}
 		e.parent = this;
-		this.children.set(e._$index, e);		
-	}	
+		this.children.set(e._$index, e);
+	}
 
 	/**
 	 * 移除子实体
@@ -64,7 +64,7 @@ export class Entity extends MStruct {
 	public removeChild(index: number) {
 		const ee = this.children.get(index);
 		if (!ee) {
-			throw new Error(`entity is not exist!,index:${index}`);			
+			throw new Error(`entity is not exist!,index:${index}`);
 		}
 		this.children.delete(index);
 		removeFromMeta(ee);
@@ -76,7 +76,7 @@ export class Entity extends MStruct {
 	/**
 	 * 添加子组件，相同的子组件类型会替换，并调用监听器（创建、修改、删除，可以定义域监听）
 	 */
-	public addComp(c: Component) : Component {
+	public addComp(c: Component): Component {
 		if (c && c.parent) {
 			throw new Error('component has already parent');
 		}
@@ -88,15 +88,15 @@ export class Entity extends MStruct {
 		this.comp.set(c.constructor, c);
 		c.parent = this;
 		// c.fieldKey = ""; // 特殊处理
-		addToMeta(this._$meta.mgr, c);	
-		
+		addToMeta(this._$meta.mgr, c);
+
 		return old;
 	}
 
 	/**
 	 * 移除子组件，参数为子组件的类， 并调用监听器（创建、修改、删除，可以定义域监听）
 	 */
-	public removeComp(compClass: Function) : Component {
+	public removeComp(compClass: Function): Component {
 		const old = this.comp.get(compClass);
 		if (!old) {
 			throw new Error('component is not exist');
@@ -127,7 +127,7 @@ export class EntityIndex {
 	// 对应的组件监听器
 	public addListener: Function;
 	public removeListener: Function;
-	
+
 	constructor(keys: Function[]) {
 		this.keys = new Set(keys);
 	}
@@ -142,13 +142,13 @@ export class ComponentIndex {
 	// 组件索引
 	public map = new Map<number, Component>();
 	// 组件类
-	public key : Function;
+	public key: Function;
 	// 父组件类
 	public parentKey: Function;
 	// 对应的组件监听器
 	public addListener: Function;
 	public removeListener: Function;
-	
+
 	constructor(key: Function, parentKey?: Function) {
 		this.key = key;
 		this.parentKey = parentKey;
@@ -164,11 +164,11 @@ export class SingleIndex {
 	// 实体索引
 	public comp: Component;
 	// 组件类
-	public key : Function;
+	public key: Function;
 	// 对应的组件监听器
 	public addListener: Function;
 	public removeListener: Function;
-	
+
 	constructor(key: Function) {
 		this.key = key;
 	}
@@ -187,15 +187,15 @@ export class World extends StructMgr {
 	constructor() {
 		super();
 		super.register(strHashCode(`${module.id}Entity`, 0), Entity, `${module.id}Entity`);
-		
+
 	}
 
 	/**
 	 * 添加实体索引
 	 */
 	public addEntityIndex(i: EntityIndex) {
-		i.addListener = (c:Component) => {
-			const p = c.parent as Entity;
+		i.addListener = (c: Component) => {
+			const p = <Entity>c.parent;
 			for (const k of i.keys) {
 				if (!p.getComp(k)) {
 					return;
@@ -203,8 +203,8 @@ export class World extends StructMgr {
 			}
 			i.map.set(p._$index, p);
 		};
-		i.removeListener = (c:Component) => {
-			const p = c.parent as Entity;
+		i.removeListener = (c: Component) => {
+			const p = <Entity>c.parent;
 			i.map.delete(p._$index);
 		};
 		for (const c of i.keys) {
@@ -225,10 +225,10 @@ export class World extends StructMgr {
 	 * 添加组件索引
 	 */
 	public addComponentIndex(i: ComponentIndex) {
-		i.addListener = (c:Component) => {
+		i.addListener = (c: Component) => {
 			i.map.set(c._$index, c);
 		};
-		i.removeListener = (c:Component) => {
+		i.removeListener = (c: Component) => {
 			i.map.delete(c._$index);
 		};
 		this.addAddListener(i.key, i.addListener, i.parentKey);
@@ -245,10 +245,10 @@ export class World extends StructMgr {
 	 * 添加单例组件索引
 	 */
 	public addSingleIndex(i: SingleIndex) {
-		i.addListener = (c:Component) => {
+		i.addListener = (c: Component) => {
 			i.comp = c;
 		};
-		i.removeListener = (c:Component) => {
+		i.removeListener = (c: Component) => {
 			i.comp = null;
 		};
 		this.addAddListener(i.key, i.addListener);
@@ -292,7 +292,7 @@ export class World extends StructMgr {
 		if (parentCompClass) {
 			const p = this.constructMap.get(parentCompClass);
 			if (!p) {
-				throw new Error(`unregister component, name:${parentCompClass.name}`);				
+				throw new Error(`unregister component, name:${parentCompClass.name}`);
 			}
 			meta.modifyFilter = arrInsert(meta.modifyFilter, new ListenerCfg(listener, getMeta(this, parentCompClass)));
 		} else {
@@ -336,10 +336,10 @@ export class World extends StructMgr {
 	/**
 	 * 创建实体
 	 */
-	public create() : Entity {
+	public create(): Entity {
 		const e = new Entity();
 		addToMeta(this, e);
-		
+
 		return e;
 	}
 }
@@ -358,9 +358,9 @@ class ListenerCfg {
 
 // 组件元信息
 class CompMeta extends MStructMeta {
-	public addFilter:ListenerCfg[] = [];// 插入监听器，需要过滤键和父组件
-	public modifyFilter:ListenerCfg[] = [];// 修改监听器，需要过滤键和父组件
-	public removeFilter:ListenerCfg[] = [];// 删除监听器，需要过滤键和父组件
+	public addFilter: ListenerCfg[] = [];// 插入监听器，需要过滤键和父组件
+	public modifyFilter: ListenerCfg[] = [];// 修改监听器，需要过滤键和父组件
+	public removeFilter: ListenerCfg[] = [];// 删除监听器，需要过滤键和父组件
 
 	public addNotify(c: Component) {
 		super.addNotify(c);
@@ -370,7 +370,7 @@ class CompMeta extends MStructMeta {
 		super.removeNotify(c);
 		notify(this.removeFilter, c);
 	}
-	public modifyNotify(c: Component, fieldKey:string, value:any, old:any, fieldKeyIndex?:string | number) {
+	public modifyNotify(c: Component, fieldKey: string, value: any, old: any, fieldKeyIndex?: string | number) {
 		const arr = this.modify;
 		const arrFilter = this.modifyFilter;
 		for (const l of arr) {
@@ -386,10 +386,10 @@ class CompMeta extends MStructMeta {
 /**
  * 获取组件元信息
  */
-const getMeta = (w:World, compClass:Function): CompMeta => {
-	const meta = w.constructMap.get(compClass) as CompMeta;
+const getMeta = (w: World, compClass: Function): CompMeta => {
+	const meta = <CompMeta>w.constructMap.get(compClass);
 	if (!meta) {
-		throw new Error(`unregister component, name:${compClass.name}`);		
+		throw new Error(`unregister component, name:${compClass.name}`);
 	}
 
 	return meta;
@@ -398,18 +398,18 @@ const getMeta = (w:World, compClass:Function): CompMeta => {
 /**
  * 获取监听器的位置
  */
-const getListenerIndex = (arr:ListenerCfg[], listener: Function): number => {
+const getListenerIndex = (arr: ListenerCfg[], listener: Function): number => {
 	for (let i = arr.length - 1; i >= 0; i--) {
 		if (arr[i].listener !== listener) {
 			return i;
 		}
 	}
-	
+
 	return -1;
 };
-	
+
 // 通知监听器
-const notify = (arrFilter:ListenerCfg[], c: Component) => {
+const notify = (arrFilter: ListenerCfg[], c: Component) => {
 	for (const l of arrFilter) {
 		(c.parent._$meta === l.parentCompMeta) && l.listener(c);
 	}

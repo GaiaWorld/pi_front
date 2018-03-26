@@ -388,7 +388,7 @@ export const getParentByAttr = (el: Element, key: string, value?: string): Eleme
 				return el;
 			}
 		}
-		el = el.parentNode as Element;
+		el = <Element>el.parentNode;
 	}
 };
 /**
@@ -508,7 +508,7 @@ const browserAdaptive = () => {
 	}
 	const clientWidth = document.documentElement.clientWidth;
 	const clientHeight = document.documentElement.clientHeight;
-	const ae = document.activeElement as HTMLElement;
+	const ae = <HTMLElement>document.activeElement;
 	// 表示因为是输入，手机上弹出输入面板后的页面变小
 	if ((ae.tagName === 'INPUT' || ae.tagName === 'TEXTAREA') && oldHeight > clientHeight) {
 		const rect = ae.getBoundingClientRect();
@@ -625,7 +625,7 @@ forelet.listener = (cmd: string, widget: Widget): void => {
 			if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.getAttribute('allowDefault')) {
 				return;
 			}
-			el = el.parentNode as Element;
+			el = <Element>el.parentNode;
 		}
 		e.preventDefault();
 	};
@@ -636,32 +636,10 @@ forelet.listener = (cmd: string, widget: Widget): void => {
 	const onTouchStart = (e) => {
 		startX = e.touches[0].screenX;
 		startY = e.touches[0].screenY;
-		e.stopPropagation();
-		orientation = 0;
-		el = e.target;
-		while (el !== null && el !== root && el !== document.body) {
-			// 如果元素为输入框或允许默认事件，则返回
-			if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.getAttribute('allowDefault')) {
-				return;
-			}
-			if (!preventScroll) {
-				// 如果完全使用better-scroll，则可以去掉
-				const st = getStyle(el);
-				if (st.overflowX === 'auto') {
-					orientation |= 1;
-				}
-				if (st.overflowY === 'auto') {
-					orientation |= 2;
-				}
-				// 如果元素为可滚动，则返回
-				if (orientation !== 0) {
-					return;
-				}
-			}
-			el = el.parentNode as Element;
-		}
-		// 禁止默认操作，防止微信及浏览器的返回或拉下
-		e.preventDefault();
+
+		const r = doTouchStart(e);
+		orientation = r.orientation;
+		el = r.el;
 	};
 	const onTouchMove = (e) => {
 		if (orientation === 0) {
@@ -669,32 +647,10 @@ forelet.listener = (cmd: string, widget: Widget): void => {
 
 			return;
 		}
-		const endX = e.touches[0].screenX;
-		const endY = e.touches[0].screenY;
-		if ((orientation & 2) !== 0) {
-			if (endY - startY >= 0) {
-				if (el.scrollTop <= 0) {
-					e.preventDefault();
-				}
-			} else {
-				if (el.scrollHeight - el.clientHeight <= el.scrollTop) {
-					e.preventDefault();
-				}
-			}
-		}
-		if ((orientation & 1) !== 0) {
-			if (endX - startX >= 0) {
-				if (el.scrollLeft <= 0) {
-					e.preventDefault();
-				}
-			} else {
-				if (el.scrollWidth - el.clientWidth <= el.scrollLeft) {
-					e.preventDefault();
-				}
-			}
-		}
-		startX = endX;
-		startY = endY;
+
+		const r = doTouchMove(e, el, orientation, startX, startY);
+		startX = r.startX;
+		startY = r.startY;
 	};
 	root.addEventListener('mousemove', forbid, true);
 	root.addEventListener('mousedown', forbid, true);
@@ -709,11 +665,11 @@ forelet.listener = (cmd: string, widget: Widget): void => {
 	root.addEventListener('touchmove', onTouchMove, false);
 	root.addEventListener('touchstart', onTouchStart, false);
 	root.addEventListener('touchend', stop, false);
-	const arr = (widget.tree as VirtualNode).children;
+	const arr = (<VirtualNode>widget.tree).children;
 	for (const n of arr) {
 		const e = getRealNode(n);
 		paintCmd3(e, 'remove', []);
-		const name = getAttribute((n as any).attrs, 'group');
+		const name = getAttribute((<any>n).attrs, 'group');
 		if (!name) {
 			continue;
 		}
@@ -742,6 +698,79 @@ try {
 		}
 	};
 	win.history.pushState({}, null);
-// tslint:disable-next-line:no-empty
+	// tslint:disable-next-line:no-empty
 } catch (e) {
 }
+
+/**
+ * 处理点击开始
+ * @param e 事件
+ */
+const doTouchStart = (e) => {
+	e.stopPropagation();
+	orientation = 0;
+	let el = e.target;
+	while (el !== null && el !== root && el !== document.body) {
+		// 如果元素为输入框或允许默认事件，则返回
+		if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.getAttribute('allowDefault')) {
+			return { orientation, el };
+		}
+		if (!preventScroll) {
+			// 如果完全使用better-scroll，则可以去掉
+			const st = getStyle(el);
+			if (st.overflowX === 'auto') {
+				orientation |= 1;
+			}
+			if (st.overflowY === 'auto') {
+				orientation |= 2;
+			}
+			// 如果元素为可滚动，则返回
+			if (orientation !== 0) {
+				return { orientation, el };
+			}
+		}
+		el = <Element>el.parentNode;
+	}
+	// 禁止默认操作，防止微信及浏览器的返回或拉下
+	e.preventDefault();
+
+	return { orientation, el };
+};
+
+/**
+ * 处理移动
+ * 
+ * @param e 事件
+ * @param el 元素
+ * @param orientation 方向
+ * @param startX 起始x位置
+ * @param startY 起始y位置
+ */
+const doTouchMove = (e, el, orientation, startX, startY) => {
+	const endX = e.touches[0].screenX;
+	const endY = e.touches[0].screenY;
+	if ((orientation & 2) !== 0) {
+		if (endY - startY >= 0) {
+			if (el.scrollTop <= 0) {
+				e.preventDefault();
+			}
+		} else {
+			if (el.scrollHeight - el.clientHeight <= el.scrollTop) {
+				e.preventDefault();
+			}
+		}
+	}
+	if ((orientation & 1) !== 0) {
+		if (endX - startX >= 0) {
+			if (el.scrollLeft <= 0) {
+				e.preventDefault();
+			}
+		} else {
+			if (el.scrollWidth - el.clientWidth <= el.scrollLeft) {
+				e.preventDefault();
+			}
+		}
+	}
+
+	return { startX, startY };
+};

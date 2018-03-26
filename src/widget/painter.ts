@@ -178,7 +178,7 @@ export const createWidget = (node: VirtualWidgetNode): void => {
 	}
 	const w = factory(relative(node.tagName, s));
 	if (!w) {
-		throw new Error(`widget not found, name: ${node.tagName}`);		
+		throw new Error(`widget not found, name: ${node.tagName}`);
 	}
 	node.link = w;
 	node.widget.children.push(w);
@@ -253,7 +253,7 @@ export const delNode = (node: VNode): void => {
 	if (isVirtualNode(node)) {
 		delChilds(<VirtualNode>node);
 	} else if (isVirtualWidgetNode(node)) {
-		arrDrop((node as VirtualWidgetNode).widget.children, r);
+		arrDrop((<VirtualWidgetNode>node).widget.children, r);
 		const w = <Widget>r;
 		delWidget(w);
 		r = getRealNode(w.tree);
@@ -300,7 +300,7 @@ export const delWidget = (w: Widget): void => {
  */
 export const getShowWidgetName = (node: VNode, name: string): string => {
 	const n = isVirtualWidgetNode(node);
-	
+
 	// tslint:disable:prefer-template
 	return (n) ? getShowWidgetName(n.link.tree, name + ' ' + n.link.name) : name;
 };
@@ -439,7 +439,7 @@ const paint1 = (): void => {
 	}
 	arr.length = 0;
 	arr = cmdList1;
-	for (const cmd of (arr as any[])) {
+	for (const cmd of (<any[]>arr)) {
 		if (cmd.length === 3) {
 			const args = cmd[2];
 			if (Array.isArray(args)) {
@@ -565,6 +565,7 @@ const setDiffStyle = (node: VWNode, immediately?: boolean): void => {
  */
 const getFilterStyleRealNode = (node: VWNode, diff: URLEffect): HTMLElement => {
 	let n: VirtualWidgetNode;
+	// tslint:disable-next-line:no-constant-condition
 	while (true) {
 		n = isVirtualWidgetNode(node);
 		if (!n) {

@@ -14,8 +14,8 @@ import { Widget } from '../widget/widget';
  */
 export class Input extends Widget {
 	public lastSign: number = 0;
-	public lastText: string = undefined;
-	public readOnly: string = undefined;
+	public lastText: string;
+	public readOnly: string;
 
 	/**
 	 * @description 绘制方法，

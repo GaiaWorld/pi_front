@@ -126,7 +126,7 @@ export class LSegment implements Node {
 		if (last.cost) {
 			return this.center.distanceTo((<any>last).center) * last.cost;
 		} else {
-			return this.center.distanceTo((<any>last).center) * getAdjPoly(this.navMesh, last as LSegment, this).cost;
+			return this.center.distanceTo((<any>last).center) * getAdjPoly(this.navMesh, <LSegment>last, this).cost;
 		}
 	}
 
@@ -135,7 +135,7 @@ export class LSegment implements Node {
 		if (finish.cost) {
 			return this.center.distanceTo((<any>finish).center) * finish.cost;
 		} else {
-			return this.center.distanceTo((<any>finish).center) * getAdjPoly(this.navMesh, finish as LSegment, this).cost;
+			return this.center.distanceTo((<any>finish).center) * getAdjPoly(this.navMesh, <LSegment>finish, this).cost;
 		}
 	}
 
@@ -376,9 +376,8 @@ export class NavMesh {
 	 *  http://liweizhaolili.lofter.com/post/1cc70144_86a939e
 	 *  http://digestingduck.blogspot.hk/2010/03/simple-stupid-funnel-algorithm.html
 	 */
-	/* tslint:disable:cyclomatic-complexity */
 	private funnel(node: Node[], start: Vector3, end: Vector3, radio: number = 0) {
-		const points = [] as Vector3[];
+		const points: Vector3[] = [];
 		if (node.length === 1) {
 			points.push(start);
 			points.push(end);
@@ -388,10 +387,6 @@ export class NavMesh {
 
 		let oldV1: Vector3;
 		let oldV2: Vector3;
-		let newV1: Vector3;
-		let newV2: Vector3;
-		let radioV: Vector3;
-		let adjLine: LSegment;// 相邻多边形共线
 		let lastLine: Vector3;// lastPoint指向end的向量
 		const maxIndex = node.length - 1;
 		let lastPoint = start;
@@ -399,70 +394,12 @@ export class NavMesh {
 		let lastIndex2 = 0;
 		points.push(start);
 		for (let i = 1; i < maxIndex; i++) {
-			adjLine = node[i] as LSegment;
-			radioV = new Vector3().subVectors(adjLine.p2, adjLine.p1).normalize().multiplyScalar(radio);
-			newV1 = new Vector3().subVectors(new Vector3().addVectors(adjLine.p1, radioV), lastPoint);
-			newV2 = new Vector3().subVectors(new Vector3().subVectors(adjLine.p2, radioV), lastPoint);
-
-			if (!oldV1 || !oldV2) {
-				oldV1 = newV1;
-				oldV2 = newV2;
-				lastIndex1 = lastIndex2 = i;
-				// 如果有一个为零向量，直接更新
-			} else if (isZeroVector(oldV1) || isZeroVector(oldV2)) {
-				oldV1 = newV1;
-				oldV2 = newV2;
-				lastIndex1 = i;
-				lastIndex2 = i;
-			} else {
-				// newV1超出oldV1, oldV2夹角范围， 与oldV2相邻
-				if (vIsOrder(oldV1, oldV2, newV1)) {
-					// newV1超出oldV1, oldV2夹角范围， 与oldV2相邻， 设置oldV2为拐点
-					if (vIsOrder(oldV1, oldV2, newV2)) {
-						lastPoint = oldV2.add(lastPoint);
-						points.push(lastPoint);
-						oldV1 = oldV2 = null;
-						i = lastIndex2;
-						continue;
-						// newV2在oldV1, oldV2夹角范围内， 更新oldV1为newV2
-					} else if (vIsOrder(oldV1, newV2, oldV2)) {
-						oldV1 = newV2;
-						lastIndex1 = i;
-					}
-					// newV1超出oldV1, oldV2夹角范围， 与oldV1相邻；
-				} else if (vIsOrder(newV1, oldV1, oldV2)) {
-					// newV2超出oldV1, oldV2夹角范围， 与oldV1相邻， 设置oldV1为拐点
-					if (vIsOrder(oldV2, oldV1, newV2)) {
-						lastPoint = oldV1.add(lastPoint);
-						points.push(lastPoint);
-						oldV1 = oldV2 = null;
-						i = lastIndex1;
-						continue;
-						// newV2在oldV1, oldV2夹角范围内， 与oldV1相邻；
-					} else if (vIsOrder(oldV1, newV2, oldV2)) {
-						oldV2 = newV2;
-						lastIndex2 = i;
-					}
-					// newV1在oldV1, oldV2夹角范围内
-				} else {
-					// newV2超出oldV1, oldV2夹角范围， 与oldV2相邻， 更新oldV1为newV1;
-					if (vIsOrder(oldV1, oldV2, newV2)) {
-						oldV1 = newV1;
-						lastIndex1 = i;
-						// newV2超出oldV1, oldV2夹角范围， 与oldV1相邻， 更新oldV2为newV1;
-					} else if (vIsOrder(newV2, oldV1, oldV2)) {
-						oldV2 = newV1;
-						lastIndex2 = i;
-						// newV2在oldV1, oldV2夹角范围内， 更新oldV1为newV1， oldV2为newV2;
-					} else if (vIsOrder(oldV1, newV2, oldV2)) {
-						oldV1 = newV1;
-						oldV2 = newV2;
-						lastIndex1 = i;
-						lastIndex2 = i;
-					}
-				}
-
-			}
+			const r = this.eachFunnel(<LSegment>node[i], lastPoint, radio, i, points);
+			oldV1 = r.oldV1;
+			oldV2 = r.oldV2;
+			lastIndex1 = r.lastIndex1;
+			lastIndex2 = r.lastIndex2;
+			if (r.isContinue) continue;
 
 			// 已经遍历到最后一个节点，连接lastPoint与end为向量lastLine
 			if (i === maxIndex - 1 && oldV1 && oldV2 && !isZeroVector(oldV1) && !isZeroVector(oldV2)) {
@@ -486,6 +423,81 @@ export class NavMesh {
 
 		return points;
 	}
+
+	/**
+	 * 每一个的处理
+	 * @param adjLine 相邻多边形共线
+	 */
+	private eachFunnel(adjLine: LSegment, lastPoint: Vector3, radio: number, i: number, points: Vector3[]) {
+
+		let oldV1: Vector3;
+		let oldV2: Vector3;
+		const radioV: Vector3 = new Vector3().subVectors(adjLine.p2, adjLine.p1).normalize().multiplyScalar(radio);
+		const newV1: Vector3 = new Vector3().subVectors(new Vector3().addVectors(adjLine.p1, radioV), lastPoint);
+		const newV2: Vector3 = new Vector3().subVectors(new Vector3().subVectors(adjLine.p2, radioV), lastPoint);
+		let lastIndex1 = 0;
+		let lastIndex2 = 0;
+		let isContinue = false;
+
+		if (!oldV1 || !oldV2) {
+			oldV1 = newV1;
+			oldV2 = newV2;
+			lastIndex1 = lastIndex2 = i;
+			// 如果有一个为零向量，直接更新
+		} else if (isZeroVector(oldV1) || isZeroVector(oldV2)) {
+			oldV1 = newV1;
+			oldV2 = newV2;
+			lastIndex1 = i;
+			lastIndex2 = i;
+		} else if (vIsOrder(oldV1, oldV2, newV1)) {// newV1超出oldV1, oldV2夹角范围， 与oldV2相邻
+			// newV1超出oldV1, oldV2夹角范围， 与oldV2相邻， 设置oldV2为拐点
+			if (vIsOrder(oldV1, oldV2, newV2)) {
+				lastPoint = oldV2.add(lastPoint);
+				points.push(lastPoint);
+				oldV1 = oldV2 = null;
+				i = lastIndex2;
+				isContinue = true;
+				// newV2在oldV1, oldV2夹角范围内， 更新oldV1为newV2
+			} else if (vIsOrder(oldV1, newV2, oldV2)) {
+				oldV1 = newV2;
+				lastIndex1 = i;
+			}
+			// newV1超出oldV1, oldV2夹角范围， 与oldV1相邻；
+		} else if (vIsOrder(newV1, oldV1, oldV2)) {
+			// newV2超出oldV1, oldV2夹角范围， 与oldV1相邻， 设置oldV1为拐点
+			if (vIsOrder(oldV2, oldV1, newV2)) {
+				lastPoint = oldV1.add(lastPoint);
+				points.push(lastPoint);
+				oldV1 = oldV2 = null;
+				i = lastIndex1;
+				isContinue = true;
+				// newV2在oldV1, oldV2夹角范围内， 与oldV1相邻；
+			} else if (vIsOrder(oldV1, newV2, oldV2)) {
+				oldV2 = newV2;
+				lastIndex2 = i;
+			}
+			// newV1在oldV1, oldV2夹角范围内
+		} else {
+			// newV2超出oldV1, oldV2夹角范围， 与oldV2相邻， 更新oldV1为newV1;
+			if (vIsOrder(oldV1, oldV2, newV2)) {
+				oldV1 = newV1;
+				lastIndex1 = i;
+				// newV2超出oldV1, oldV2夹角范围， 与oldV1相邻， 更新oldV2为newV1;
+			} else if (vIsOrder(newV2, oldV1, oldV2)) {
+				oldV2 = newV1;
+				lastIndex2 = i;
+				// newV2在oldV1, oldV2夹角范围内， 更新oldV1为newV1， oldV2为newV2;
+			} else if (vIsOrder(oldV1, newV2, oldV2)) {
+				oldV1 = newV1;
+				oldV2 = newV2;
+				lastIndex1 = i;
+				lastIndex2 = i;
+			}
+		}
+
+		return { oldV1, oldV2, lastIndex1, lastIndex2, i, isContinue };
+	}
+
 }
 
 const getNext = (arr: any[], i: number) => {

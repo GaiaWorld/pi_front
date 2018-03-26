@@ -48,7 +48,7 @@ export class BScroll extends Widget {
 	public startY: number;
 	// tslint:disable:typedef
 	// tslint:disable:no-object-literal-type-assertion
-	public currentPage = {} as PagePos;
+	public currentPage = <PagePos>{};
 	public pages = [];
 	public isInTransition: number | boolean;
 	public selectedIndex: number;
@@ -77,7 +77,7 @@ export class BScroll extends Widget {
 	// tslint:disable:variable-name
 	public _events = {};
 
-	public props = {
+	public props: Props = {
 		id: null,
 		child: null,
 		childProps: null,
@@ -123,7 +123,7 @@ export class BScroll extends Widget {
 			snapSpeed: null,
 			itemHeight: null
 		}
-	} as Props;
+	};
 	// ============================================================== 公共函数
 	public setProps(props: any, oldProps?: any) {
 		super.updateProps(props, oldProps);
@@ -360,8 +360,9 @@ export class BScroll extends Widget {
 		this._addEvents();
 	}
 
+	// tslint:disable-next-line:max-func-body-length
 	public _initSnap() {
-		this.currentPage = {} as PagePos;
+		this.currentPage = <PagePos>{};
 		if (this.props.options.snapLoop) {
 			const children = this.scroller.children;
 			if (children.length > 0) {
@@ -673,6 +674,7 @@ export class BScroll extends Widget {
 	}
 
 	// tslint:disable:cyclomatic-complexity
+	// tslint:disable-next-line:max-func-body-length
 	public _move(e) {
 		if (!this.enabled || this.destroyed || eventType[e.type] !== this.initiated) {
 			return;
@@ -793,6 +795,7 @@ export class BScroll extends Widget {
 		}
 	}
 
+	// tslint:disable-next-line:max-func-body-length
 	public _end(e) {
 		if (!this.enabled || this.destroyed || eventType[e.type] !== this.initiated) {
 			return;
