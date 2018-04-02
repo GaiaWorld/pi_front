@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+<!-- Begin Jekyll SEO tag v2.4.0 -->
+<title>Leap Day theme | Leap Day is a theme for GitHub Pages.</title>
+<meta name="generator" content="Jekyll v3.7.3" />
+<meta property="og:title" content="Leap Day theme" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Leap Day is a theme for GitHub Pages." />
+<meta property="og:description" content="Leap Day is a theme for GitHub Pages." />
+<link rel="canonical" href="http://localhost:4000/" />
+<meta property="og:url" content="http://localhost:4000/" />
+<meta property="og:site_name" content="Leap Day theme" />
+<script type="application/ld+json">
+{"name":"Leap Day theme","description":"Leap Day is a theme for GitHub Pages.","@type":"WebSite","url":"http://localhost:4000/","headline":"Leap Day theme","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="assets/css/style.css?v=">
+    <script src="https://code.jquery.com/jquery-3.3.0.min.js" integrity="sha256-RTQy8VOmNlT6b2PIRur37p6JEBZUE7o8wPgMvu18MC4=" crossorigin="anonymous"></script>
+    <script src="assets/js/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h2 id="介绍">介绍</h2>
+
+<h3 id="pi_front是什么">pi_front是什么</h3>
+
+<p>pi_front是</p>
+
+<h3 id="hello_world">hello_world</h3>
+
+<p>以下是hello_world</p>
+
+<h3 id="条件与循环">条件与循环</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># tpl
+
+
+    
+        &lt;5
+        =5
+        &gt;5
+        
+    &lt;br&gt;
+
+
+# 结果
+4&lt;5
+5=5
+6&gt;5
+</code></pre></div></div>
+
+<p>以上即是一个简单的循环、条件、显示的应用，我们在所有需要处理的显示对象外层嵌套处理逻辑，不破坏原有代码结构，尽量保证布局的原始性，但又实现了需求</p>
+
+<p>循环：以for-end配对处理，可实现循环显示</p>
+
+<p>条件：以if(-elseif-else)-end配对处理，elseif与else可不处理，可实现按条件显示</p>
+
+<p>-显示：可直接将对应数据</p>
+
+<p>–赋值：对变量赋值</p>
+
+<h3 id="事件监听">事件监听</h3>
+
+<ul>
+  <li>
+    <p>我们的事件监听是在原生事件的基础上封装完成的，所以支持类似原生dom处理</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;button class="btn" on-tap="ok('ok')"&gt;确认&lt;/button&gt;
+  点击确定按钮
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>我们也对事件进行了扩展处理，支持了自定义事件的监听，你可以简单的将事件手动抛出，在其直系父节点上再监听该事件，从而实现数据的传递。这种处理在组件系统中被广泛使用</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  # js抛出
+  notify(this.parentNode, 'ev-emit-click', { index: this.props.index });
+  # tpl抛出
+  &lt;button on-tap='$notify("ev-emit-click", { "id":, })'&gt;"g2"&lt;/button&gt;
+  # tpl接收
+  &lt;section ev-emit-click="clickCardPond"&gt;&lt;/section&gt;
+    
+  以上两种情况都能做到抛出事件，最后由其直系父节点接收到该事件
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>目前支持以下事件</p>
+    <ul>
+      <li>on-move:移动，滑动</li>
+      <li>on-tap:点击</li>
+      <li>on-dbltap:双击</li>
+      <li>on-longtap:长按</li>
+      <li>on-down:点下</li>
+      <li>on-up:弹起</li>
+      <li>on-rotsal:旋转缩放–自定义扩展，仅移动端有效，效果是两个手指缩放或旋转时触发</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="组件化">组件化</h3>
+
+<p>目前我们所有的界面都是以组件化的形式组成的,这样能通过将通用组件抽离，时界面表现更简洁</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;children-playerarea-playerarea$&gt;{"isOpponent":true,player:}&lt;/children-playerarea-playerarea$&gt;
+
+&lt;children-neutralarea-neutralarea$&gt;{shared:}&lt;/children-neutralarea-neutralarea$&gt;
+
+&lt;children-playerarea-playerarea$&gt;{"isOpponent":false,player:}&lt;/children-playerarea-playerarea$&gt;
+
+以上实例即实现了创建出3块战斗区域,其中playerarea与neutralarea就是单独抽离出的组件，具体组件相关知识，将在接下来详细解说
+</code></pre></div></div>
+
+<p>组件化之后有以下优点</p>
+
+<ul>
+  <li>提高代码的复用,减少重复工作
+    <ul>
+      <li>组件级别的复用(提供通用组件)</li>
+      <li>脚本的复用</li>
+      <li>模板的复用</li>
+      <li>样式的复用(提供了常用的样式库/动画库)</li>
+    </ul>
+  </li>
+  <li>提高编码效率
+    <ul>
+      <li>提供了样式的局部作用域</li>
+      <li>提供可编程模板</li>
+      <li>数据和显示的分离=&gt;更好的前端分工，写逻辑的人只关心数据变化，不管关心界面变化</li>
+      <li>无需手动操作DOM=&gt;代码更简介，不要关注烦人的dom操作</li>
+    </ul>
+  </li>
+  <li>提高显示效果
+    <ul>
+      <li>高效的帧管理，要么全部更新，要么不更新，保证画面不会闪烁</li>
+      <li>精确的DOM更新，保证只刷新真正需要刷新的部分</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="组件系统">组件系统</h2>
+
+<h3 id="创建组件">创建组件</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- 默认组件(js/wcss/tpl/config)
+
+    一个简单的组件，一般需要一个tpl文件，用于定义该组件的布局结构，是组件的主题表现；
+    
+    在此基础上，可配置同名的js文件，用于对其逻辑数据进行处理；
+    
+    在此基础上，可配置同名的wcss文件，用于对其样式进行处理，详见下方样式处理
+
+    在此基础上，可配置同名的config文件，用于对组件进行完善，常用属性如下
+    - group:该组件显示某个主层级中
+    - 也可以在对应的组件的create函数中定义
+
+            create(){        
+                super.create();
+                this.config = {value:{group:"cover"}}
+            }
+
+- .widget组件(wcss/tpl/forelet/widget/config)
+
+    这是一种可实现通过配置，实现tpl、wcss、js、config不同的组装，构建出新的一个组件，从而实现复用
+
+- 如何创建一个组件
+    + 通过在tpl中直接定义，可直接创建组件
+
+            &lt;children-playerarea-playerarea$&gt;{"isOpponent":false,player:}&lt;/children-playerarea-playerarea$&gt;
+
+            常用的格式还有以下几种
+            &lt;role_show$ style=""&gt;&lt;/role_show$&gt;表示本目录下的role_show组件，
+            &lt;role_show$$ style=""&gt;&lt;/role_show$$&gt;表示父目录下的role_show组件，
+            &lt;role_show-zb_show$$ style=""&gt;&lt;/role_show-zb_show$$&gt;表示父目录下role_show目录下的zb_show组件
+            &lt;app-base-btn style=""&gt;&lt;/app-base-btn&gt;表示根目录开始，app/base目录下的btn组件
+    + 通过调用pi.ui.root模块中pop或popNew函数，弹出新的组件界面
+
+            import { popNew } from '../../pi/ui/root';
+
+            popNew(foreletName, foreletParams, (ok:string) =&gt; {
+                //todo 这里处理触发ok函数时的回调
+            }, (cancel:string) =&gt; {
+                //todo 这里处理触发cancel函数时的回调
+            });
+    + 通过第二种方式弹出组件界面时，可在foreletParams中定义另一个组件名，已widget做键，可同时再创建新的一个组件。(?显示方式)
+
+            import { popNew } from '../../pi/ui/root';
+
+            foreletParams.widget = newForeletName;
+
+            popNew(foreletName, foreletParams, (ok:string) =&gt; {
+                //todo 这里处理触发ok函数时的回调
+            }, (cancel:string) =&gt; {
+                //todo 这里处理触发cancel函数时的回调
+            });
+</code></pre></div></div>
+
+<h3 id="样式处理">样式处理</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- wcss
+
+    wcss样式文件是我们自定义的用于处理样式的文件，通过定义`w-class="my-money"`实现对其引用。其格式与原生css结构一致，因其原理限制，暂不支持伪类( :hover)、伪对象( :first-child)和关键帧动画( animation keyframes)
+
+- wcss处理原理
+
+    我们会将所有的wcss中定义的属性改为内联样式添加到对应都没节点上，但其优先级会略低于直接定义的内联样式。
+    
+    因其最终表现为内联样式，就有了上述说的某些不支持的情况。
+
+    由于引用wcss文件不占有原生引用css文件位置，那么一个dom节点上能同时再引入全局css文件进行处理
+
+- 样式的优先级(innerstyle&gt;wcss&gt;css--参见css例子)
+
+        # tpl文件
+        &lt;section w-class="my-money" class="center" style="color:red;"&gt;$999&lt;/section&gt;
+
+        # wcss文件
+        .my-money {
+            position: absolute;
+            bottom:0;
+            left:0;
+            width:30%;
+            height:25px;
+            border-radius:0px 150px 0px 0px;
+            background-color:rgba(0, 255, 128, 0.3);
+        }
+
+        # 全局css文件
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+    上述就是一个简单的样式应用
+</code></pre></div></div>
+
+<h3 id="数据传递">数据传递</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>组件间的数据传递，将孤立的组件串联起来，构成一个整体
+
++ 子组件=&gt;父组件
+    - 通过子组件抛出事件，父组件监听事件的形式实现数据传递
++ 父组件=&gt;子组件
+    
+    在创建组件时传入参数
+
+        &lt;role_show$ style=""&gt;这里可传入参数&lt;/role_show$&gt;
+
+        popNew(foreletName, foreletParams);
+        foreletParams:传递的参数
+
++ 简单数据传递
++ 含有变量的数据传递
++ 多层数据传递 ### 事件处理
++ 自定义事件
+
+    自定义事件被广泛应用于组件间的数据传递，直系父子间都能通过自定义的事件来完成
+
++ 系统事件
+    - 可直接绑定7种我们支持的系统事件，在事件监听中有具体的定义
+    - cap---代表传递方式为捕获
+    - on---代表传递方式为冒泡 ### 生命周期
++ 帧调度
++ widget
+    + 什么是widget
+
+        负责显示逻辑，是数据和原始dom间的桥梁
+
+    + widget属性
+
+            public name: string = null; // 组件的名称
+            public tpl: Tpl = null; // 组件的模板
+            public sheet: {value: Sheet} = null; // 组件的样式
+            public config: {value: Json} = null; // 所对应的配置
+            public forelet: Forelet = null; // 所对应的forelet
+            public props: Json = null; // 由父组件设置的组件属性
+            public state: Json = null; // 由forelet设置的组件状态
+            public tree: VWNode = null; // 组件所对应的节点树
+            public parentNode: VirtualWidgetNode = null; // 父节点，parentNode.link的对象就是widget
+            public children: Widget[] = []; // 所有的子组件
+            public inDomTree: boolean = false; // 是否在dom树中
+            public resTab: ResTab = null; // 资源表
+            public resTimeout: number = 3000; // 资源缓冲时间，默认3秒
+
+    + widget生命周期钩子
+    + widget生命周期图示
++ forelet
+    + forelet作用
+
+        负责进行业务逻辑处理，是数据库和显示组件间的桥梁
+
+    + forelet生命周期
+</code></pre></div></div>
+
+<h3 id="模板语法">模板语法</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+ 注释
+
+    直接在模板中定义``实现添加注释
+
++ 插值(强调可以在任何地方插值)
+    - 文本
+    - css片段
+    - js表达式
+    
+        因模板处理原理是对tpl中字符串进行解析处理，通过一定规范，重新转换为新的字符串，并解析为对于的节点树，所以我们可在任意地方进行插值，构建出想要的效果。
+
+        常用的插值格式有以下几种
+
+            调用函数:
+            判断赋值:
+            直接赋值：
+            默认值赋值：
+
++ 变量定义
+
+    直接在模板中定义``实现定义变量并赋值，也可以通过定义``对数据进行修改
+
++ 函数声明
++ 内置变量
+    - it--对应组件中props中的值，也就是父组件传递下来的数据
+    - it1--对应组件中state中的值，也就是当前界面自己定义的数据
+    - _cfg--对应组件中配置的额外参数，对应config文件中的配置
+
+    我们在模板中，有以上几个内置变量可直接使用。
+
+    警告：内置变量中的值不要在模板中修改
+
+    
++ 条件渲染
+
+    格式如下
+
+        if条件判断
+        
+         else if条件判断
+        
+         else条件
+        
+         条件结束
+        
+
++ 列表渲染
+    + 普通列表渲染
+    + 通过did进行优化
+</code></pre></div></div>
+
+<h2 id="周边生态">周边生态</h2>
+
+<ul>
+  <li>加载系统
+    <ul>
+      <li>TODO</li>
+    </ul>
+  </li>
+  <li>构建系统
+    <ul>
+      <li>TODO</li>
+    </ul>
+  </li>
+</ul>
+
+
+
+      </section>
+      <footer>
+        
+      </footer>
+    </div>
+
+    
+  </body>
+</html>
