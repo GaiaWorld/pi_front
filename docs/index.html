@@ -1,382 +1,606 @@
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-<!-- Begin Jekyll SEO tag v2.4.0 -->
-<title>Leap Day theme | Leap Day is a theme for GitHub Pages.</title>
-<meta name="generator" content="Jekyll v3.7.3" />
-<meta property="og:title" content="Leap Day theme" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="Leap Day is a theme for GitHub Pages." />
-<meta property="og:description" content="Leap Day is a theme for GitHub Pages." />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
-<meta property="og:site_name" content="Leap Day theme" />
-<script type="application/ld+json">
-{"name":"Leap Day theme","description":"Leap Day is a theme for GitHub Pages.","@type":"WebSite","url":"http://localhost:4000/","headline":"Leap Day theme","@context":"http://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=">
-    <script src="https://code.jquery.com/jquery-3.3.0.min.js" integrity="sha256-RTQy8VOmNlT6b2PIRur37p6JEBZUE7o8wPgMvu18MC4=" crossorigin="anonymous"></script>
-    <script src="assets/js/main.js"></script>
-    <!--[if lt IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduce-介绍 &mdash; pi_front 0.1 文档</title>
+  
 
-  </head>
-  <body>
-    <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
-      <section>
-        <h2 id="介绍">介绍</h2>
+  
+  
+  
+  
 
-<h3 id="pi_front是什么">pi_front是什么</h3>
+  
 
-<p>pi_front是</p>
+  
+  
+    
 
-<h3 id="hello_world">hello_world</h3>
+  
 
-<p>以下是hello_world</p>
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
 
-<h3 id="条件与循环">条件与循环</h3>
+  
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># tpl
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="搜索" href="search.html"/>
+    <link rel="top" title="pi_front 0.1 文档" href="#"/> 
 
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
 
     
-        &lt;5
-        =5
-        &gt;5
-        
-    &lt;br&gt;
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
+          
+            <a href="#" class="icon icon-home"> pi_front
+          
 
-# 结果
-4&lt;5
-5=5
-6&gt;5
-</code></pre></div></div>
+          
+          </a>
 
-<p>以上即是一个简单的循环、条件、显示的应用，我们在所有需要处理的显示对象外层嵌套处理逻辑，不破坏原有代码结构，尽量保证布局的原始性，但又实现了需求</p>
+          
+            
+            
+          
 
-<p>循环：以for-end配对处理，可实现循环显示</p>
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
 
-<p>条件：以if(-elseif-else)-end配对处理，elseif与else可不处理，可实现按条件显示</p>
+          
+        </div>
 
-<p>-显示：可直接将对应数据</p>
-
-<p>–赋值：对变量赋值</p>
-
-<h3 id="事件监听">事件监听</h3>
-
-<ul>
-  <li>
-    <p>我们的事件监听是在原生事件的基础上封装完成的，所以支持类似原生dom处理</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;button class="btn" on-tap="ok('ok')"&gt;确认&lt;/button&gt;
-  点击确定按钮
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>我们也对事件进行了扩展处理，支持了自定义事件的监听，你可以简单的将事件手动抛出，在其直系父节点上再监听该事件，从而实现数据的传递。这种处理在组件系统中被广泛使用</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  # js抛出
-  notify(this.parentNode, 'ev-emit-click', { index: this.props.index });
-  # tpl抛出
-  &lt;button on-tap='$notify("ev-emit-click", { "id":, })'&gt;"g2"&lt;/button&gt;
-  # tpl接收
-  &lt;section ev-emit-click="clickCardPond"&gt;&lt;/section&gt;
-    
-  以上两种情况都能做到抛出事件，最后由其直系父节点接收到该事件
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>目前支持以下事件</p>
-    <ul>
-      <li>on-move:移动，滑动</li>
-      <li>on-tap:点击</li>
-      <li>on-dbltap:双击</li>
-      <li>on-longtap:长按</li>
-      <li>on-down:点下</li>
-      <li>on-up:弹起</li>
-      <li>on-rotsal:旋转缩放–自定义扩展，仅移动端有效，效果是两个手指缩放或旋转时触发</li>
-    </ul>
-  </li>
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Introduce-介绍</a><ul>
+<li><a class="reference internal" href="#pi-front">pi_front是什么</a></li>
+<li><a class="reference internal" href="#hello-world">hello_world</a></li>
+<li><a class="reference internal" href="#conditions">Conditions-条件与循环</a></li>
+<li><a class="reference internal" href="#eventlistener">EventListener-事件监听</a></li>
+<li><a class="reference internal" href="#componentized">Componentized-组件化</a></li>
 </ul>
+</li>
+<li><a class="reference internal" href="#componentsystem">ComponentSystem-组件系统</a><ul>
+<li><a class="reference internal" href="#create">Create-创建组件</a></li>
+<li><a class="reference internal" href="#style">Style-样式处理</a></li>
+<li><a class="reference internal" href="#data">Data-数据传递</a></li>
+<li><a class="reference internal" href="#event">Event-事件处理</a></li>
+<li><a class="reference internal" href="#life">Life-生命周期</a></li>
+<li><a class="reference internal" href="#tpl">tpl-模板语法</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other">Other-周边生态</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
 
-<h3 id="组件化">组件化</h3>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">pi_front</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Introduce-介绍</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduce">
+<span id="introduce"></span><h1>Introduce-介绍<a class="headerlink" href="#introduce" title="永久链接至标题">¶</a></h1>
+<div class="section" id="pi-front">
+<span id="pi-front"></span><h2>pi_front是什么<a class="headerlink" href="#pi-front" title="永久链接至标题">¶</a></h2>
+<p>pi_front是</p>
+</div>
+<div class="section" id="hello-world">
+<span id="hello-world"></span><h2>hello_world<a class="headerlink" href="#hello-world" title="永久链接至标题">¶</a></h2>
+<p>以下是hello_world</p>
+</div>
+<div class="section" id="conditions">
+<span id="conditions"></span><h2>Conditions-条件与循环<a class="headerlink" href="#conditions" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># tpl</span>
+<span class="p">{{:</span><span class="n">let</span> <span class="n">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]}}</span>
+<span class="p">{{</span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">v</span> <span class="n">of</span> <span class="n">arr</span><span class="p">}}</span>
+    <span class="p">{{</span><span class="n">v</span><span class="p">}}</span>
+        <span class="p">{{</span><span class="k">if</span> <span class="n">v</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">}}</span><span class="o">&lt;</span><span class="mi">5</span>
+        <span class="p">{{</span><span class="n">elseif</span> <span class="n">v</span><span class="o">===</span><span class="mi">5</span><span class="p">}}</span><span class="o">=</span><span class="mi">5</span>
+        <span class="p">{{</span><span class="k">else</span><span class="p">}}</span><span class="o">&gt;</span><span class="mi">5</span>
+        <span class="p">{{</span><span class="n">end</span><span class="p">}}</span>
+    <span class="o">&lt;</span><span class="n">br</span><span class="o">&gt;</span>
+<span class="p">{{</span><span class="n">end</span><span class="p">}}</span>
+
+<span class="c1"># 结果</span>
+<span class="mi">4</span><span class="o">&lt;</span><span class="mi">5</span>
+<span class="mi">5</span><span class="o">=</span><span class="mi">5</span>
+<span class="mi">6</span><span class="o">&gt;</span><span class="mi">5</span>
+</pre></div>
+</div>
+<p>以上即是一个简单的循环、条件、显示的应用，我们在所有需要处理的显示对象外层嵌套处理逻辑，不破坏原有代码结构，尽量保证布局的原始性，但又实现了需求</p>
+<p>循环：以for-end配对处理，可实现循环显示</p>
+<p>条件：以if(-elseif-else)-end配对处理，elseif与else可不处理，可实现按条件显示</p>
+<p>{{v}}-显示：可直接将对应数据</p>
+<p>{{:arr=[4,5,6]}}–赋值：对变量赋值</p>
+</div>
+<div class="section" id="eventlistener">
+<span id="eventlistener"></span><h2>EventListener-事件监听<a class="headerlink" href="#eventlistener" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first">我们的事件监听是在原生事件的基础上封装完成的，所以支持类似原生dom处理</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">&lt;</span><span class="n">button</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;btn&quot;</span> <span class="n">on</span><span class="o">-</span><span class="n">tap</span><span class="o">=</span><span class="s2">&quot;ok(&#39;ok&#39;)&quot;</span><span class="o">&gt;</span><span class="n">确认</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+  <span class="n">点击确定按钮</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">我们也对事件进行了扩展处理，支持了自定义事件的监听，你可以简单的将事件手动抛出，在其直系父节点上再监听该事件，从而实现数据的传递。这种处理在组件系统中被广泛使用</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  # js抛出
+  notify(this.parentNode, &#39;ev-emit-click&#39;, { index: this.props.index });
+  # tpl抛出
+  &lt;button on-tap=&#39;$notify(&quot;ev-emit-click&quot;, { &quot;id&quot;:{{v.id}}, })&#39;&gt;&quot;g2&quot;&lt;/button&gt;
+  # tpl接收
+  &lt;section ev-emit-click=&quot;clickCardPond&quot;&gt;&lt;/section&gt;
+  
+  以上两种情况都能做到抛出事件，最后由其直系父节点接收到该事件
+</pre></div>
+</div>
+</li>
+<li><p class="first">目前支持以下事件</p>
+<ul class="simple">
+<li>on-move:移动，滑动</li>
+<li>on-tap:点击</li>
+<li>on-dbltap:双击</li>
+<li>on-longtap:长按</li>
+<li>on-down:点下</li>
+<li>on-up:弹起</li>
+<li>on-rotsal:旋转缩放–自定义扩展，仅移动端有效，效果是两个手指缩放或旋转时触发</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="componentized">
+<span id="componentized"></span><h2>Componentized-组件化<a class="headerlink" href="#componentized" title="永久链接至标题">¶</a></h2>
 <p>目前我们所有的界面都是以组件化的形式组成的,这样能通过将通用组件抽离，时界面表现更简洁</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;children-playerarea-playerarea$&gt;{"isOpponent":true,player:}&lt;/children-playerarea-playerarea$&gt;
-
-&lt;children-neutralarea-neutralarea$&gt;{shared:}&lt;/children-neutralarea-neutralarea$&gt;
-
-&lt;children-playerarea-playerarea$&gt;{"isOpponent":false,player:}&lt;/children-playerarea-playerarea$&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{{% 对手玩家}}
+&lt;children-playerarea-playerarea$&gt;{&quot;isOpponent&quot;:true,player:{{it1.oppo}}}&lt;/children-playerarea-playerarea$&gt;
+{{% 中立地带}}
+&lt;children-neutralarea-neutralarea$&gt;{shared:{{it1.shared}}}&lt;/children-neutralarea-neutralarea$&gt;
+{{% 我方玩家}}
+&lt;children-playerarea-playerarea$&gt;{&quot;isOpponent&quot;:false,player:{{it1.me}}}&lt;/children-playerarea-playerarea$&gt;
 
 以上实例即实现了创建出3块战斗区域,其中playerarea与neutralarea就是单独抽离出的组件，具体组件相关知识，将在接下来详细解说
-</code></pre></div></div>
-
+</pre></div>
+</div>
 <p>组件化之后有以下优点</p>
-
-<ul>
-  <li>提高代码的复用,减少重复工作
-    <ul>
-      <li>组件级别的复用(提供通用组件)</li>
-      <li>脚本的复用</li>
-      <li>模板的复用</li>
-      <li>样式的复用(提供了常用的样式库/动画库)</li>
-    </ul>
-  </li>
-  <li>提高编码效率
-    <ul>
-      <li>提供了样式的局部作用域</li>
-      <li>提供可编程模板</li>
-      <li>数据和显示的分离=&gt;更好的前端分工，写逻辑的人只关心数据变化，不管关心界面变化</li>
-      <li>无需手动操作DOM=&gt;代码更简介，不要关注烦人的dom操作</li>
-    </ul>
-  </li>
-  <li>提高显示效果
-    <ul>
-      <li>高效的帧管理，要么全部更新，要么不更新，保证画面不会闪烁</li>
-      <li>精确的DOM更新，保证只刷新真正需要刷新的部分</li>
-    </ul>
-  </li>
+<ul class="simple">
+<li>提高代码的复用,减少重复工作<ul>
+<li>组件级别的复用(提供通用组件)</li>
+<li>脚本的复用</li>
+<li>模板的复用</li>
+<li>样式的复用(提供了常用的样式库/动画库)</li>
 </ul>
-
-<h2 id="组件系统">组件系统</h2>
-
-<h3 id="创建组件">创建组件</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- 默认组件(js/wcss/tpl/config)
-
-    一个简单的组件，一般需要一个tpl文件，用于定义该组件的布局结构，是组件的主题表现；
-    
-    在此基础上，可配置同名的js文件，用于对其逻辑数据进行处理；
-    
-    在此基础上，可配置同名的wcss文件，用于对其样式进行处理，详见下方样式处理
-
-    在此基础上，可配置同名的config文件，用于对组件进行完善，常用属性如下
-    - group:该组件显示某个主层级中
-    - 也可以在对应的组件的create函数中定义
-
-            create(){        
-                super.create();
-                this.config = {value:{group:"cover"}}
-            }
-
-- .widget组件(wcss/tpl/forelet/widget/config)
-
-    这是一种可实现通过配置，实现tpl、wcss、js、config不同的组装，构建出新的一个组件，从而实现复用
-
-- 如何创建一个组件
-    + 通过在tpl中直接定义，可直接创建组件
-
-            &lt;children-playerarea-playerarea$&gt;{"isOpponent":false,player:}&lt;/children-playerarea-playerarea$&gt;
-
-            常用的格式还有以下几种
-            &lt;role_show$ style=""&gt;&lt;/role_show$&gt;表示本目录下的role_show组件，
-            &lt;role_show$$ style=""&gt;&lt;/role_show$$&gt;表示父目录下的role_show组件，
-            &lt;role_show-zb_show$$ style=""&gt;&lt;/role_show-zb_show$$&gt;表示父目录下role_show目录下的zb_show组件
-            &lt;app-base-btn style=""&gt;&lt;/app-base-btn&gt;表示根目录开始，app/base目录下的btn组件
-    + 通过调用pi.ui.root模块中pop或popNew函数，弹出新的组件界面
-
-            import { popNew } from '../../pi/ui/root';
-
-            popNew(foreletName, foreletParams, (ok:string) =&gt; {
-                //todo 这里处理触发ok函数时的回调
-            }, (cancel:string) =&gt; {
-                //todo 这里处理触发cancel函数时的回调
-            });
-    + 通过第二种方式弹出组件界面时，可在foreletParams中定义另一个组件名，已widget做键，可同时再创建新的一个组件。(?显示方式)
-
-            import { popNew } from '../../pi/ui/root';
-
-            foreletParams.widget = newForeletName;
-
-            popNew(foreletName, foreletParams, (ok:string) =&gt; {
-                //todo 这里处理触发ok函数时的回调
-            }, (cancel:string) =&gt; {
-                //todo 这里处理触发cancel函数时的回调
-            });
-</code></pre></div></div>
-
-<h3 id="样式处理">样式处理</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- wcss
-
-    wcss样式文件是我们自定义的用于处理样式的文件，通过定义`w-class="my-money"`实现对其引用。其格式与原生css结构一致，因其原理限制，暂不支持伪类( :hover)、伪对象( :first-child)和关键帧动画( animation keyframes)
-
-- wcss处理原理
-
-    我们会将所有的wcss中定义的属性改为内联样式添加到对应都没节点上，但其优先级会略低于直接定义的内联样式。
-    
-    因其最终表现为内联样式，就有了上述说的某些不支持的情况。
-
-    由于引用wcss文件不占有原生引用css文件位置，那么一个dom节点上能同时再引入全局css文件进行处理
-
-- 样式的优先级(innerstyle&gt;wcss&gt;css--参见css例子)
-
-        # tpl文件
-        &lt;section w-class="my-money" class="center" style="color:red;"&gt;$999&lt;/section&gt;
-
-        # wcss文件
-        .my-money {
-            position: absolute;
-            bottom:0;
-            left:0;
-            width:30%;
-            height:25px;
-            border-radius:0px 150px 0px 0px;
-            background-color:rgba(0, 255, 128, 0.3);
-        }
-
-        # 全局css文件
-        .center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    
-    上述就是一个简单的样式应用
-</code></pre></div></div>
-
-<h3 id="数据传递">数据传递</h3>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>组件间的数据传递，将孤立的组件串联起来，构成一个整体
-
-+ 子组件=&gt;父组件
-    - 通过子组件抛出事件，父组件监听事件的形式实现数据传递
-+ 父组件=&gt;子组件
-    
-    在创建组件时传入参数
-
-        &lt;role_show$ style=""&gt;这里可传入参数&lt;/role_show$&gt;
-
-        popNew(foreletName, foreletParams);
-        foreletParams:传递的参数
-
-+ 简单数据传递
-+ 含有变量的数据传递
-+ 多层数据传递 ### 事件处理
-+ 自定义事件
-
-    自定义事件被广泛应用于组件间的数据传递，直系父子间都能通过自定义的事件来完成
-
-+ 系统事件
-    - 可直接绑定7种我们支持的系统事件，在事件监听中有具体的定义
-    - cap---代表传递方式为捕获
-    - on---代表传递方式为冒泡 ### 生命周期
-+ 帧调度
-+ widget
-    + 什么是widget
-
-        负责显示逻辑，是数据和原始dom间的桥梁
-
-    + widget属性
-
-            public name: string = null; // 组件的名称
-            public tpl: Tpl = null; // 组件的模板
-            public sheet: {value: Sheet} = null; // 组件的样式
-            public config: {value: Json} = null; // 所对应的配置
-            public forelet: Forelet = null; // 所对应的forelet
-            public props: Json = null; // 由父组件设置的组件属性
-            public state: Json = null; // 由forelet设置的组件状态
-            public tree: VWNode = null; // 组件所对应的节点树
-            public parentNode: VirtualWidgetNode = null; // 父节点，parentNode.link的对象就是widget
-            public children: Widget[] = []; // 所有的子组件
-            public inDomTree: boolean = false; // 是否在dom树中
-            public resTab: ResTab = null; // 资源表
-            public resTimeout: number = 3000; // 资源缓冲时间，默认3秒
-
-    + widget生命周期钩子
-    + widget生命周期图示
-+ forelet
-    + forelet作用
-
-        负责进行业务逻辑处理，是数据库和显示组件间的桥梁
-
-    + forelet生命周期
-</code></pre></div></div>
-
-<h3 id="模板语法">模板语法</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+ 注释
-
-    直接在模板中定义``实现添加注释
-
-+ 插值(强调可以在任何地方插值)
-    - 文本
-    - css片段
-    - js表达式
-    
-        因模板处理原理是对tpl中字符串进行解析处理，通过一定规范，重新转换为新的字符串，并解析为对于的节点树，所以我们可在任意地方进行插值，构建出想要的效果。
-
-        常用的插值格式有以下几种
-
-            调用函数:
-            判断赋值:
-            直接赋值：
-            默认值赋值：
-
-+ 变量定义
-
-    直接在模板中定义``实现定义变量并赋值，也可以通过定义``对数据进行修改
-
-+ 函数声明
-+ 内置变量
-    - it--对应组件中props中的值，也就是父组件传递下来的数据
-    - it1--对应组件中state中的值，也就是当前界面自己定义的数据
-    - _cfg--对应组件中配置的额外参数，对应config文件中的配置
-
-    我们在模板中，有以上几个内置变量可直接使用。
-
-    警告：内置变量中的值不要在模板中修改
-
-    
-+ 条件渲染
-
-    格式如下
-
-        if条件判断
-        
-         else if条件判断
-        
-         else条件
-        
-         条件结束
-        
-
-+ 列表渲染
-    + 普通列表渲染
-    + 通过did进行优化
-</code></pre></div></div>
-
-<h2 id="周边生态">周边生态</h2>
-
-<ul>
-  <li>加载系统
-    <ul>
-      <li>TODO</li>
-    </ul>
-  </li>
-  <li>构建系统
-    <ul>
-      <li>TODO</li>
-    </ul>
-  </li>
+</li>
+<li>提高编码效率<ul>
+<li>提供了样式的局部作用域</li>
+<li>提供可编程模板</li>
+<li>数据和显示的分离=&gt;更好的前端分工，写逻辑的人只关心数据变化，不管关心界面变化</li>
+<li>无需手动操作DOM=&gt;代码更简介，不要关注烦人的dom操作</li>
 </ul>
+</li>
+<li>提高显示效果<ul>
+<li>高效的帧管理，要么全部更新，要么不更新，保证画面不会闪烁</li>
+<li>精确的DOM更新，保证只刷新真正需要刷新的部分</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="componentsystem">
+<span id="componentsystem"></span><h1>ComponentSystem-组件系统<a class="headerlink" href="#componentsystem" title="永久链接至标题">¶</a></h1>
+<div class="section" id="create">
+<span id="create"></span><h2>Create-创建组件<a class="headerlink" href="#create" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first">默认组件(js/wcss/tpl/config)</p>
+<p>一个简单的组件，一般需要一个tpl文件，用于定义该组件的布局结构，是组件的主题表现；</p>
+<p>在此基础上，可配置同名的js文件，用于对其逻辑数据进行处理；</p>
+<p>在此基础上，可配置同名的wcss文件，用于对其样式进行处理，详见下方样式处理</p>
+<p>在此基础上，可配置同名的config文件，用于对组件进行完善，常用属性如下</p>
+<ul>
+<li><p class="first">group:该组件显示某个主层级中</p>
+</li>
+<li><p class="first">也可以在对应的组件的create函数中定义</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">create</span><span class="p">(){</span>        
+      <span class="nb">super</span><span class="o">.</span><span class="n">create</span><span class="p">();</span>
+      <span class="n">this</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="n">value</span><span class="p">:{</span><span class="n">group</span><span class="p">:</span><span class="s2">&quot;cover&quot;</span><span class="p">}}</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p class="first">.widget组件(wcss/tpl/forelet/widget/config)</p>
+<p>这是一种可实现通过配置，实现tpl、wcss、js、config不同的组装，构建出新的一个组件，从而实现复用</p>
+</li>
+<li><p class="first">如何创建一个组件</p>
+<ul>
+<li><p class="first">通过在tpl中直接定义，可直接创建组件</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  &lt;children-playerarea-playerarea$&gt;{&quot;isOpponent&quot;:false,player:{{it1.me}}}&lt;/children-playerarea-playerarea$&gt;
+
+  常用的格式还有以下几种
+  &lt;role_show$ style=&quot;&quot;&gt;&lt;/role_show$&gt;表示本目录下的role_show组件，
+  &lt;role_show$$ style=&quot;&quot;&gt;&lt;/role_show$$&gt;表示父目录下的role_show组件，
+  &lt;role_show-zb_show$$ style=&quot;&quot;&gt;&lt;/role_show-zb_show$$&gt;表示父目录下role_show目录下的zb_show组件
+  &lt;app-base-btn style=&quot;&quot;&gt;&lt;/app-base-btn&gt;表示根目录开始，app/base目录下的btn组件
+</pre></div>
+</div>
+</li>
+<li><p class="first">通过调用pi.ui.root模块中pop或popNew函数，弹出新的组件界面</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="kn">import</span> <span class="p">{</span> <span class="n">popNew</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;../../pi/ui/root&#39;</span><span class="p">;</span>
+
+  <span class="n">popNew</span><span class="p">(</span><span class="n">foreletName</span><span class="p">,</span> <span class="n">foreletParams</span><span class="p">,</span> <span class="p">(</span><span class="n">ok</span><span class="p">:</span><span class="n">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="o">//</span><span class="n">todo</span> <span class="n">这里处理触发ok函数时的回调</span>
+  <span class="p">},</span> <span class="p">(</span><span class="n">cancel</span><span class="p">:</span><span class="n">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="o">//</span><span class="n">todo</span> <span class="n">这里处理触发cancel函数时的回调</span>
+  <span class="p">});</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">通过第二种方式弹出组件界面时，可在foreletParams中定义另一个组件名，已widget做键，可同时再创建新的一个组件。(?显示方式)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="kn">import</span> <span class="p">{</span> <span class="n">popNew</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;../../pi/ui/root&#39;</span><span class="p">;</span>
+
+  <span class="n">foreletParams</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">newForeletName</span><span class="p">;</span>
+
+  <span class="n">popNew</span><span class="p">(</span><span class="n">foreletName</span><span class="p">,</span> <span class="n">foreletParams</span><span class="p">,</span> <span class="p">(</span><span class="n">ok</span><span class="p">:</span><span class="n">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="o">//</span><span class="n">todo</span> <span class="n">这里处理触发ok函数时的回调</span>
+  <span class="p">},</span> <span class="p">(</span><span class="n">cancel</span><span class="p">:</span><span class="n">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="o">//</span><span class="n">todo</span> <span class="n">这里处理触发cancel函数时的回调</span>
+  <span class="p">});</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="style">
+<span id="style"></span><h2>Style-样式处理<a class="headerlink" href="#style" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first">wcss</p>
+<p>wcss样式文件是我们自定义的用于处理样式的文件，通过定义<code class="docutils literal notranslate"><span class="pre">w-class=&quot;my-money&quot;</span></code>实现对其引用。其格式与原生css结构一致，因其原理限制，暂不支持伪类( :hover)、伪对象( :first-child)和关键帧动画( animation keyframes)</p>
+</li>
+<li><p class="first">wcss处理原理</p>
+<p>我们会将所有的wcss中定义的属性改为内联样式添加到对应都没节点上，但其优先级会略低于直接定义的内联样式。</p>
+<p>因其最终表现为内联样式，就有了上述说的某些不支持的情况。</p>
+<p>由于引用wcss文件不占有原生引用css文件位置，那么一个dom节点上能同时再引入全局css文件进行处理</p>
+</li>
+<li><p class="first">样式的优先级(innerstyle&gt;wcss&gt;css–参见css例子)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  # tpl文件
+  &lt;section w-class=&quot;my-money&quot; class=&quot;center&quot; style=&quot;color:red;&quot;&gt;$999&lt;/section&gt;
+
+  # wcss文件
+  .my-money {
+      position: absolute;
+      bottom:0;
+      left:0;
+      width:30%;
+      height:25px;
+      border-radius:0px 150px 0px 0px;
+      background-color:rgba(0, 255, 128, 0.3);
+  }
+
+  # 全局css文件
+  .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+</pre></div>
+</div>
+<p>上述就是一个简单的样式应用</p>
+</li>
+</ul>
+</div>
+<div class="section" id="data">
+<span id="data"></span><h2>Data-数据传递<a class="headerlink" href="#data" title="永久链接至标题">¶</a></h2>
+<p>组件间的数据传递，将孤立的组件串联起来，构成一个整体</p>
+<ul>
+<li><p class="first">子组件=&gt;父组件</p>
+<ul class="simple">
+<li>通过子组件抛出事件，父组件监听事件的形式实现数据传递</li>
+</ul>
+</li>
+<li><p class="first">父组件=&gt;子组件</p>
+<p>在创建组件时传入参数</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  &lt;role_show$ style=&quot;&quot;&gt;这里可传入参数&lt;/role_show$&gt;
+
+  popNew(foreletName, foreletParams);
+  foreletParams:传递的参数
+</pre></div>
+</div>
+</li>
+<li><p class="first">简单数据传递</p>
+</li>
+<li><p class="first">含有变量的数据传递</p>
+</li>
+<li><p class="first">多层数据传递</p>
+</li>
+</ul>
+</div>
+<div class="section" id="event">
+<span id="event"></span><h2>Event-事件处理<a class="headerlink" href="#event" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first">自定义事件</p>
+<p>自定义事件被广泛应用于组件间的数据传递，直系父子间都能通过自定义的事件来完成</p>
+</li>
+<li><p class="first">系统事件</p>
+<ul class="simple">
+<li>可直接绑定7种我们支持的系统事件，在事件监听中有具体的定义</li>
+<li>cap—代表传递方式为捕获</li>
+<li>on—代表传递方式为冒泡</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="life">
+<span id="life"></span><h2>Life-生命周期<a class="headerlink" href="#life" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first">帧调度</p>
+</li>
+<li><p class="first">widget</p>
+<ul>
+<li><p class="first">什么是widget</p>
+<p>负责显示逻辑，是数据和原始dom间的桥梁</p>
+</li>
+<li><p class="first">widget属性</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  public name: string = null; // 组件的名称
+  public tpl: Tpl = null; // 组件的模板
+  public sheet: {value: Sheet} = null; // 组件的样式
+  public config: {value: Json} = null; // 所对应的配置
+  public forelet: Forelet = null; // 所对应的forelet
+  public props: Json = null; // 由父组件设置的组件属性
+  public state: Json = null; // 由forelet设置的组件状态
+  public tree: VWNode = null; // 组件所对应的节点树
+  public parentNode: VirtualWidgetNode = null; // 父节点，parentNode.link的对象就是widget
+  public children: Widget[] = []; // 所有的子组件
+  public inDomTree: boolean = false; // 是否在dom树中
+  public resTab: ResTab = null; // 资源表
+  public resTimeout: number = 3000; // 资源缓冲时间，默认3秒
+</pre></div>
+</div>
+</li>
+<li><p class="first">widget生命周期钩子</p>
+</li>
+<li><p class="first">widget生命周期图示</p>
+</li>
+</ul>
+</li>
+<li><p class="first">forelet</p>
+<ul>
+<li><p class="first">forelet作用</p>
+<p>负责进行业务逻辑处理，是数据库和显示组件间的桥梁</p>
+</li>
+<li><p class="first">forelet生命周期</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="tpl">
+<span id="tpl"></span><h2>tpl-模板语法<a class="headerlink" href="#tpl" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first">注释</p>
+<p>直接在模板中定义<code class="docutils literal notranslate"><span class="pre">{{%</span> <span class="pre">我是注释...}}</span></code>实现添加注释</p>
+</li>
+<li><p class="first">插值(强调可以在任何地方插值)</p>
+<ul>
+<li><p class="first">文本</p>
+</li>
+<li><p class="first">css片段</p>
+</li>
+<li><p class="first">js表达式</p>
+<p>因模板处理原理是对tpl中字符串进行解析处理，通过一定规范，重新转换为新的字符串，并解析为对于的节点树，所以我们可在任意地方进行插值，构建出想要的效果。</p>
+<p>常用的插值格式有以下几种</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  调用函数:{{format(it.array[i], &quot;mm:ss&quot;)}}
+  判断赋值:{{(i &gt; 0) ? 1 : 0 }}
+  直接赋值：{{i + 1 }}
+  默认值赋值：{{v || &#39;none&#39; }}
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p class="first">变量定义</p>
+<p>直接在模板中定义<code class="docutils literal notranslate"><span class="pre">{{let</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">(date(it.name)</span> <span class="pre">+1)</span> <span class="pre">*</span> <span class="pre">2}}</span></code>实现定义变量并赋值，也可以通过定义<code class="docutils literal notranslate"><span class="pre">{{:</span> <span class="pre">list[0]</span> <span class="pre">=</span> <span class="pre">1}}</span></code>对数据进行修改</p>
+</li>
+<li><p class="first">函数声明</p>
+</li>
+<li><p class="first">内置变量</p>
+<ul class="simple">
+<li>it–对应组件中props中的值，也就是父组件传递下来的数据</li>
+<li>it1–对应组件中state中的值，也就是当前界面自己定义的数据</li>
+<li>_cfg–对应组件中配置的额外参数，对应config文件中的配置</li>
+</ul>
+<p>我们在模板中，有以上几个内置变量可直接使用。</p>
+<p>警告：内置变量中的值不要在模板中修改</p>
+</li>
+</ul>
+<ul>
+<li><p class="first">条件渲染</p>
+<p>格式如下</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">if条件判断</span>
+  <span class="p">{{</span><span class="k">if</span> <span class="n">it</span><span class="o">.</span><span class="n">isOK</span><span class="p">}}</span>
+      <span class="k">else</span> <span class="n">if条件判断</span>
+  <span class="p">{{</span><span class="n">elseif</span> <span class="n">it</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">}}</span>
+      <span class="n">else条件</span>
+  <span class="p">{{</span><span class="k">else</span><span class="p">}}</span>
+      <span class="n">条件结束</span>
+  <span class="p">{{</span><span class="n">end</span><span class="p">}}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">列表渲染</p>
+<ul class="simple">
+<li>普通列表渲染</li>
+<li>通过did进行优化</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="other">
+<span id="other"></span><h1>Other-周边生态<a class="headerlink" href="#other" title="永久链接至标题">¶</a></h1>
+<ul class="simple">
+<li>加载系统<ul>
+<li>TODO</li>
+</ul>
+</li>
+<li>构建系统<ul>
+<li>TODO</li>
+</ul>
+</li>
+</ul>
+</div>
 
 
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
 
-      </section>
-      <footer>
-        
-      </footer>
-    </div>
+  <hr/>
 
-    
-  </body>
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, wup.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>
