@@ -1,0 +1,1293 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ComponentIntro-组件介绍 &mdash; pi_front  文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="Try-试一试" href="Try.html" />
+    <link rel="prev" title="ComponentSystem-组件系统" href="ComponentSystem.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pi_front
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">Introduction-介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start.html">启动pi库步骤</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ComponentSystem.html">ComponentSystem-组件系统</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ComponentIntro-组件介绍</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#imgfilter">1. imgfilter组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#imgtext">2. imgtext组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#countdown">3. countdown组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selectnumber">4. selectnumber组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#checkbox">5. checkbox组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#collapse">6. collapse组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input">7. input组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-autocomplete">8. input_autocomplete组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#loading">9. loading组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#message">10. message组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#navmenu">11. navmenu组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#progress">12. progress组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#radio">13. radio组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#slider">14. slider组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#steps">15. steps组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#switch">16. switch组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#table">17. table组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tabs">18. tabs组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#time-select">19. time_select</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Try.html">Try-试一试</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pi_front</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>ComponentIntro-组件介绍</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ComponentIntro.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="componentintro">
+<h1>ComponentIntro-组件介绍<a class="headerlink" href="#componentintro" title="永久链接至标题">¶</a></h1>
+<div class="section" id="imgfilter">
+<h2>1. imgfilter组件<a class="headerlink" href="#imgfilter" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">ui</span><span class="o">-</span><span class="n">imgfilter</span><span class="o">&gt;</span><span class="p">{</span><span class="s2">&quot;img&quot;</span><span class="p">:</span><span class="s2">&quot;./btnr.png&quot;</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">:{{</span><span class="n">_path</span><span class="p">}},</span> <span class="s2">&quot;arr&quot;</span><span class="p">:[[</span><span class="s2">&quot;hsl&quot;</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]}</span><span class="o">&lt;/</span><span class="n">ui</span><span class="o">-</span><span class="n">imgfilter</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<p>原图：</p>
+<img alt="_images/btnr.png" src="_images/btnr.png" />
+<p>效果图：</p>
+<img alt="_images/component_1.png" src="_images/component_1.png" />
+<ul>
+<li><p class="first">对图片进行滤镜处理</p>
+</li>
+<li><p class="first">参数说明：</p>
+<blockquote>
+<div><ul class="simple">
+<li>img 原始图片路径</li>
+<li>path 路径，设置为空或者_path都表示当前路径，也可以设置为其他路径</li>
+<li>arr 数组对象，表示对图片进行的一系列处理，包括 灰度-色相饱和度亮度-亮度对比度-腐蚀-锐化-高斯模糊，arr”:[[“gray”], [“hsl”, 180?, 1?, 1?], [“brightnessContrast”, 0.5, 0?], [“corrode”, 3?], [“sharp”, 3?], [“gaussBlur”, 3?]]}</li>
+<li>如果arr不存在或长度为0, 表示使用标准图像</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="imgtext">
+<h2>2. imgtext组件<a class="headerlink" href="#imgtext" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">ui</span><span class="o">-</span><span class="n">imgtext</span><span class="o">&gt;</span><span class="p">{</span><span class="s2">&quot;textCfg&quot;</span><span class="p">:{</span>
+        <span class="s2">&quot;width&quot;</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span>
+        <span class="s2">&quot;hfactor&quot;</span><span class="p">:</span><span class="mf">1.1</span><span class="p">,</span>
+        <span class="s2">&quot;zoomfactor&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;text&quot;</span><span class="p">:</span><span class="s2">&quot;神兵&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;font&quot;</span><span class="p">:</span><span class="s2">&quot;normal 400 16px kaiti_bold&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;color&quot;</span><span class="p">:{</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;y1&quot;</span><span class="p">:</span><span class="s2">&quot;45%&quot;</span><span class="p">,</span><span class="s2">&quot;x2&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;y2&quot;</span><span class="p">:</span><span class="s2">&quot;55%&quot;</span><span class="p">,</span><span class="s2">&quot;steps&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;rgb(206,175,233)&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;rgb(159,97,212)&quot;</span><span class="p">]</span> <span class="p">},</span>
+        <span class="s2">&quot;strokeWidth&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;strokeColor&quot;</span><span class="p">:</span><span class="s2">&quot;rgb(0,0,0)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;lineHeight&quot;</span><span class="p">:</span><span class="mi">6</span>
+    <span class="p">}}</span>
+    <span class="o">&lt;/</span><span class="n">ui</span><span class="o">-</span><span class="n">imgtext</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="_images/component_2.png" src="_images/component_2.png" />
+<ul class="simple">
+<li>将文本处理成图片</li>
+<li>只支持单行文字，不支持继承的font属性，不支持line-height属性</li>
+<li>如果支持继承的font属性，则需要在div放入节点后，获取font属性</li>
+<li>如果支持多行文本，需要支持line-height属性，并处理对齐问题</li>
+<li>参数示例</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>{
+    textCfg:canvas.ImgTextCfg,
+    space?:number, //作用不明
+    &quot;show&quot;:&quot;&quot; // 如果有show，表示为拼接文字，text为全文字，show变动不会生成新的文字图片
+}
+
+canvas.ImgTextCfg {
+    &quot;text&quot;: &quot;测试&quot;,
+    &quot;font&quot;: &quot;normal 400 24px 宋体&quot;,
+    &quot;color&quot;: &quot;#636363&quot; | GradientCfg, // 颜色 或渐变颜色
+    &quot;shadow&quot;: { // 阴影
+        &quot;offsetX&quot;: number,
+        &quot;offsetY&quot;: number, //偏移量
+        &quot;blur&quot;: number, // 模糊值，一般为5
+        &quot;color&quot;: string; // 颜色 &quot;rgba(0,0,0,0.5)&quot; &quot;gray&quot; &quot;#BABABA&quot;
+    };
+    &quot;strokeWidth&quot;: number, // 描边宽度
+    &quot;strokeColor&quot;: string | GradientCfg, // 描边颜色
+    &quot;background&quot;: string | GradientCfg, // 背景
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="countdown">
+<h2>3. countdown组件<a class="headerlink" href="#countdown" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">ui</span><span class="o">-</span><span class="n">countdown</span><span class="o">&gt;</span><span class="p">{</span><span class="s2">&quot;cd_time&quot;</span><span class="p">:{{</span><span class="mi">100000</span><span class="p">}},</span><span class="s2">&quot;cd_interval&quot;</span><span class="p">:</span><span class="mi">1000</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">ui</span><span class="o">-</span><span class="n">countdown</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="_images/component_3.gif" src="_images/component_3.gif" />
+<ul>
+<li><p class="first">参数说明：</p>
+<blockquote>
+<div><ul class="simple">
+<li>必须有cd_time属性，表示倒计时的时间点，可以是时间点的毫秒数，也可以是代表时间点的字符串（yyyy-MM-dd HH:mm:ss）毫秒。</li>
+<li>可以有now_time属性(使用时间不是本地时间,请传)，表示现在时间，可以是时间点的毫秒数，也可以是代表时间点的字符串（yyyy-MM-dd HH:mm:ss）毫秒</li>
+<li>可以有cd_interval属性，表示倒计时的计时频率，单位毫秒，默认1000。</li>
+<li>可以有cd_not_zerofill，表示是否不补零,默认补零.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">存在问题</p>
+<blockquote>
+<div><ul class="simple">
+<li>此组件使用imgtext画出倒计时文字，每次刷新有闪一下的感觉</li>
+<li>参数cd_time，可以是表示时间段的毫秒数，也可以是表示时间点的字符串（yyyy-MM-dd HH:mm:ss），传递时间点有bug，全部转换为毫秒进行倒计时了。</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="selectnumber">
+<h2>4. selectnumber组件<a class="headerlink" href="#selectnumber" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">ui</span><span class="o">-</span><span class="n">selectnumber</span><span class="o">&gt;</span><span class="p">{</span><span class="s2">&quot;count&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;maxCount&quot;</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="s2">&quot;interval&quot;</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span> <span class="s2">&quot;minCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">ui</span><span class="o">-</span><span class="n">selectnumber</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="_images/component_4.gif" src="_images/component_4.gif" />
+<ul>
+<li><p class="first">参数说明：</p>
+<blockquote>
+<div><ul class="simple">
+<li>可以有count初始值, 默认为1</li>
+<li>可以有maxCount最大值, 默认为Number.MAX_SAFE_INTEGER</li>
+<li>可以有minCount最小值, 默认为0</li>
+<li>可以有interval自动变化的时延, 默认为200毫秒</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">父组件可以通过ev-selectcount事件来监听数据变化</p>
+</li>
+<li><p class="first">长按可以自动变化，自动增加或减少对应数值</p>
+</li>
+</ul>
+</div>
+<div class="section" id="checkbox">
+<h2>5. checkbox组件<a class="headerlink" href="#checkbox" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first">标准选择框</p>
+<blockquote>
+<div><ul>
+<li><p class="first">调用实例</p>
+<blockquote>
+<div><div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="n">checkbox</span><span class="o">-</span><span class="n">checkbox</span><span class="o">&gt;</span><span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="n">text</span><span class="p">:</span><span class="s2">&quot;选中&quot;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="n">checkbox</span><span class="o">-</span><span class="n">checkbox</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">通过类型控制选择框初始状态</p>
+<blockquote>
+<div><ul class="simple">
+<li>选中状态(true)</li>
+<li>未选中状态(false)</li>
+<li>禁用状态(disabled)</li>
+<li>半选择状态(indeterminate)–通常仅在选择框组中使用</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">事件</p>
+<blockquote>
+<div><ul>
+<li><p class="first">在点击选择框时，会向外部抛出事件(ev-checkbox-click)，外部接收即可，参数如下</p>
+<blockquote>
+<div><ul class="simple">
+<li>以前的状态(oldType)</li>
+<li>新的状态(newType)</li>
+<li>位置(index)–仅在选择框组中有值</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">选择框组</p>
+<blockquote>
+<div><ul>
+<li><p class="first">调用实例</p>
+<blockquote>
+<div><div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="n">checkbox</span><span class="o">-</span><span class="n">checkboxGroup</span><span class="o">&gt;</span><span class="p">{</span><span class="n">chooseAll</span><span class="p">:</span><span class="s2">&quot;全选&quot;</span><span class="p">,</span><span class="nb">list</span><span class="p">:[</span><span class="o">...</span><span class="p">],</span><span class="nb">min</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="nb">max</span><span class="p">:</span><span class="mi">4</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="n">checkbox</span><span class="o">-</span><span class="n">checkboxGroup</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">参数介绍</p>
+<blockquote>
+<div><ul class="simple">
+<li>是否显示全选(chooseAll)</li>
+<li>选择框组数据(list)–每一条数据都是一个标准的选择框</li>
+<li>最小数量限制(min)</li>
+<li>最大数量限制(max)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">功能</p>
+<blockquote>
+<div><ul class="simple">
+<li>可通过全选控制全选或全不选</li>
+<li>可通过设置min与max控制选择数量</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">事件</p>
+<blockquote>
+<div><ul>
+<li><p class="first">在点击全选框时，会向外部抛出事件(ev-checkbox-all-click)，外部接收即可，参数如下</p>
+<blockquote>
+<div><ul class="simple">
+<li>以前的状态(oldType)</li>
+<li>新的状态(newType)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">注意事项</p>
+<blockquote>
+<div><ul class="simple">
+<li>选择框由于样式的限制，需外部引入css(components.css)进行处理</li>
+<li>选择框组中，选择所有与数理控制原则上不共存，因为其表现形式有差异</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>效果展示：</p>
+<img alt="_images/component_5.png" src="_images/component_5.png" />
+</div>
+<div class="section" id="collapse">
+<h2>6. collapse组件<a class="headerlink" href="#collapse" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>props</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>interface CollapseItem{
+    title:string;//标题
+    htmlStr:string;//内容
+}
+interface Props{
+    htmlStrList:Array&lt;CollapseItem&gt;;//html标签string
+    accordion?:boolean;//是否以手风琴模式显示
+}
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>htmlStrList:[
+    {
+        title:&quot;一致性 Consistency&quot;,
+        htmlStr:``&lt;div&gt;与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；&lt;/div&gt;
+        &lt;div&gt;在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。&lt;/div&gt;``,
+    },
+    {
+        title:&quot;反馈 Feedback&quot;,
+        htmlStr:``&lt;div&gt;控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；&lt;/div&gt;
+        &lt;div&gt;页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。&lt;/div&gt;``,
+    },
+    {
+        title:&quot;效率 Efficiency&quot;,
+        htmlStr:``&lt;div&gt;简化流程：设计简洁直观的操作流程；&lt;/div&gt;
+        &lt;div&gt;清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；&lt;/div&gt;
+        &lt;div&gt;帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。&lt;/div&gt;``,
+    },
+    {
+        title:&quot;可控 Controllability&quot;,
+        htmlStr:
+        ``&lt;div&gt;用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；&lt;/div&gt;
+        &lt;div&gt;结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。&lt;/div&gt;``
+    }
+]
+</pre></div>
+</div>
+<ul class="simple">
+<li>基础用法</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="n">collapse</span><span class="o">-</span><span class="n">collapse</span><span class="o">&gt;</span><span class="p">{</span><span class="n">htmlStrList</span><span class="p">:{{</span><span class="n">it1</span><span class="o">.</span><span class="n">htmlStrList</span><span class="p">}}}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="n">collapse</span><span class="o">-</span><span class="n">collapse</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>手风琴效果</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="n">collapse</span><span class="o">-</span><span class="n">collapse</span><span class="o">&gt;</span><span class="p">{</span><span class="n">htmlStrList</span><span class="p">:{{</span><span class="n">it1</span><span class="o">.</span><span class="n">htmlStrList</span><span class="p">}},</span><span class="n">accordion</span><span class="p">:</span><span class="n">true</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="n">collapse</span><span class="o">-</span><span class="n">collapse</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="_images/component_6.gif" src="_images/component_6.gif" />
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>事件</dt>
+<dd><ul class="first last">
+<li>ev-collapse-change 点击时触发,如果是手风琴模式，参数 activeIndexs 类型为string，否则为array</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="input">
+<h2>7. input组件<a class="headerlink" href="#input" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>props</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>interface Props{
+    input:string;//初始内容
+    placeHolder:string;//提示文字
+    disabled:boolean;//是否禁用
+    clearable:boolean;//是否可清空 只对type=&quot;text&quot;有效
+    type:string;//text textarea
+    rows:number;//输入框行数，只对 type=&quot;textarea&quot; 有效
+    prepend:string;//前置内容
+    append:string;//后置内容
+    style:Object;//样式
+}
+</pre></div>
+</div>
+<ul class="simple">
+<li>基础用法</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="nb">input</span><span class="o">&gt;&lt;/</span><span class="n">components</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="nb">input</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="nb">input</span><span class="o">&gt;</span><span class="p">{</span><span class="nb">input</span><span class="p">:</span><span class="s2">&quot;这是初始内容&quot;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="nb">input</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="nb">input</span><span class="o">&gt;</span><span class="p">{</span><span class="n">placeHolder</span><span class="p">:</span><span class="s2">&quot;这是提示内容&quot;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="nb">input</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="nb">input</span><span class="o">&gt;</span><span class="p">{</span><span class="nb">input</span><span class="p">:</span><span class="s2">&quot;这是初始内容&quot;</span><span class="p">,</span><span class="n">placeHolder</span><span class="p">:</span><span class="s2">&quot;这是提示内容&quot;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="nb">input</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>禁用示例</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="nb">input</span><span class="o">&gt;</span><span class="p">{</span><span class="n">disabled</span><span class="p">:</span><span class="n">true</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="nb">input</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>可清空</li>
+<li>目前点击后无法清空,待修复</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="nb">input</span><span class="o">&gt;</span><span class="p">{</span><span class="n">clearable</span><span class="p">:</span><span class="n">true</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="nb">input</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>文本域</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="nb">input</span><span class="o">&gt;</span><span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="s2">&quot;textarea&quot;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="nb">input</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>可自适应文本高度的文本域</li>
+<li>复合型输入框</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="nb">input</span><span class="o">&gt;</span><span class="p">{</span><span class="n">prepend</span><span class="p">:</span><span class="s2">&quot;http://&quot;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="nb">input</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="_images/component_7.png" src="_images/component_7.png" />
+<ul>
+<li><p class="first">事件</p>
+<blockquote>
+<div><ul class="simple">
+<li>ev-input-change 在输入框值改变时触发,回调参数 value   【英文和中文抛出事件次数有差异】</li>
+<li>ev-input-blur 输入框失去焦点</li>
+<li>ev-input-focus 输入框获得焦点</li>
+<li>ev-input-clear 点击清空按钮</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="input-autocomplete">
+<h2>8. input_autocomplete组件<a class="headerlink" href="#input-autocomplete" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>props</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interface</span> <span class="n">TipList</span><span class="p">{</span>
+    <span class="n">value</span><span class="p">:</span><span class="n">string</span><span class="p">;</span><span class="o">//</span><span class="n">匹配文字</span>
+<span class="p">}</span>
+
+<span class="n">interface</span> <span class="n">Props</span> <span class="p">{</span>
+    <span class="n">tipList</span><span class="p">:</span><span class="n">Array</span><span class="o">&lt;</span><span class="n">TipList</span><span class="o">&gt;</span><span class="p">;</span><span class="o">//</span><span class="n">提示列表</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>基础用法</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="n">input_autocomplete</span><span class="o">-</span><span class="n">input_autocomplete</span><span class="o">&gt;</span><span class="p">{</span><span class="n">tipList</span><span class="p">:[{</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;三全鲜食（北新泾店）}]}&lt;/components-input_autocomplete-input_autocomplete&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="_images/component_8.gif" src="_images/component_8.gif" />
+<ul>
+<li><p class="first">事件</p>
+<blockquote>
+<div><ul class="simple">
+<li>ev-input-change 在输入框值改变时触发,回调参数 value   【英文和中文抛出事件次数有差异】</li>
+<li>ev-input-blur 输入框失去焦点</li>
+<li>ev-input-focus 输入框获得焦点</li>
+<li>ev-input-select 点击下拉选中后触发</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="loading">
+<h2>9. loading组件<a class="headerlink" href="#loading" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>props</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interface</span> <span class="n">Props</span> <span class="p">{</span>
+    <span class="n">text</span><span class="p">:</span><span class="n">string</span><span class="p">;</span><span class="o">//</span><span class="n">加载文本</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">全局loading</p>
+<blockquote>
+<div><ul class="simple">
+<li>全局loading需要通过popNew()来实例化loading组件</li>
+<li>并在合适的时候调用close的callback来关闭loading组件</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">close</span> <span class="o">=</span> <span class="n">popNew</span><span class="p">(</span><span class="s2">&quot;components-loading-loading&quot;</span><span class="p">,{});</span>
+<span class="n">setTimeout</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="n">close</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">close</span><span class="o">.</span><span class="n">widget</span><span class="p">);</span>
+<span class="p">},</span><span class="mi">3000</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="_images/component_9_1.gif" src="_images/component_9_1.gif" />
+<ul>
+<li><p class="first">局部loading</p>
+<blockquote>
+<div><ul class="simple">
+<li>局部loading需要动态设置组件是否显示</li>
+<li>父节点positon不能为static</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">on</span><span class="o">-</span><span class="n">click</span><span class="o">=</span><span class="s2">&quot;localClick&quot;</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;height:500px;width:500px;margin:200px auto;background-color:#fff;position:relative;&quot;</span><span class="o">&gt;</span>
+        <span class="n">局部loading</span>
+        <span class="p">{{</span><span class="k">if</span> <span class="n">it1</span><span class="o">.</span><span class="n">showLocalLoading</span><span class="p">}}</span>
+        <span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="n">loading</span><span class="o">-</span><span class="n">loading</span><span class="o">&gt;</span><span class="p">{</span><span class="n">text</span><span class="p">:</span><span class="s2">&quot;局部加载&quot;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="n">loading</span><span class="o">-</span><span class="n">loading</span><span class="o">&gt;</span>
+        <span class="p">{{</span><span class="n">end</span><span class="p">}}</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="_images/component_9_2.gif" src="_images/component_9_2.gif" />
+</div>
+<div class="section" id="message">
+<h2>10. message组件<a class="headerlink" href="#message" title="永久链接至标题">¶</a></h2>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>提示框</dt>
+<dd><ul class="first simple">
+<li>调用实例</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>//ts代码中直接打开消息窗口即可，3秒后消失，显示在界面最上部
+popNew(&quot;components-message-message&quot;, { type: &quot;success&quot;, content: &quot;成功提示的文案&quot;, center: true })
+</pre></div>
+</div>
+<ul class="simple">
+<li>效果展示：</li>
+</ul>
+<img alt="_images/component_10_1.gif" src="_images/component_10_1.gif" />
+<ul class="last">
+<li><p class="first">参数介绍</p>
+<blockquote>
+<div><ul>
+<li><p class="first">类型(type)</p>
+<blockquote>
+<div><ul class="simple">
+<li>成功(outer)–颜色#67c23a</li>
+<li>警告(warn)–颜色#e6a23c</li>
+<li>提示(notice)–颜色#909399</li>
+<li>错误(error)–颜色#f56c6c</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">文本内容(content)</p>
+</li>
+<li><p class="first">是否居中显示(center)–默认为(false)</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">显示在pop_tip层，不接受任何事件</p>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">确认提示框</p>
+<blockquote>
+<div><ul class="simple">
+<li>调用实例</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>//ts代码中直接打开窗口即可，手动关闭
+popNew(&quot;components-message-messagebox&quot;, { type: &quot;confirm&quot;, title: &quot;确认消息弹框&quot;, content: &quot;错误提示的文案&quot; }, ok?, cancel?)
+</pre></div>
+</div>
+<ul class="simple">
+<li>效果展示：</li>
+</ul>
+<img alt="_images/component_10_2.gif" src="_images/component_10_2.gif" />
+<ul>
+<li><p class="first">参数介绍</p>
+<blockquote>
+<div><ul>
+<li><p class="first">类型(type)</p>
+<blockquote>
+<div><ul class="simple">
+<li>确认框(alert)</li>
+<li>确认取消框(confirm)</li>
+<li>确认取消输入框(prompt)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">标题(title)</p>
+</li>
+<li><p class="first">文本内容(content)</p>
+</li>
+<li><p class="first">确认回调(ok)–可选</p>
+<blockquote>
+<div><ul class="simple">
+<li>confirm类型下，回调参数为输入数据</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">取消回调(cancel)–可选</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">显示在top层，遮挡全屏，全屏接受点击事件</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">通知</p>
+<blockquote>
+<div><ul class="simple">
+<li>调用实例</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>//ts代码中直接打开窗口即可，可控制手动关闭或3秒后自动关闭
+popNew(&quot;components-message-notification&quot;, { title: &quot;提示&quot;, content: &quot;手动关闭提交内容弹框&quot;, manuallyClose: true })
+</pre></div>
+</div>
+<ul class="simple">
+<li>效果展示：</li>
+</ul>
+<img alt="_images/component_10_3.gif" src="_images/component_10_3.gif" />
+<ul>
+<li><p class="first">参数介绍</p>
+<blockquote>
+<div><ul class="simple">
+<li>标题(title)</li>
+<li>文本内容(content)</li>
+<li>手动关闭(manuallyClose)–默认为false</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">显示在download层，外部不接受事件，内部接受事件</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="navmenu">
+<h2>11. navmenu组件<a class="headerlink" href="#navmenu" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>调用示例</li>
+</ul>
+<p>使用navmenu组件，将所有需要的参数以json格式传递</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;height: 500px; padding: 10px; background-color: white;&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="n">navmenu</span><span class="o">-</span><span class="n">navmenu</span><span class="o">&gt;</span>
+        <span class="p">{</span>
+            <span class="n">mod</span><span class="p">:</span><span class="s2">&quot;horizontal&quot;</span><span class="p">,</span>
+            <span class="n">arr</span><span class="p">:[</span>
+                <span class="p">{</span><span class="n">index</span><span class="p">:</span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="n">title</span><span class="p">:</span><span class="s2">&quot;选项111111&quot;</span><span class="p">,</span><span class="n">isActivated</span><span class="p">:</span><span class="n">true</span><span class="p">},</span>
+                <span class="p">{</span><span class="n">index</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="n">title</span><span class="p">:</span><span class="s2">&quot;选项222222&quot;</span><span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="n">index</span><span class="p">:</span><span class="s2">&quot;3&quot;</span><span class="p">,</span>
+                    <span class="n">submenu</span><span class="p">:</span><span class="n">true</span><span class="p">,</span>
+                    <span class="n">subtitle</span><span class="p">:</span><span class="s2">&quot;选项33333&quot;</span><span class="p">,</span>
+                    <span class="n">arr</span><span class="p">:[</span>
+                        <span class="p">{</span><span class="n">index</span><span class="p">:</span><span class="s2">&quot;3-1&quot;</span><span class="p">,</span><span class="n">title</span><span class="p">:</span><span class="s2">&quot;选项3-1&quot;</span><span class="p">},</span>
+                        <span class="p">{</span><span class="n">index</span><span class="p">:</span><span class="s2">&quot;3-2&quot;</span><span class="p">,</span><span class="n">title</span><span class="p">:</span><span class="s2">&quot;选项3-2&quot;</span><span class="p">},</span>
+                        <span class="p">{</span><span class="n">index</span><span class="p">:</span><span class="s2">&quot;3-2&quot;</span><span class="p">,</span><span class="n">title</span><span class="p">:</span><span class="s2">&quot;选项3-2&quot;</span><span class="p">,</span><span class="n">isdisabled</span><span class="p">:</span><span class="n">true</span><span class="p">},</span>
+                        <span class="p">{</span>
+                            <span class="n">index</span><span class="p">:</span><span class="s2">&quot;3-3&quot;</span><span class="p">,</span>
+                            <span class="n">submenu</span><span class="p">:</span><span class="n">true</span><span class="p">,</span>
+                            <span class="n">subtitle</span><span class="p">:</span><span class="s2">&quot;选项3-3&quot;</span><span class="p">,</span>
+                            <span class="n">arr</span><span class="p">:[</span>
+                                <span class="p">{</span><span class="n">index</span><span class="p">:</span><span class="s2">&quot;3-3-1&quot;</span><span class="p">,</span><span class="n">title</span><span class="p">:</span><span class="s2">&quot;选项3-3-1&quot;</span><span class="p">},</span>
+                                <span class="p">{</span><span class="n">index</span><span class="p">:</span><span class="s2">&quot;3-3-2&quot;</span><span class="p">,</span><span class="n">title</span><span class="p">:</span><span class="s2">&quot;选项3-3-2&quot;</span><span class="p">}</span>
+                            <span class="p">]</span>
+                        <span class="p">}</span>
+                    <span class="p">]</span>
+                <span class="p">},</span>
+                <span class="p">{</span><span class="n">index</span><span class="p">:</span><span class="s2">&quot;4&quot;</span><span class="p">,</span><span class="n">title</span><span class="p">:</span><span class="s2">&quot;选项444444&quot;</span><span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="n">navmenu</span><span class="o">-</span><span class="n">navmenu</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<p>水平模式</p>
+<img alt="_images/component_11_1.gif" src="_images/component_11_1.gif" />
+<p>垂直模式</p>
+<img alt="_images/component_11_2.gif" src="_images/component_11_2.gif" />
+<ul>
+<li><p class="first">参数说明：</p>
+<blockquote>
+<div><ul>
+<li><p class="first">模块组的参数</p>
+<blockquote>
+<div><ul class="simple">
+<li>mod 设置导航栏的类型，vertical和horizontal，默认是vertical垂直导航栏</li>
+<li>isopen 子模块是否展开，默认不展开，在垂直导航栏中有效</li>
+<li>arr 数组，没有子模块，直接传递包含title的json数据，有子模块传递包含submenu，subtitle及arr的json数据</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">arr 数组中的json对象的参数，即最小元素</p>
+<blockquote>
+<div><ul class="simple">
+<li>index 唯一标识，以“-”符号区分层级，子模块的前缀必须与父级的相同</li>
+<li>title 选项名称</li>
+<li>submenu 是否含有子模块</li>
+<li>subtitle 模块组的名称，当有子模块时用该参数表示名称</li>
+<li>isActivated 是否选中，默认未选中</li>
+<li>isdisable 是否不可选择，默认可选择</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">注意事项</p>
+<blockquote>
+<div><ul class="simple">
+<li>不允许对含有子模块的选项设置isdisabled属性</li>
+<li>horizontal模式只支持三层结构，超过三层的部分会被依次放在第三层下方</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="progress">
+<h2>12. progress组件<a class="headerlink" href="#progress" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first">基础功能</p>
+<blockquote>
+<div><ul class="simple">
+<li>调用实例</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="n">progress</span><span class="o">-</span><span class="n">progress</span><span class="o">&gt;</span><span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="s2">&quot;out&quot;</span><span class="p">,</span><span class="n">value</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="p">:</span><span class="s2">&quot;#8e71c7&quot;</span><span class="p">,</span><span class="n">status</span><span class="p">:</span><span class="s2">&quot;exception&quot;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="n">progress</span><span class="o">-</span><span class="n">progress</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="_images/component_12.png" src="_images/component_12.png" />
+<ul>
+<li><p class="first">参数介绍</p>
+<blockquote>
+<div><ul>
+<li><p class="first">类型(type)</p>
+<blockquote>
+<div><ul class="simple">
+<li>线形进度条 — 百分比外显(outer)</li>
+<li>线形进度条 — 百分比内显(inner)</li>
+<li>环形进度条(circle)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">进度值(value)–0~1的小数</p>
+</li>
+<li><p class="first">进度条颜色(color)–默认为(#409eff)</p>
+</li>
+<li><p class="first">状态(status)</p>
+<blockquote>
+<div><ul class="simple">
+<li>不填–标准显示</li>
+<li>完成(success)—进度条颜色将变为(#67c23a)</li>
+<li>异常(exception)—进度条颜色将变为(#f56c6c)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">遇见的问题</p>
+<blockquote>
+<div><ul class="simple">
+<li>svg的显示，有单独的组件ui-html进行支持</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="radio">
+<h2>13. radio组件<a class="headerlink" href="#radio" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first">Radio 单选框</p>
+<blockquote>
+<div><ul class="simple">
+<li>需要配合RadioGroup使用,不要单独使用</li>
+<li>使用方法</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="n">radio</span><span class="o">-</span><span class="n">radio</span><span class="o">&gt;</span><span class="p">{</span><span class="n">labelIndex</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="n">text</span><span class="p">:</span><span class="s2">&quot;测试文本1&quot;</span><span class="p">,</span><span class="n">checkedIndex</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="n">radio</span><span class="o">-</span><span class="n">radio</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>props属性</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interface</span> <span class="n">Props</span> <span class="p">{</span>
+    <span class="n">labelIndex</span><span class="p">:</span> <span class="n">number</span><span class="p">;</span><span class="o">//</span><span class="n">当前单选框下标</span>
+    <span class="n">text</span><span class="p">:</span><span class="n">string</span><span class="p">;</span><span class="o">//</span><span class="n">Radio显示文本</span>
+    <span class="n">checkedIndex</span><span class="p">:</span><span class="n">number</span><span class="p">;</span><span class="o">//</span><span class="n">选中的下标</span>
+    <span class="n">disabled</span><span class="p">:</span><span class="n">boolean</span><span class="p">;</span><span class="o">//</span><span class="n">是否禁用</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">事件</p>
+<blockquote>
+<div><ul class="simple">
+<li>从未选中到选择状态会向外抛出事件(ev-radio-change)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">事件参数</p>
+</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interface</span> <span class="n">params</span><span class="p">{</span>
+    <span class="n">checkedIndex</span><span class="p">:</span><span class="n">number</span><span class="p">;</span><span class="o">//</span><span class="n">选中的下标</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">RadioGroup 单选框组</p>
+<blockquote>
+<div><ul class="simple">
+<li>使用方法</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="n">radio</span><span class="o">-</span><span class="n">radioGroup</span><span class="o">&gt;</span><span class="p">{</span><span class="n">checkedIndex</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="n">radioList</span><span class="p">:[{</span><span class="n">text</span><span class="p">:</span><span class="s2">&quot;测试文本1&quot;</span><span class="p">},{</span><span class="n">text</span><span class="p">:</span><span class="s2">&quot;测试文本2&quot;</span><span class="p">},{</span><span class="n">text</span><span class="p">:</span><span class="s2">&quot;测试文本3&quot;</span><span class="p">}]}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="n">radio</span><span class="o">-</span><span class="n">radioGroup</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>props属性</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interface</span> <span class="n">radioObj</span> <span class="p">{</span>
+    <span class="n">text</span><span class="p">:</span><span class="n">string</span><span class="p">;</span><span class="o">//</span><span class="n">Radio显示文本</span>
+    <span class="n">disabled</span><span class="p">:</span><span class="n">boolean</span><span class="p">;</span><span class="o">//</span><span class="n">是否禁用</span>
+<span class="p">}</span>
+
+<span class="n">interface</span> <span class="n">Props</span> <span class="p">{</span>
+    <span class="n">checkedIndex</span><span class="p">:</span><span class="n">number</span><span class="p">;</span><span class="o">//</span><span class="n">默认选中的下标</span>
+    <span class="n">radioList</span><span class="p">:</span><span class="n">radioObj</span><span class="p">[];</span><span class="o">//</span><span class="n">单选框数组列表</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">事件</p>
+<blockquote>
+<div><ul class="simple">
+<li>从未选中到选择状态会向外抛出事件(ev-radio-change)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">事件参数</p>
+</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interface</span> <span class="n">params</span><span class="p">{</span>
+    <span class="n">checkedIndex</span><span class="p">:</span><span class="n">number</span><span class="p">;</span><span class="o">//</span><span class="n">选中的下标</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<p>效果展示：</p>
+<img alt="_images/component_13.gif" src="_images/component_13.gif" />
+</div>
+<div class="section" id="slider">
+<h2>14. slider组件<a class="headerlink" href="#slider" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first">调用实例</p>
+<blockquote>
+<div><div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="n">slider</span><span class="o">-</span><span class="n">slider</span><span class="o">&gt;</span><span class="p">{</span><span class="n">value</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nb">min</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nb">max</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="n">precision</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="n">step</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="n">showValue</span><span class="p">:</span><span class="n">true</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="n">slider</span><span class="o">-</span><span class="n">slider</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="_images/component_14.gif" src="_images/component_14.gif" />
+</div></blockquote>
+</li>
+<li><p class="first">参数介绍</p>
+<blockquote>
+<div><ul class="simple">
+<li>初始值(value)–默认为0</li>
+<li>最小值(min)–默认为0</li>
+<li>最大值(max)–默认为100</li>
+<li>保留几位小数(precision)–默认为0</li>
+<li>滑动间隔步数(step)–默认为1</li>
+<li>显示数量(showValue)–默认为false</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">事件</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>value改变时抛出ev-slider-change事件，外部接收即可，参数如下</dt>
+<dd><ul class="first last">
+<li>改变后的值(value)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">遇见的问题</p>
+<blockquote>
+<div><ul class="simple">
+<li>在代码中动态绑定事件时，不能使用window.addEventListener(‘mousemove’, this.onDragging);需要addEvent(window, ‘mousemove’, this, true)，其中addEvent是widget/scroller/dom中提供的函数</li>
+<li>在代码中动态绑定事件时，不建议直接绑定对应处理函数，这样将导致this的指向异常。可通过绑定this对象，并在widget中声明handleEvent函数进行中转，从而达到调用对应处理函数的目的</li>
+<li>为了实现鼠标在任意位置都能触发move与up事件，通常在触发down事件后，将对应事件动态的绑定在window上</li>
+<li>滑动间隔步数与保留几位小数不建议同时使用，其表现上控制起来较难</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="steps">
+<h2>15. steps组件<a class="headerlink" href="#steps" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first">调用实例</p>
+<blockquote>
+<div><div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="n">steps</span><span class="o">-</span><span class="n">steps</span><span class="o">&gt;</span><span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="s2">&quot;vertical&quot;</span><span class="p">,</span><span class="nb">list</span><span class="p">:[</span> <span class="p">{</span><span class="n">status</span><span class="p">:</span><span class="s2">&quot;success&quot;</span><span class="p">,</span><span class="n">title</span><span class="p">:</span><span class="s2">&quot;已完成&quot;</span><span class="p">,</span><span class="n">description</span><span class="p">:</span><span class="s2">&quot;我是描述1&quot;</span><span class="p">}</span> <span class="p">,</span><span class="o">...</span><span class="p">]}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="n">steps</span><span class="o">-</span><span class="n">steps</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="_images/component_15.png" src="_images/component_15.png" />
+</div></blockquote>
+</li>
+<li><p class="first">参数介绍</p>
+<blockquote>
+<div><ul>
+<li><p class="first">类型(type)</p>
+<blockquote>
+<div><ul class="simple">
+<li>横向显示(horizontal)</li>
+<li>纵向显示(vertical)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">显示数据(list)</p>
+<blockquote>
+<div><ul>
+<li><p class="first">状态(status)</p>
+<blockquote>
+<div><ul class="simple">
+<li>已完成(success)</li>
+<li>进行中(process)</li>
+<li>等待中(wait)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">标题(title)</p>
+</li>
+<li><p class="first">描述(description)–可不填</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">该组件的目的是根据传入数据，显示不同类型不同状态下步骤信息</p>
+</li>
+</ul>
+</div>
+<div class="section" id="switch">
+<h2>16. switch组件<a class="headerlink" href="#switch" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first">调用实例</p>
+<blockquote>
+<div><div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="n">switch</span><span class="o">-</span><span class="n">switch</span><span class="o">&gt;</span><span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="n">activeColor</span><span class="p">:</span><span class="s2">&quot;#13ce66&quot;</span><span class="p">,</span><span class="n">inactiveColor</span><span class="p">:</span><span class="s2">&quot;#ff4949&quot;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="n">switch</span><span class="o">-</span><span class="n">switch</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="_images/component_16.gif" src="_images/component_16.gif" />
+</div></blockquote>
+</li>
+<li><p class="first">参数介绍</p>
+<blockquote>
+<div><ul class="simple">
+<li>当前状态(type)–默认为false</li>
+<li>激活时颜色(activeColor)–默认为#409eff</li>
+<li>未激活时颜色(inactiveColor)–默认为#dcdfe6</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">事件</p>
+<blockquote>
+<div><ul>
+<li><p class="first">在点击开关时，会向外部抛出事件(ev-switch-click)，外部接收即可，参数如下</p>
+<blockquote>
+<div><ul class="simple">
+<li>以前的状态(oldType)</li>
+<li>新的状态(newType)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="table">
+<h2>17. table组件<a class="headerlink" href="#table" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first">调用实例</p>
+<blockquote>
+<div><div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="n">table</span><span class="o">-</span><span class="n">table</span><span class="o">&gt;</span><span class="p">{</span><span class="n">datas</span><span class="p">:[[</span><span class="s2">&quot;2016-05-02&quot;</span><span class="p">,</span><span class="s2">&quot;王小虎&quot;</span><span class="p">,</span><span class="s2">&quot;上海市普陀区金沙江路 1518 弄&quot;</span><span class="p">],</span> <span class="o">...</span><span class="p">],</span><span class="n">title</span><span class="p">:[</span><span class="s2">&quot;日期&quot;</span><span class="p">,</span><span class="s2">&quot;姓名&quot;</span><span class="p">,</span><span class="s2">&quot;地址&quot;</span><span class="p">],</span><span class="n">showBoder</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="n">maxHeight</span><span class="p">:</span><span class="mi">200</span> <span class="p">}</span> <span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="n">table</span><span class="o">-</span><span class="n">table</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="_images/component_17.png" src="_images/component_17.png" />
+</div></blockquote>
+</li>
+<li><p class="first">参数介绍</p>
+<blockquote>
+<div><ul>
+<li><p class="first">显示数据(datas)</p>
+<blockquote>
+<div><ul class="simple">
+<li>总数据为列表格式</li>
+<li>每条数据内部也是列表格式</li>
+<li>每条数据长度一致</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">标题(title)—自选</p>
+<blockquote>
+<div><ul class="simple">
+<li>数据为列表格式</li>
+<li>数据长度与每条显示数据长度一致</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">显示边框(showBoder)–默认为false</p>
+</li>
+<li><p class="first">控制高度(maxHeight)–默认为不控制</p>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">该组件的目的是根据传入数据，显示不同类型的表格</p>
+</li>
+</ul>
+</div>
+<div class="section" id="tabs">
+<h2>18. tabs组件<a class="headerlink" href="#tabs" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first">调用实例</p>
+<blockquote>
+<div><div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">components</span><span class="o">-</span><span class="n">tabs</span><span class="o">-</span><span class="n">tabs</span><span class="o">&gt;</span><span class="p">{</span><span class="nb">list</span><span class="p">:{{</span><span class="n">it1</span><span class="o">.</span><span class="n">list</span><span class="p">}},</span><span class="n">activeNum</span><span class="p">:{{</span><span class="n">it1</span><span class="o">.</span><span class="n">activeNum</span><span class="p">}},</span><span class="nb">type</span><span class="p">:</span><span class="s2">&quot;card&quot;</span><span class="p">,</span><span class="n">position</span><span class="p">:</span><span class="s2">&quot;right&quot;</span> <span class="p">}</span> <span class="o">&lt;/</span><span class="n">components</span><span class="o">-</span><span class="n">tabs</span><span class="o">-</span><span class="n">tabs</span><span class="o">&gt;</span>
+    <span class="n">it1</span><span class="o">.</span><span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;用户管理&quot;</span><span class="p">,</span> <span class="s2">&quot;配置管理&quot;</span><span class="p">,</span> <span class="s2">&quot;角色管理&quot;</span><span class="p">,</span> <span class="s2">&quot;定时任务补偿&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="_images/component_18.gif" src="_images/component_18.gif" />
+</div></blockquote>
+</li>
+<li><p class="first">参数介绍</p>
+<blockquote>
+<div><ul>
+<li><p class="first">显示数据(list)</p>
+</li>
+<li><p class="first">当前激活位置(activeNum)—默认为0</p>
+</li>
+<li><p class="first">显示类型(type)–默认为normal</p>
+<blockquote>
+<div><ul class="simple">
+<li>标准页签(normal)</li>
+<li>选项卡页签(card)</li>
+<li>卡片化页签(border_card)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">显示位置(position)–默认为top</p>
+<blockquote>
+<div><ul class="simple">
+<li>上方(top)</li>
+<li>右方(right)</li>
+<li>下方(bottom)</li>
+<li>左方(left)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">该组件的目的是根据传入数据，显示不同类型的页签</p>
+</li>
+</ul>
+</div>
+<div class="section" id="time-select">
+<h2>19. time_select<a class="headerlink" href="#time-select" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>props</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interface</span> <span class="n">Props</span><span class="p">{</span>
+    <span class="n">start</span><span class="p">:</span><span class="n">string</span><span class="p">;</span><span class="o">//</span><span class="n">开始时间</span> <span class="mi">09</span><span class="p">:</span><span class="mi">00</span>
+    <span class="n">step</span><span class="p">:</span><span class="n">string</span><span class="p">;</span><span class="o">//</span><span class="n">间隔时间</span> <span class="mi">00</span><span class="p">:</span><span class="mi">30</span>
+    <span class="n">end</span><span class="p">:</span><span class="n">string</span><span class="p">;</span><span class="o">//</span><span class="n">结束时间</span> <span class="mi">18</span><span class="p">:</span><span class="mi">00</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>基础用法</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>   &lt;components-time_select-time_select&gt;{start:&quot;08:30&quot;,end:&quot;18:30&quot;,step:&quot;01:16&quot;}&lt;/components-time_select-time_select&gt;
+
+
+效果展示：
+</pre></div>
+</div>
+<img alt="_images/component_19.gif" src="_images/component_19.gif" />
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>事件</dt>
+<dd><ul class="first last">
+<li>ev-input-change 在输入框值改变时触发,回调参数 value   【英文和中文抛出事件次数有差异】</li>
+<li>ev-input-blur 输入框失去焦点</li>
+<li>ev-input-focus 输入框获得焦点</li>
+<li>ev-input-select 点击下拉选中后触发</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Try.html" class="btn btn-neutral float-right" title="Try-试一试" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ComponentSystem.html" class="btn btn-neutral" title="ComponentSystem-组件系统" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, justsmileli.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
