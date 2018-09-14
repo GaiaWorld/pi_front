@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduction-介绍 &mdash; pi_front  文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="启动pi库步骤" href="start.html" />
+    <link rel="prev" title="pi_front是什么" href="index.html" /> 
+
+  
+  <script src="static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pi_front
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction-介绍</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hello-world">hello_world</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conditions">Conditions-条件与循环</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#eventlistener">EventListener-事件监听</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#componentized">Componentized-组件化</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="start.html">启动pi库步骤</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ComponentSystem.html">ComponentSystem-组件系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ComponentIntro.html">ComponentIntro-组件介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Try.html">Try-试一试</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pi_front</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Introduction-介绍</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="sources/Introduction.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1>Introduction-介绍<a class="headerlink" href="#introduction" title="永久链接至标题">¶</a></h1>
+<div class="section" id="hello-world">
+<h2>hello_world<a class="headerlink" href="#hello-world" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># tpl</span>
+<span class="p">{{</span><span class="n">let</span> <span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;hello world&quot;</span><span class="p">}}</span>
+<span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">a</span><span class="p">}}</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+<span class="c1"># 结果</span>
+<span class="n">hello</span> <span class="n">world</span>
+</pre></div>
+</div>
+<p>以上是一个简单的变量的定义及使用的应用</p>
+</div>
+<div class="section" id="conditions">
+<h2>Conditions-条件与循环<a class="headerlink" href="#conditions" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># tpl</span>
+<span class="p">{{</span><span class="n">let</span> <span class="n">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]}}</span>
+<span class="p">{{</span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">v</span> <span class="n">of</span> <span class="n">arr</span><span class="p">}}</span>
+    <span class="p">{{</span><span class="n">v</span><span class="p">}}</span>
+        <span class="p">{{</span><span class="k">if</span> <span class="n">v</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">}}</span><span class="o">&lt;</span><span class="mi">5</span>
+        <span class="p">{{</span><span class="n">elseif</span> <span class="n">v</span><span class="o">===</span><span class="mi">5</span><span class="p">}}</span><span class="o">=</span><span class="mi">5</span>
+        <span class="p">{{</span><span class="k">else</span><span class="p">}}</span><span class="o">&gt;</span><span class="mi">5</span>
+        <span class="p">{{</span><span class="n">end</span><span class="p">}}</span>
+    <span class="o">&lt;</span><span class="n">br</span><span class="o">&gt;</span>
+<span class="p">{{</span><span class="n">end</span><span class="p">}}</span>
+
+<span class="c1"># 结果</span>
+<span class="mi">4</span><span class="o">&lt;</span><span class="mi">5</span>
+<span class="mi">5</span><span class="o">=</span><span class="mi">5</span>
+<span class="mi">6</span><span class="o">&gt;</span><span class="mi">5</span>
+</pre></div>
+</div>
+<p>以上即是一个简单的循环、条件、显示的应用，我们在所有需要处理的显示对象外层嵌套处理逻辑，不破坏原有代码结构，尽量保证布局的原始性，但又实现了需求</p>
+<p>循环：以for-end配对处理，可实现循环显示</p>
+<p>条件：以if(-elseif-else)-end配对处理，elseif与else可不处理，可实现按条件显示</p>
+<p>{{v}}-显示：可直接将对应数据</p>
+<p>{{:arr=[4,5,6]}}–赋值：对变量赋值</p>
+</div>
+<div class="section" id="eventlistener">
+<h2>EventListener-事件监听<a class="headerlink" href="#eventlistener" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>我们的事件监听是在原生事件的基础上封装完成的，所以支持类似原生dom处理</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">button</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;btn&quot;</span> <span class="n">on</span><span class="o">-</span><span class="n">tap</span><span class="o">=</span><span class="s2">&quot;ok(&#39;ok&#39;)&quot;</span><span class="o">&gt;</span><span class="n">确认</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+<span class="n">点击确定按钮</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>我们也对事件进行了扩展处理，支持了自定义事件的监听，你可以简单的将事件手动抛出，在其直系父节点上再监听该事件，从而实现数据的传递。这种处理在组件系统中被广泛使用</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span># js抛出
+notify(this.parentNode, &#39;ev-emit-click&#39;, { index: this.props.index });
+# tpl抛出
+&lt;button on-tap=&#39;$notify(&quot;ev-emit-click&quot;, { &quot;id&quot;:{{v.id}}, })&#39;&gt;&quot;g2&quot;&lt;/button&gt;
+# tpl接收
+&lt;section ev-emit-click=&quot;clickCardPond&quot;&gt;&lt;/section&gt;
+
+以上两种情况都能做到抛出事件，最后其直系父节点，祖先节点都能监听到该事件
+</pre></div>
+</div>
+<ul>
+<li><p class="first">目前支持以下事件</p>
+<blockquote>
+<div><ul class="simple">
+<li>on-move:移动，滑动</li>
+<li>on-click:点击</li>
+<li>on-tap:点击</li>
+<li>on-dbltap:双击</li>
+<li>on-longtap:长按</li>
+<li>on-down:鼠标按下</li>
+<li>on-up:鼠标弹起</li>
+<li>on-rotsal:旋转缩放–自定义扩展，仅移动端有效，效果是两个手指缩放或旋转时触发</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="componentized">
+<h2>Componentized-组件化<a class="headerlink" href="#componentized" title="永久链接至标题">¶</a></h2>
+<p>目前我们所有的界面都是以组件化的形式组成的,这样能通过将通用组件抽离，使界面表现更简洁
+.. code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{{% 对手玩家}}
+&lt;children-playerarea-playerarea$&gt;{&quot;isOpponent&quot;:true,player:{{it1.oppo}}}&lt;/children-playerarea-playerarea$&gt;
+{{% 中立地带}}
+&lt;children-neutralarea-neutralarea$&gt;{shared:{{it1.shared}}}&lt;/children-neutralarea-neutralarea$&gt;
+{{% 我方玩家}}
+&lt;children-playerarea-playerarea$&gt;{&quot;isOpponent&quot;:false,player:{{it1.me}}}&lt;/children-playerarea-playerarea$&gt;
+
+以上实例即实现了创建出3块战斗区域,其中playerarea与neutralarea就是单独抽离出的组件，具体组件相关知识，将在接下来详细说明
+</pre></div>
+</div>
+<p>组件化之后有以下优点</p>
+<ul>
+<li><p class="first">提高代码的复用,减少重复工作</p>
+<blockquote>
+<div><ul class="simple">
+<li>组件级别的复用(提供通用组件)</li>
+<li>脚本的复用</li>
+<li>模板的复用</li>
+<li>样式的复用(提供了常用的样式库/动画库)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">提高编码效率</p>
+<blockquote>
+<div><ul class="simple">
+<li>提供了样式的局部作用域</li>
+<li>提供可编程模板</li>
+<li>数据和显示的分离=&gt;更好的前端分工，写逻辑的人只关心数据变化，不用关心界面变化</li>
+<li>无需手动操作DOM=&gt;代码更简介，不要关注烦人的dom操作</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">提高显示效果</p>
+<blockquote>
+<div><ul class="simple">
+<li>高效的帧管理，要么全部更新，要么不更新，保证画面不会闪烁</li>
+<li>精确的DOM更新，保证只刷新真正需要刷新的部分</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="start.html" class="btn btn-neutral float-right" title="启动pi库步骤" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="pi_front是什么" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, justsmileli.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="static/jquery.js"></script>
+      <script type="text/javascript" src="static/underscore.js"></script>
+      <script type="text/javascript" src="static/doctools.js"></script>
+      <script type="text/javascript" src="static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

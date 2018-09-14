@@ -1,0 +1,26 @@
+## 启动pi库步骤
+
+**1. 将资源更新到本地，三个文件夹必须放在同一级目录下**
+
+- pi文件夹，git路径： http://192.168.31.241:10080/tech/pi.git
+- pi_build文件夹，git路径： http://192.168.31.241:10080/tech/pi_build.git
+- pi_webserver文件夹，git路径： http://192.168.31.241:10080/tech/pi_webserver.git
+
+**2. 运行pi_webserver文价夹中的所有build.bat文件**
+
+- pi_webserver\plugin\common\build.bat
+- pi_webserver\plugin\git_plugin\build.bat
+- pi_webserver\plugin\htdocs\build.bat
+- pi_webserver\pi\back\lib\build.bat
+
+**3. 运行pi_webserver文件夹中的start.bat文件**
+
+- pi_webserver\pi\back\boot\start.bat
+
+**4. 运行pi文件夹中的build.bat文件**
+
+- pi\scripts\build.bat
+ 
+**5. 输入网址访问，首次运行完会提示访问链接**
+
+- http://127.0.0.1:8088/dst/boot/index.html

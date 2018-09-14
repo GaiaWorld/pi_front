@@ -1,0 +1,119 @@
+Introduction-介绍 
+====================
+
+
+hello_world
+---------------
+.. code::
+
+    # tpl
+    {{let a = "hello world"}}
+    <div>{{a}}</div>
+
+    # 结果
+    hello world
+
+以上是一个简单的变量的定义及使用的应用
+
+Conditions-条件与循环
+-----------------------
+.. code::
+
+    # tpl
+    {{let arr=[4,5,6]}}
+    {{for i,v of arr}}
+        {{v}}
+            {{if v<5}}<5
+            {{elseif v===5}}=5
+            {{else}}>5
+            {{end}}
+        <br>
+    {{end}}
+
+    # 结果
+    4<5
+    5=5
+    6>5
+
+以上即是一个简单的循环、条件、显示的应用，我们在所有需要处理的显示对象外层嵌套处理逻辑，不破坏原有代码结构，尽量保证布局的原始性，但又实现了需求
+
+循环：以for-end配对处理，可实现循环显示
+
+条件：以if(-elseif-else)-end配对处理，elseif与else可不处理，可实现按条件显示
+
+{{v}}-显示：可直接将对应数据
+
+{{:arr=[4,5,6]}}--赋值：对变量赋值
+
+EventListener-事件监听    
+-----------------------------
+
+- 我们的事件监听是在原生事件的基础上封装完成的，所以支持类似原生dom处理
+
+.. code::
+
+    <button class="btn" on-tap="ok('ok')">确认</button>
+    点击确定按钮
+
+
+- 我们也对事件进行了扩展处理，支持了自定义事件的监听，你可以简单的将事件手动抛出，在其直系父节点上再监听该事件，从而实现数据的传递。这种处理在组件系统中被广泛使用
+
+.. code::
+
+    # js抛出
+    notify(this.parentNode, 'ev-emit-click', { index: this.props.index });
+    # tpl抛出
+    <button on-tap='$notify("ev-emit-click", { "id":{{v.id}}, })'>"g2"</button>
+    # tpl接收
+    <section ev-emit-click="clickCardPond"></section>
+
+    以上两种情况都能做到抛出事件，最后其直系父节点，祖先节点都能监听到该事件
+
+
+- 目前支持以下事件
+
+    + on-move:移动，滑动
+    + on-click:点击
+    + on-tap:点击
+    + on-dbltap:双击
+    + on-longtap:长按
+    + on-down:鼠标按下
+    + on-up:鼠标弹起
+    + on-rotsal:旋转缩放--自定义扩展，仅移动端有效，效果是两个手指缩放或旋转时触发
+
+
+Componentized-组件化
+----------------------
+
+目前我们所有的界面都是以组件化的形式组成的,这样能通过将通用组件抽离，使界面表现更简洁
+.. code::
+
+    {{% 对手玩家}}
+    <children-playerarea-playerarea$>{"isOpponent":true,player:{{it1.oppo}}}</children-playerarea-playerarea$>
+    {{% 中立地带}}
+    <children-neutralarea-neutralarea$>{shared:{{it1.shared}}}</children-neutralarea-neutralarea$>
+    {{% 我方玩家}}
+    <children-playerarea-playerarea$>{"isOpponent":false,player:{{it1.me}}}</children-playerarea-playerarea$>
+
+    以上实例即实现了创建出3块战斗区域,其中playerarea与neutralarea就是单独抽离出的组件，具体组件相关知识，将在接下来详细说明
+
+组件化之后有以下优点
+
+- 提高代码的复用,减少重复工作
+
+    + 组件级别的复用(提供通用组件)
+    + 脚本的复用
+    + 模板的复用
+    + 样式的复用(提供了常用的样式库/动画库)
+
+- 提高编码效率
+
+    + 提供了样式的局部作用域
+    + 提供可编程模板
+    + 数据和显示的分离=>更好的前端分工，写逻辑的人只关心数据变化，不用关心界面变化
+    + 无需手动操作DOM=>代码更简介，不要关注烦人的dom操作
+
+- 提高显示效果
+
+    + 高效的帧管理，要么全部更新，要么不更新，保证画面不会闪烁
+    + 精确的DOM更新，保证只刷新真正需要刷新的部分

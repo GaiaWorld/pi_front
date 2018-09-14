@@ -1,0 +1,857 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Try-试一试 &mdash; pi_front  文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="prev" title="ComponentIntro-组件介绍" href="ComponentIntro.html" /> 
+
+  
+  <script src="static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pi_front
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">Introduction-介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start.html">启动pi库步骤</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ComponentSystem.html">ComponentSystem-组件系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ComponentIntro.html">ComponentIntro-组件介绍</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Try-试一试</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#variable">1. variable-变量的申明与使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#componentnesting">2. ComponentNesting-组件嵌套使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fathertoson">3. FatherToSon父组件向子组件传值</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wcss">4. wcss样式应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#style">5. Style-样式继承</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#it">6. It值的传递与使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jsprops-it">7. js处理props(it)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event">8. Event-事件绑定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sontofather">9. SonToFather-子组件向父组件传值</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#styleredraw">10. StyleRedraw-样式重绘示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changeevent">11. ChangeEvent-绑定事件改变示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changelistener">12. ChangeListener-监听事件改变示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#element">13. Element-定时显示或消失元素示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changeson">14. ChangeSon-定时改变子组件示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changepage">15. ChangePage-定时修改页面内容示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scroller">16. Scroller-滚动效果展示示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nestedscroll">17. NestedScroll-嵌套滚动功能的展示用例</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pi_front</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Try-试一试</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="sources/Try.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="try">
+<h1>Try-试一试<a class="headerlink" href="#try" title="永久链接至标题">¶</a></h1>
+<div class="section" id="variable">
+<h2>1. variable-变量的申明与使用<a class="headerlink" href="#variable" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{{:</span> <span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;b&quot;</span><span class="p">}}</span>
+<span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;a {{a}} c 23&quot;</span><span class="o">&gt;</span><span class="n">hello</span> <span class="n">world</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span><span class="n">hello</span> <span class="n">world</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_1.png" src="images/try_1.png" />
+<p>{{let a=”b”}}或{{: a=”b”}}都可以申明变量，{{: a.b=”c”}}语法可以用于对已存在变量的值进行修改</p>
+</div>
+<div class="section" id="componentnesting">
+<h2>2. ComponentNesting-组件嵌套使用<a class="headerlink" href="#componentnesting" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;background-color:red;&quot;</span><span class="o">&gt;</span>
+    <span class="n">i</span> <span class="n">am</span> <span class="n">grand</span>
+    <span class="o">&lt;</span><span class="n">widget</span> <span class="n">w</span><span class="o">-</span><span class="n">tag</span><span class="o">=</span><span class="s2">&quot;examples-widget-02_paint_multi-father&quot;</span><span class="o">&gt;&lt;/</span><span class="n">widget</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>或</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;div&gt;
+    i am father
+    &lt;child$&gt;&lt;/child$&gt;
+&lt;/div&gt;
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_2.png" src="images/try_2.png" />
+<p>用widget标签名，设置w-tag属性值为子组件路径，可以导入子组件的内容，或者直接以子组件的路径作为元素标签名，以短横线作为连接`包名-[包名-…]文件名`，也可以实现子组件的导入。</p>
+</div>
+<div class="section" id="fathertoson">
+<h2>3. FatherToSon父组件向子组件传值<a class="headerlink" href="#fathertoson" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>{{% 我是父组件}}
+&lt;div&gt;
+    i am father!
+    &lt;widget w-tag=&quot;组件路径&quot;&gt;{&quot;child&quot;:&quot;hello child!&quot;}&lt;/widget&gt;
+&lt;/div&gt;
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{{</span><span class="o">%</span> <span class="n">我是子组件</span><span class="p">}}</span>
+<span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">{{</span><span class="n">it</span><span class="o">.</span><span class="n">child</span><span class="p">}}</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_3.png" src="images/try_3.png" />
+<p>在父组件中通过组件闭合标签中使用json对象传递值，在子组件中会把json对象赋给it（即props属性）</p>
+<p>组件导入标签命名规则：</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;role_show$ style=&quot;&quot;&gt;&lt;/role_show$&gt;表示本目录下的role_show组件，
+&lt;role_show$$ style=&quot;&quot;&gt; &lt;/role_show$$&gt;表示父目录下的role_show组件，
+&lt;role_show-zb_show$$ style=&quot;&quot;&gt;&lt;/role_show-zb_show$$&gt;表示父目录下role_show目录下的zb_show组件
+&lt;app-base-btn style=&quot;&quot;&gt;&lt;/app-base-btn&gt;表示根目录开始，app/base目录下的btn组件
+</pre></div>
+</div>
+</div>
+<div class="section" id="wcss">
+<h2>4. wcss样式应用<a class="headerlink" href="#wcss" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>tpl</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">w</span><span class="o">-</span><span class="n">class</span><span class="o">=</span><span class="s2">&quot;color-red&quot;</span><span class="o">&gt;</span>
+    <span class="n">i</span> <span class="n">am</span> <span class="n">blue</span><span class="p">,</span> <span class="ow">and</span> <span class="n">top</span> <span class="ow">is</span> <span class="mi">100</span><span class="n">px</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>wcss</li>
+</ul>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">color</span><span class="o">-</span><span class="n">red</span><span class="p">{</span>
+    <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span><span class="n">blue</span><span class="p">;</span>
+    <span class="n">margin</span><span class="o">-</span><span class="n">top</span><span class="p">:</span><span class="mi">100</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_4.png" src="images/try_4.png" />
+<p>在.tpl同目录下建立同名的.wcss文件，此文件为样式表文件，其内的样式经编译后以内联样式的形式嵌入html标签中，内联样式不支持的伪元素伪类等，w-class也无法支持</p>
+</div>
+<div class="section" id="style">
+<h2>5. Style-样式继承<a class="headerlink" href="#style" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>//child.tpl
+&lt;div w-class = &quot;child a&quot;&gt;
+    i am child, i am white
+&lt;/div&gt;
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">father</span><span class="o">.</span><span class="n">tpl</span>
+<span class="o">&lt;</span><span class="n">div</span> <span class="n">w</span><span class="o">-</span><span class="n">class</span><span class="o">=</span><span class="s2">&quot;father b&quot;</span><span class="o">&gt;</span>
+    <span class="n">i</span> <span class="n">am</span> <span class="n">father</span><span class="p">,</span> <span class="n">i</span> <span class="n">am</span> <span class="n">blue</span>
+    <span class="o">&lt;</span><span class="n">examples</span><span class="o">-</span><span class="n">widget</span><span class="o">-</span><span class="mi">05</span><span class="n">_style_inherit</span><span class="o">-</span><span class="n">child</span><span class="o">&gt;&lt;/</span><span class="n">examples</span><span class="o">-</span><span class="n">widget</span><span class="o">-</span><span class="mi">05</span><span class="n">_style_inherit</span><span class="o">-</span><span class="n">child</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">grand</span><span class="o">.</span><span class="n">tpl</span>
+<span class="o">&lt;</span><span class="n">div</span> <span class="n">w</span><span class="o">-</span><span class="n">class</span><span class="o">=</span><span class="s2">&quot;grand c&quot;</span><span class="o">&gt;</span>
+    <span class="n">i</span> <span class="n">am</span> <span class="n">grand</span><span class="p">,</span> <span class="n">i</span> <span class="n">am</span> <span class="n">yellow</span>
+    <span class="o">&lt;</span><span class="n">examples</span><span class="o">-</span><span class="n">widget</span><span class="o">-</span><span class="mi">05</span><span class="n">_style_inherit</span><span class="o">-</span><span class="n">father</span><span class="o">&gt;&lt;/</span><span class="n">examples</span><span class="o">-</span><span class="n">widget</span><span class="o">-</span><span class="mi">05</span><span class="n">_style_inherit</span><span class="o">-</span><span class="n">father</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_5.png" src="images/try_5.png" />
+<ul class="simple">
+<li>如果子组件中没有定义该样式，则使用父组件中的样式。</li>
+<li>如果子组件中有定义该样式，则不使用父组件中的同名样式。</li>
+</ul>
+</div>
+<div class="section" id="it">
+<h2>6. It值的传递与使用<a class="headerlink" href="#it" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>{{: it = it||&quot;a&quot;}}
+&lt;div style = &quot;&quot; w-class = &quot;child {{it}}&quot;&gt;
+    i am child, i am gray
+&lt;/div&gt;
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{{:</span> <span class="n">it</span> <span class="o">=</span> <span class="n">it</span><span class="o">||</span><span class="s2">&quot;a&quot;</span><span class="p">}}</span>
+<span class="o">&lt;</span><span class="n">div</span> <span class="n">w</span><span class="o">-</span><span class="n">class</span><span class="o">=</span><span class="s2">&quot;father b&quot;</span><span class="o">&gt;</span>
+    <span class="n">i</span> <span class="n">am</span> <span class="n">father</span><span class="p">,</span> <span class="n">i</span> <span class="n">am</span> <span class="n">blue</span>
+    <span class="o">&lt;</span><span class="n">examples</span><span class="o">-</span><span class="n">widget</span><span class="o">-</span><span class="mi">06</span><span class="n">_style_multi</span><span class="o">-</span><span class="n">child</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">it</span><span class="p">}}</span><span class="o">&lt;/</span><span class="n">examples</span><span class="o">-</span><span class="n">widget</span><span class="o">-</span><span class="mi">06</span><span class="n">_style_multi</span><span class="o">-</span><span class="n">child</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">w</span><span class="o">-</span><span class="n">class</span><span class="o">=</span><span class="s2">&quot;grand c robot&quot;</span><span class="o">&gt;</span>
+    <span class="n">i</span> <span class="n">am</span> <span class="n">grand</span><span class="p">,</span> <span class="n">i</span> <span class="n">am</span> <span class="n">yellow</span>
+    <span class="o">&lt;</span><span class="n">examples</span><span class="o">-</span><span class="n">widget</span><span class="o">-</span><span class="mi">06</span><span class="n">_style_multi</span><span class="o">-</span><span class="n">father</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">tt</span><span class="p">}}</span><span class="o">&lt;/</span><span class="n">examples</span><span class="o">-</span><span class="n">widget</span><span class="o">-</span><span class="mi">06</span><span class="n">_style_multi</span><span class="o">-</span><span class="n">father</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_6.png" src="images/try_6.png" />
+<ul class="simple">
+<li>在标签内使用{{}}可以传递单个变量</li>
+<li>grand中直接传递it值，但是并没有对其设置初值，相当于传递一个null，如果传递其他变量名则会报错undefined。</li>
+</ul>
+</div>
+<div class="section" id="jsprops-it">
+<h2>7. js处理props(it)<a class="headerlink" href="#jsprops-it" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;background-color: yellow&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="n">boss</span> <span class="ow">is</span> <span class="p">:</span> <span class="p">{{</span><span class="n">it</span><span class="o">.</span><span class="n">boss</span><span class="p">}}</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="n">company</span> <span class="n">name</span> <span class="ow">is</span> <span class="p">:</span> <span class="p">{{</span><span class="n">it</span><span class="o">.</span><span class="n">cpy</span><span class="o">.</span><span class="n">name</span><span class="p">}}</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="n">company</span> <span class="n">address</span> <span class="ow">is</span> <span class="p">:</span> <span class="p">{{</span><span class="n">it</span><span class="o">.</span><span class="n">cpy</span><span class="o">.</span><span class="n">addr</span><span class="p">}}</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">{{</span><span class="k">for</span> <span class="n">index</span><span class="p">,</span><span class="n">staff</span> <span class="n">of</span> <span class="n">it</span><span class="o">.</span><span class="n">staff</span><span class="p">}}</span>
+        <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+            <span class="n">staff</span> <span class="ow">is</span> <span class="p">:</span> <span class="p">{{</span><span class="n">staff</span><span class="p">}}</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">{{</span><span class="n">end</span><span class="p">}}</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span> <span class="n">Widget</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;../../../widget/widget&#39;</span><span class="p">;</span>
+
+<span class="n">export</span> <span class="k">class</span> <span class="nc">JSONX</span> <span class="n">extends</span> <span class="n">Widget</span> <span class="p">{</span>
+    <span class="o">/*</span> <span class="n">tslint</span><span class="p">:</span><span class="n">disable</span><span class="p">:</span><span class="n">typedef</span> <span class="o">*/</span>
+    <span class="n">public</span> <span class="n">props</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">boss</span><span class="p">:</span> <span class="s1">&#39;zwx&#39;</span><span class="p">,</span>
+        <span class="n">cpy</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">addr</span><span class="p">:</span> <span class="s1">&#39;cd&#39;</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;yn&#39;</span>
+        <span class="p">},</span>
+        <span class="n">staff</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;tm1&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;cjh1&#39;</span>
+        <span class="p">]</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_7.png" src="images/try_7.png" />
+<p>在js中给props设置初值，在tpl中直接用it即可使用</p>
+</div>
+<div class="section" id="event">
+<h2>8. Event-事件绑定<a class="headerlink" href="#event" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">on</span><span class="o">-</span><span class="n">click</span><span class="o">=</span><span class="s2">&quot;onClick&quot;</span><span class="o">&gt;</span>
+    <span class="n">click</span> <span class="n">number</span> <span class="ow">is</span> <span class="p">:</span> <span class="p">{{</span><span class="n">it</span><span class="o">.</span><span class="n">count</span><span class="p">}}</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interface</span> <span class="n">Props</span> <span class="p">{</span>
+    <span class="n">count</span><span class="p">:</span><span class="n">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="k">class</span> <span class="nc">Html</span> <span class="n">extends</span> <span class="n">Widget</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="n">props</span><span class="p">:</span><span class="n">Props</span><span class="p">;</span>
+    <span class="n">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">super</span><span class="p">();</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">props</span> <span class="o">=</span> <span class="p">{</span><span class="n">count</span> <span class="p">:</span> <span class="mi">0</span><span class="p">};</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="n">onClick</span><span class="p">(</span><span class="n">event</span><span class="p">:</span><span class="nb">any</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">alert</span><span class="p">(</span><span class="s1">&#39;hey!&#39;</span><span class="p">);</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">paint</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_8.gif" src="images/try_8.gif" />
+<ul class="simple">
+<li>通过在标签中使用on-click属性来绑定点击事件</li>
+<li>其他事件同理【on-事件名】实现绑定</li>
+<li>事件处理函数在ts文件中定义</li>
+<li>事件处理后要刷新页面需要手动调用this.paint()</li>
+</ul>
+</div>
+<div class="section" id="sontofather">
+<h2>9. SonToFather-子组件向父组件传值<a class="headerlink" href="#sontofather" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">on</span><span class="o">-</span><span class="n">click</span> <span class="o">=</span> <span class="s2">&quot;childClick&quot;</span><span class="o">&gt;</span>
+<span class="n">i</span> <span class="n">am</span> <span class="n">child</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">childClick</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">alert</span><span class="p">(</span><span class="s1">&#39;childClick&#39;</span><span class="p">);</span>
+    <span class="n">notify</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="s1">&#39;ev-click&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="n">value</span><span class="p">:</span> <span class="s1">&#39;tangmin&#39;</span> <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">ev</span><span class="o">-</span><span class="n">click</span> <span class="o">=</span> <span class="s2">&quot;fatherClick&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">子组件</span><span class="o">&gt;&lt;/</span><span class="n">子组件</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>public fatherClick(event:any) {
+    alert(`father get it : ${event.value}`);
+}
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_9.gif" src="images/try_9.gif" />
+<ul>
+<li><p class="first">子组件的绑定事件中调用notify方法</p>
+<blockquote>
+<div><ul class="simple">
+<li>event.node：dom节点，比传参数</li>
+<li>ev-click：自定义监听事件名，必须以ev-开头</li>
+<li>{}：需要传递给父节点的参数</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">父组件绑定监听事件</p>
+</li>
+</ul>
+</div>
+<div class="section" id="styleredraw">
+<h2>10. StyleRedraw-样式重绘示例<a class="headerlink" href="#styleredraw" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">w</span><span class="o">-</span><span class="n">class</span><span class="o">=</span><span class="s2">&quot;{{it.style}}&quot;</span><span class="o">&gt;</span>
+    <span class="n">i</span> <span class="n">am</span> <span class="n">yellow</span><span class="p">,</span> <span class="ow">and</span> <span class="n">then</span>  <span class="n">red</span> <span class="ow">and</span> <span class="k">finally</span> <span class="n">blue</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="k">class</span> <span class="nc">Clazz</span> <span class="n">extends</span> <span class="n">Widget</span> <span class="p">{</span>
+    <span class="n">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">super</span><span class="p">();</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">props</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">style</span><span class="p">:</span><span class="s1">&#39;yellow&#39;</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="n">attach</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">;</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">paint</span><span class="p">();</span>
+        <span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
+        <span class="n">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">;</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">paint</span><span class="p">();</span>
+        <span class="p">},</span> <span class="mi">6000</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">yellow</span><span class="p">{</span>
+    <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span><span class="n">yellow</span><span class="p">;</span>
+    <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="p">:</span><span class="mi">20</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="o">.</span><span class="n">red</span><span class="p">{</span>
+    <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="n">red</span><span class="p">;</span>
+    <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="p">:</span><span class="mi">40</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="o">.</span><span class="n">blue</span><span class="p">{</span>
+    <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span><span class="n">blue</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_10.gif" src="images/try_10.gif" />
+<ul class="simple">
+<li>首先给style赋初始值，通过定时器来改变该变量的值</li>
+<li>调用this.paint()方法可以进行页面的刷新</li>
+<li>背景色会yellow-red-blue切换</li>
+</ul>
+</div>
+<div class="section" id="changeevent">
+<h2>11. ChangeEvent-绑定事件改变示例<a class="headerlink" href="#changeevent" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">on</span><span class="o">-</span><span class="n">click</span><span class="o">=</span><span class="p">{{</span><span class="n">it</span><span class="o">.</span><span class="n">clickFunc</span><span class="p">}}</span><span class="o">&gt;</span>
+<span class="n">点我</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="k">class</span> <span class="nc">EventHtml</span> <span class="n">extends</span> <span class="n">Widget</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="n">props</span><span class="p">:</span><span class="n">Props</span><span class="p">;</span>
+    <span class="n">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">super</span><span class="p">();</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">props</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">clickFunc</span><span class="p">:</span><span class="s1">&#39;click1&#39;</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="n">click1</span><span class="p">(</span><span class="n">event</span><span class="p">:</span><span class="nb">any</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">preventDefault</span><span class="p">();</span>
+        <span class="n">alert</span><span class="p">(</span><span class="s1">&#39; i am click 1&#39;</span><span class="p">);</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">clickFunc</span> <span class="o">=</span> <span class="s1">&#39;click2&#39;</span><span class="p">;</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">paint</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="n">click2</span><span class="p">(</span><span class="n">event</span><span class="p">:</span><span class="nb">any</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">alert</span><span class="p">(</span><span class="s1">&#39; i am click 2&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_11.gif" src="images/try_11.gif" />
+<ul class="simple">
+<li>首先给clickFunc赋初始值，第一次点击事件触发后修改该变量的值</li>
+<li>调用this.paint()方法刷新页面</li>
+<li>第二次及之后点击事件触发的方法都是click2</li>
+</ul>
+</div>
+<div class="section" id="changelistener">
+<h2>12. ChangeListener-监听事件改变示例<a class="headerlink" href="#changelistener" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">on</span><span class="o">-</span><span class="n">click</span><span class="o">=</span><span class="s2">&quot;clickFunc&quot;</span><span class="o">&gt;</span>
+    <span class="n">i</span> <span class="n">am</span> <span class="n">child</span><span class="p">,</span> <span class="n">点我</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="k">class</span> <span class="nc">Child</span> <span class="n">extends</span> <span class="n">Widget</span> <span class="p">{</span>
+    <span class="n">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">super</span><span class="p">();</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">props</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="n">clickFunc</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">preventDefault</span><span class="p">();</span>
+        <span class="n">notify</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="s1">&#39;ev-click&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="n">value</span><span class="p">:</span> <span class="s1">&#39;tangmin&#39;</span> <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">ev</span><span class="o">-</span><span class="n">click</span><span class="o">=</span><span class="p">{{</span><span class="n">it</span><span class="o">.</span><span class="n">clickFunc</span><span class="p">}}</span><span class="o">&gt;</span>
+    <span class="n">i</span> <span class="n">am</span> <span class="n">father</span>
+    <span class="o">&lt;</span><span class="n">examples</span><span class="o">-</span><span class="n">widget</span><span class="o">-</span><span class="mi">18</span><span class="n">_repaint_event_user</span><span class="o">-</span><span class="n">child</span><span class="o">&gt;&lt;/</span><span class="n">examples</span><span class="o">-</span><span class="n">widget</span><span class="o">-</span><span class="mi">18</span><span class="n">_repaint_event_user</span><span class="o">-</span><span class="n">child</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="k">class</span> <span class="nc">Father</span> <span class="n">extends</span> <span class="n">Widget</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="n">props</span><span class="p">:</span> <span class="n">Props</span><span class="p">;</span>
+    <span class="n">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">super</span><span class="p">();</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">props</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">clickFunc</span><span class="p">:</span> <span class="s1">&#39;click1&#39;</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="n">click1</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">alert</span><span class="p">(</span><span class="s1">&#39;i am click1 from father&#39;</span><span class="p">);</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">clickFunc</span> <span class="o">=</span> <span class="s1">&#39;click2&#39;</span><span class="p">;</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">paint</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="n">click2</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">alert</span><span class="p">(</span><span class="s1">&#39;i am click2 from father&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_12.gif" src="images/try_12.gif" />
+<ul class="simple">
+<li>子组件绑定一个点击事件，触发后冒泡</li>
+<li>父组件首先给clickFunc参数赋初始值，第一次监听到事件后改变该参数</li>
+<li>第二次及之后监听事件执行的是click2</li>
+</ul>
+</div>
+<div class="section" id="element">
+<h2>13. Element-定时显示或消失元素示例<a class="headerlink" href="#element" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;div&gt;i am father!!!
+
+&lt;examples-widget-20_repaint_child_wgt_add-child1&gt;&lt;/examples-widget-20_repaint_child_wgt_add-child1&gt;
+{{if it.hasChild2}}&lt;examples-widget-20_repaint_child_wgt_add-child2&gt;&lt;/examples-widget-20_repaint_child_wgt_add-child2&gt;
+{{end}}
+&lt;/div&gt;
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="k">class</span> <span class="nc">Father</span> <span class="n">extends</span> <span class="n">Widget</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="n">props</span><span class="p">:</span> <span class="n">Props</span><span class="p">;</span>
+    <span class="n">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">super</span><span class="p">();</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">props</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">hasChild2</span><span class="p">:</span> <span class="n">false</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="n">attach</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">hasChild2</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">paint</span><span class="p">();</span>
+        <span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_13.gif" src="images/try_13.gif" />
+<ul class="simple">
+<li>父组件中判断haschild2是否为true，是则显示child2组件的内容，否则不显示</li>
+<li>attach方法在dom元素构建完成后自动执行，延时3秒后将hasChild2的值修改为true</li>
+</ul>
+</div>
+<div class="section" id="changeson">
+<h2>14. ChangeSon-定时改变子组件示例<a class="headerlink" href="#changeson" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;background-color: white&quot;</span><span class="o">&gt;</span>
+<span class="n">i</span> <span class="n">am</span> <span class="n">father</span>
+    <span class="o">&lt;</span><span class="n">examples</span><span class="o">-</span><span class="n">widget</span><span class="o">-</span><span class="mi">22</span><span class="n">_repaint_child_wgt_change</span><span class="o">-</span><span class="n">child1</span><span class="o">&gt;&lt;/</span><span class="n">examples</span><span class="o">-</span><span class="n">widget</span><span class="o">-</span><span class="mi">22</span><span class="n">_repaint_child_wgt_change</span><span class="o">-</span><span class="n">child1</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">widget</span> <span class="n">w</span><span class="o">-</span><span class="n">tag</span><span class="o">=</span><span class="p">{{</span><span class="n">it</span><span class="o">.</span><span class="n">childName</span><span class="p">}}</span><span class="o">&gt;&lt;/</span><span class="n">widget</span><span class="o">&gt;</span>
+
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="k">class</span> <span class="nc">Father</span> <span class="n">extends</span> <span class="n">Widget</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="n">props</span><span class="p">:</span> <span class="n">Props</span><span class="p">;</span>
+    <span class="n">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">super</span><span class="p">();</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">props</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">childName</span><span class="p">:</span> <span class="s1">&#39;examples-widget-22_repaint_child_wgt_change-child2&#39;</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="n">attach</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">childName</span> <span class="o">=</span> <span class="s1">&#39;examples-widget-22_repaint_child_wgt_change-child3&#39;</span><span class="p">;</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">paint</span><span class="p">();</span>
+        <span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_14.gif" src="images/try_14.gif" />
+<ul class="simple">
+<li>父组件中将childName的值赋给widget元素的w-tag属性，导入子组件</li>
+<li>在attach方法中延时修改childName的值，调用paint方法刷新页面，导入的子组件切换</li>
+</ul>
+</div>
+<div class="section" id="changepage">
+<h2>15. ChangePage-定时修改页面内容示例<a class="headerlink" href="#changepage" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;background-color: white&quot;</span><span class="o">&gt;</span>
+    <span class="p">{{</span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="n">of</span> <span class="n">it</span><span class="o">.</span><span class="n">arr</span><span class="p">}}</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="nb">id</span> <span class="ow">is</span> <span class="p">:</span> <span class="p">{{</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]}},</span> <span class="n">name</span> <span class="ow">is</span> <span class="p">:</span> <span class="p">{{</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]}}</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">{{</span><span class="n">end</span><span class="p">}}</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="k">class</span> <span class="nc">List</span> <span class="n">extends</span> <span class="n">Widget</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="n">props</span><span class="p">:</span> <span class="n">Props</span><span class="p">;</span>
+    <span class="n">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">super</span><span class="p">();</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">props</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">arr</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">600</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">700</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">]</span>
+            <span class="p">]</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="n">attach</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">600</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">900</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">]</span>
+            <span class="p">];</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">paint</span><span class="p">();</span>
+        <span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_15.gif" src="images/try_15.gif" />
+<ul class="simple">
+<li>tpl文件中利用for循环动态创建出列表内容</li>
+<li>在attach方法中修改列表内容，刷新页面修改内容展示</li>
+</ul>
+</div>
+<div class="section" id="scroller">
+<h2>16. Scroller-滚动效果展示示例<a class="headerlink" href="#scroller" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">w</span><span class="o">-</span><span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;{&quot;mod&quot;:&quot;widget/scroller/scroller&quot;, &quot;options&quot;:</span><span class="si">{}</span><span class="s1"> }&#39;</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;display:block;&quot;</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;position:fixed;top:0px;bottom:0px;width:100%;&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;background-color:red&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;height:500px;&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;background-color:blue&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;height:600px;&quot;</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;background-color:green&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;height:700px;&quot;</span><span class="o">&gt;</span><span class="mi">3</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;background-color:yellow&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;height:800px;&quot;</span><span class="o">&gt;</span><span class="mi">4</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;background-color:grey&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;height:500px;&quot;</span><span class="o">&gt;</span><span class="mi">5</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_16.gif" src="images/try_16.gif" />
+<ul class="simple">
+<li>用w-plugin引入scroll.ts滚动效果文件，即可实现上下滑动，手机模式下的触摸滑动</li>
+</ul>
+</div>
+<div class="section" id="nestedscroll">
+<h2>17. NestedScroll-嵌套滚动功能的展示用例<a class="headerlink" href="#nestedscroll" title="永久链接至标题">¶</a></h2>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span>  <span class="n">ev</span><span class="o">-</span><span class="n">scroller</span><span class="o">-</span><span class="n">scroll</span><span class="o">=</span><span class="s2">&quot;scroll&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">w</span><span class="o">-</span><span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;{&quot;mod&quot;:&quot;widget/scroller/scroller&quot;, &quot;options&quot;:{&quot;id&quot;:&quot;outer&quot;, &quot;bounce&quot;: false} }&#39;</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;display:block;background-color:orangered&quot;</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;position:fixed;height:500px;width:100%;overflow:hidden;&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;height:600px;&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;height:200px;&quot;</span><span class="o">&gt;</span><span class="n">商铺详细信息</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">div</span> <span class="n">w</span><span class="o">-</span><span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;{&quot;mod&quot;:&quot;widget/scroller/scroller&quot;, &quot;options&quot;:{&quot;id&quot;:&quot;inner&quot;, &quot;bounce&quot;: false} }&#39;</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;display:block;&quot;</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;position:fixed;height:400px;width:100%;overflow:hidden;&quot;</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">div</span> <span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;background-color:red&quot;</span> <span class="n">on</span><span class="o">-</span><span class="n">tap</span><span class="o">=</span><span class="s2">&quot;doTap&quot;</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;border: 1px solid;height:500px&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+                    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;background-color:blue&quot;</span> <span class="n">on</span><span class="o">-</span><span class="n">longtap</span><span class="o">=</span><span class="s2">&quot;doLongtap&quot;</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;border: 1px solid;height:500px&quot;</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+                    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;background-color:green&quot;</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;border: 1px solid;height:500px&quot;</span><span class="o">&gt;</span><span class="mi">3</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+                    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;background-color:yellow&quot;</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;border: 1px solid;height:500px&quot;</span><span class="o">&gt;</span><span class="mi">4</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+                    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;background-color:grey&quot;</span><span class="o">&gt;</span>
+                        <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;border: 1px solid;height:500px&quot;</span><span class="o">&gt;</span><span class="mi">5</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+                    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+                <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>export class Scroller extends Widget {
+    /* tslint:disable:typedef */
+    public inner = null;
+    public outer = null;
+    public outery = 0;
+    public innery = 0;
+    public scroll(event) {
+        console.log(`id is : ${event.id}, x is : ${event.x}, y is : ${event.y}`);
+        if (event.id === &#39;outer&#39;) {
+            this.outery = event.y;
+            this.outer = event.instance;
+            if (event.y === -100) {
+                this.outer.disable();
+            }
+        }
+        if (event.id === &#39;inner&#39;) {
+            this.inner = event.instance;
+            this.innery = event.y;
+            if (this.innery === 0) {
+                this.outer.enable();
+            }
+        }
+    }
+    public doTap() {
+        alert(&#39;tap&#39;);
+    }
+    public doLongtap() {
+        alert(&#39;longtap&#39;);
+    }
+}
+</pre></div>
+</div>
+<p>效果展示：</p>
+<img alt="images/try_17.gif" src="images/try_17.gif" />
+<ul class="simple">
+<li>tap事件和longtap事件的绑定，tap事件类似于click事件，tap事件手机支持的效果更好，longtap事件长按触发</li>
+<li>外层滚动被拖到最上面后，无法再继续拖动，</li>
+<li>内层滚动被拖到最下面后，可以把外层滚动拖下来。</li>
+<li>红色区域绑定on-tap事件，点击即会弹出“tap”</li>
+<li>蓝色区域绑定on-longtap事件，长按会弹出“longtap”</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="ComponentIntro.html" class="btn btn-neutral" title="ComponentIntro-组件介绍" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, justsmileli.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="static/jquery.js"></script>
+      <script type="text/javascript" src="static/underscore.js"></script>
+      <script type="text/javascript" src="static/doctools.js"></script>
+      <script type="text/javascript" src="static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

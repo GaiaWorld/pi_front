@@ -2,10 +2,10 @@
  * 
  */
 // tslint:disable:no-implicit-dependencies no-submodule-imports
-import { isInteger, isString } from 'compile/gendrust';
-import { butil } from 'lang/mod';
-import { BinBuffer, BinCode, ReadNext, WriteNext } from 'util/bin';
-import { upperFirst } from 'util/util';
+import { isInteger, isString } from '../compile/gendrust';
+import { butil } from '../lang/mod';
+import { BinBuffer, BinCode, ReadNext, WriteNext } from '../util/bin';
+import { upperFirst } from '../util/util';
 import { addToMeta, MStruct, MStructMeta, removeFromMeta, Struct, StructMgr } from './struct_mgr';
 
 // 半序列化ReadNext,bb.read()读到的是数据的索引
